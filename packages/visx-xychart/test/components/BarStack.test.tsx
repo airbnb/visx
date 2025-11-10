@@ -25,7 +25,6 @@ const accessors = {
 };
 
 const series1 = {
-  key: 'bar1',
   data: [
     { x: 10, y: 5 },
     { x: 7, y: 5 },
@@ -34,7 +33,6 @@ const series1 = {
 };
 
 const series2 = {
-  key: 'bar2',
   data: [
     { x: 10, y: 5 },
     { x: 7, y: 20 },
@@ -42,7 +40,6 @@ const series2 = {
   ...accessors,
 };
 const seriesMissingData = {
-  key: 'seriesMissingData',
   data: [{ y: 5 }, { x: 7 }, { x: 7, y: 20 }],
   ...accessors,
 };
@@ -57,8 +54,8 @@ describe('<BarStack />', () => {
       <DataProvider {...providerProps}>
         <svg>
           <BarStack>
-            <BarSeries dataKey={series1.key} {...series1} />
-            <BarSeries dataKey={series2.key} {...series2} />
+            <BarSeries dataKey={"bar1"} {...series1} />
+            <BarSeries dataKey={"bar2"} {...series2} />
           </BarStack>
         </svg>
       </DataProvider>,
@@ -72,8 +69,8 @@ describe('<BarStack />', () => {
       <DataProvider {...providerProps}>
         <svg>
           <BarStack>
-            <BarSeries dataKey={series1.key} radiusAll radius={4} {...series1} />
-            <BarSeries dataKey={series2.key} {...series2} />
+            <BarSeries dataKey={"bar1"} radiusAll radius={4} {...series1} />
+            <BarSeries dataKey={"bar2"} {...series2} />
           </BarStack>
         </svg>
       </DataProvider>,
@@ -86,9 +83,9 @@ describe('<BarStack />', () => {
       <DataProvider {...providerProps}>
         <svg>
           <BarStack>
-            <BarSeries dataKey={series1.key} {...series1} />
+            <BarSeries dataKey={"bar1"} {...series1} />
             <BarSeries
-              dataKey={series2.key}
+              dataKey={"bar2"}
               {...series2}
               colorAccessor={(_, i) => (i === 0 ? 'banana' : null)}
             />
@@ -108,8 +105,8 @@ describe('<BarStack />', () => {
       <DataProvider {...providerProps}>
         <svg>
           <BarStack>
-            <BarSeries dataKey={series1.key} {...series1} />
-            <BarSeries dataKey={seriesMissingData.key} {...seriesMissingData} />
+            <BarSeries dataKey={"bar1"} {...series1} />
+            <BarSeries dataKey={"seriesMissingData"} {...seriesMissingData} />
           </BarStack>
         </svg>
       </DataProvider>,
@@ -131,9 +128,9 @@ describe('<BarStack />', () => {
       <DataProvider {...providerProps}>
         <svg>
           <BarStack>
-            <BarSeries dataKey={series1.key} {...series1} />
+            <BarSeries dataKey={"bar1"} {...series1} />
             <BarSeries
-              dataKey={series2.key}
+              dataKey={"bar2"}
               {...series2}
               data={[
                 { x: 10, y: 5 },
@@ -208,8 +205,8 @@ describe('<BarStack />', () => {
     setupTooltipTest(
       <>
         <BarStack>
-          <BarSeries dataKey={series1.key} {...series1} />
-          <BarSeries dataKey={series2.key} {...series2} />
+          <BarSeries dataKey={"bar1"} {...series1} />
+          <BarSeries dataKey={"bar2"} {...series2} />
         </BarStack>
         <EventEmitter />
       </>,
@@ -234,8 +231,8 @@ describe('<AnimatedBarStack />', () => {
       <DataProvider {...providerProps}>
         <svg>
           <AnimatedBarStack>
-            <BarSeries dataKey={series1.key} {...series1} />
-            <BarSeries dataKey={series2.key} {...series2} />
+            <BarSeries dataKey={"bar1"} {...series1} />
+            <BarSeries dataKey={"bar2"} {...series2} />
           </AnimatedBarStack>
         </svg>
       </DataProvider>,

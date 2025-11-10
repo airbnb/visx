@@ -7,7 +7,7 @@ import getDataContext from '../mocks/getDataContext';
 import setupTooltipTest from '../mocks/setupTooltipTest';
 import { XYCHART_EVENT_SOURCE } from '../../src/constants';
 
-const series = { key: 'line', data: [{}], xAccessor: () => 4, yAccessor: () => 7 };
+const series = { data: [{}], xAccessor: () => 4, yAccessor: () => 7 };
 
 describe('<LineSeries />', () => {
   it('should be defined', () => {
@@ -16,9 +16,9 @@ describe('<LineSeries />', () => {
 
   it('should render a LinePath', () => {
     const { container } = render(
-      <DataContext.Provider value={getDataContext(series)}>
+      <DataContext.Provider value={getDataContext({ key: "line", ...series })}>
         <svg>
-          <LineSeries dataKey={series.key} {...series} />
+          <LineSeries dataKey={"line"} {...series} />
         </svg>
       </DataContext.Provider>,
     );
@@ -27,9 +27,9 @@ describe('<LineSeries />', () => {
 
   it('should set strokeLinecap="round" to make datum surrounded by nulls visible', () => {
     const { container } = render(
-      <DataContext.Provider value={getDataContext(series)}>
+      <DataContext.Provider value={getDataContext({ key: "line", ...series })}>
         <svg>
-          <LineSeries dataKey={series.key} {...series} />
+          <LineSeries dataKey={"line"} {...series} />
         </svg>
       </DataContext.Provider>,
     );
@@ -38,9 +38,9 @@ describe('<LineSeries />', () => {
 
   it('should render Glyphs if focus/blur handlers are set', () => {
     const { container } = render(
-      <DataContext.Provider value={getDataContext(series)}>
+      <DataContext.Provider value={getDataContext({ key: "line", ...series })}>
         <svg>
-          <LineSeries dataKey={series.key} {...series} onFocus={() => {}} />
+          <LineSeries dataKey={"line"} {...series} onFocus={() => {}} />
         </svg>
       </DataContext.Provider>,
     );
@@ -100,12 +100,12 @@ describe('<LineSeries />', () => {
       const { dataRegistry } = useContext(DataContext);
       // LineSeries won't render until its data is registered
       // wait for that to emit the events
-      return dataRegistry?.get(series.key) ? <EventEmitter /> : null;
+      return dataRegistry?.get("line") ? <EventEmitter /> : null;
     };
 
     setupTooltipTest(
       <>
-        <LineSeries dataKey={series.key} {...series} />
+        <LineSeries dataKey={"line"} {...series} />
         <ConditionalEventEmitter />
       </>,
       { showTooltip, hideTooltip },
@@ -121,9 +121,9 @@ describe('<LineSeries />', () => {
 
   it('should use colorAccessor if passed', () => {
     const { container } = render(
-      <DataContext.Provider value={getDataContext(series)}>
+      <DataContext.Provider value={getDataContext({ key: "line", ...series })}>
         <svg>
-          <LineSeries dataKey={series.key} {...series} colorAccessor={(_) => 'banana'} />
+          <LineSeries dataKey={"line"} {...series} colorAccessor={(_) => 'banana'} />
         </svg>
       </DataContext.Provider>,
     );
@@ -137,9 +137,9 @@ describe('<AnimatedLineSeries />', () => {
   });
   it('should render an animated.path', () => {
     const { container } = render(
-      <DataContext.Provider value={getDataContext(series)}>
+      <DataContext.Provider value={getDataContext({ key: "line", ...series })}>
         <svg>
-          <AnimatedLineSeries dataKey={series.key} {...series} />
+          <AnimatedLineSeries dataKey={"line"} {...series} />
         </svg>
       </DataContext.Provider>,
     );
