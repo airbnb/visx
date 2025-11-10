@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import * as topojson from 'topojson-client';
 import { scaleQuantize } from '@visx/scale';
 import { CustomProjection, Graticule } from '@visx/geo';
-import type { Projection } from '@visx/geo/lib/types';
+import type { Projection } from '@visx/geo';
 import {
   geoConicConformal,
   geoTransverseMercator,

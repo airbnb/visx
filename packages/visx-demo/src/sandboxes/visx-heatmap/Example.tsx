@@ -1,10 +1,9 @@
 import React from 'react';
 import { Group } from '@visx/group';
-import type { Bin, Bins } from '@visx/mock-data/lib/generators/genBins';
-import genBins from '@visx/mock-data/lib/generators/genBins';
+import type { Bin, Bins } from '@visx/mock-data';
+import { genBins, getSeededRandom } from '@visx/mock-data';
 import { scaleLinear } from '@visx/scale';
 import { HeatmapCircle, HeatmapRect } from '@visx/heatmap';
-import { getSeededRandom } from '@visx/mock-data';
 
 const hot1 = '#77312f';
 const hot2 = '#f33d15';

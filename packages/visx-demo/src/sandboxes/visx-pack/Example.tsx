@@ -2,8 +2,8 @@ import React from 'react';
 import { Group } from '@visx/group';
 import { Pack, hierarchy } from '@visx/hierarchy';
 import { scaleQuantize } from '@visx/scale';
-import type { Exoplanets as Datum } from '@visx/mock-data/lib/mocks/exoplanets';
-import rawData from '@visx/mock-data/lib/mocks/exoplanets';
+import type { Exoplanets as Datum } from '@visx/mock-data';
+import { exoplanets as rawData } from '@visx/mock-data';
 
 function extent<D>(allData: D[], value: (d: D) => number): [number, number] {
   return [Math.min(...allData.map(value)), Math.max(...allData.map(value))];

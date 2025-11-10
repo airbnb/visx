@@ -1,7 +1,7 @@
 /* eslint jsx-a11y/label-has-associated-control: 'off', @typescript-eslint/no-explicit-any: 'off' */
 import React, { useEffect, useMemo, useState } from 'react';
-import type { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
-import appleStock from '@visx/mock-data/lib/mocks/appleStock';
+import type { AppleStock } from '@visx/mock-data';
+import { appleStock } from '@visx/mock-data';
 import type { PickD3Scale } from '@visx/scale';
 import { scaleTime, scaleLinear } from '@visx/scale';
 import { extent } from '@visx/vendor/d3-array';

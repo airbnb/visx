@@ -1,16 +1,14 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useCallback, useMemo, useState } from 'react';
-import type { XYChartTheme } from '@visx/xychart';
+import type { XYChartTheme, GlyphProps, RenderTooltipGlyphProps } from '@visx/xychart';
 import { lightTheme, darkTheme } from '@visx/xychart';
 import { PatternLines } from '@visx/pattern';
-import type { GlyphProps } from '@visx/xychart/lib/types';
-import type { AnimationTrajectory } from '@visx/react-spring/lib/types';
-import type { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
-import cityTemperature from '@visx/mock-data/lib/mocks/cityTemperature';
+import type { AnimationTrajectory } from '@visx/react-spring';
+import type { CityTemperature } from '@visx/mock-data';
+import { cityTemperature } from '@visx/mock-data';
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
-import type { RenderTooltipGlyphProps } from '@visx/xychart/lib/components/Tooltip';
 import customTheme from './customTheme';
 import userPrefersReducedMotion from './userPrefersReducedMotion';
 import getAnimatedOrUnanimatedComponents from './getAnimatedOrUnanimatedComponents';

@@ -1,12 +1,12 @@
 import React, { useMemo, useCallback } from 'react';
 import { AreaClosed, Line, Bar } from '@visx/shape';
-import type { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
-import appleStock from '@visx/mock-data/lib/mocks/appleStock';
+import type { AppleStock } from '@visx/mock-data';
+import { appleStock } from '@visx/mock-data';
 import { curveMonotoneX } from '@visx/curve';
 import { GridRows, GridColumns } from '@visx/grid';
 import { scaleTime, scaleLinear } from '@visx/scale';
 import { withTooltip, Tooltip, TooltipWithBounds, defaultStyles } from '@visx/tooltip';
-import type { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip';
+import type { WithTooltipProvidedProps } from '@visx/tooltip';
 import { localPoint } from '@visx/event';
 import { LinearGradient } from '@visx/gradient';
 import { max, extent, bisector } from '@visx/vendor/d3-array';

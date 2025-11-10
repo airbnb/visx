@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import AreaClosed from '@visx/shape/lib/shapes/AreaClosed';
+import { AreaClosed } from '@visx/shape';
 import { curveMonotoneX } from '@visx/curve';
 import type { ScaleInput } from '@visx/scale';
 import { scaleUtc, scaleLinear, scaleLog, scaleBand, coerceNumber } from '@visx/scale';
@@ -10,8 +10,7 @@ import { AnimatedAxis, AnimatedGridRows, AnimatedGridColumns } from '@visx/react
 import { getSeededRandom } from '@visx/mock-data';
 import { LinearGradient } from '@visx/gradient';
 import { timeFormat } from '@visx/vendor/d3-time-format';
-import type { GridRowsProps } from '@visx/grid/lib/grids/GridRows';
-import type { GridColumnsProps } from '@visx/grid/lib/grids/GridColumns';
+import type { GridRowsProps, GridColumnsProps } from '@visx/grid';
 
 export const backgroundColor = '#da7cff';
 const axisColor = '#fff';

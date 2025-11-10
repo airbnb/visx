@@ -1,17 +1,20 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useRef, useState, useMemo } from 'react';
 import { scaleTime, scaleLinear } from '@visx/scale';
-import type { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
-import appleStock from '@visx/mock-data/lib/mocks/appleStock';
+import type { AppleStock } from '@visx/mock-data';
+import { appleStock } from '@visx/mock-data';
 import { Brush } from '@visx/brush';
-import type { Bounds } from '@visx/brush/lib/types';
-import type { BaseBrushState, UpdateBrush } from '@visx/brush/lib/BaseBrush';
-import type BaseBrush from '@visx/brush/lib/BaseBrush';
+import type {
+  Bounds,
+  BaseBrushState,
+  UpdateBrush,
+  BaseBrush,
+  BrushHandleRenderProps,
+} from '@visx/brush';
 import { PatternLines } from '@visx/pattern';
 import { Group } from '@visx/group';
 import { LinearGradient } from '@visx/gradient';
 import { max, extent } from '@visx/vendor/d3-array';
-import type { BrushHandleRenderProps } from '@visx/brush/lib/BrushHandle';
 import AreaChart from './AreaChart';
 
 // Initialize some variables
