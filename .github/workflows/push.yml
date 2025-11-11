@@ -8,8 +8,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Needed for git push operations
-      id-token: write  # Required for OIDC trusted publishing
+      contents: write       # Needed for git push operations
+      id-token: write       # Required for OIDC trusted publishing
+      pull-requests: write  # Needed to post release comments on PRs
     steps:
       - uses: actions/checkout@v2 # checkout visx + this commit
         with:
