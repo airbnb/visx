@@ -1,3 +1,4 @@
+// @visx/annotation
 export { default as Connector } from './components/Connector';
 export { default as Label } from './components/Label';
 export { default as HtmlLabel } from './components/HtmlLabel';

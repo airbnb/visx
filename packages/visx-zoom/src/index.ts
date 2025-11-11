@@ -1,3 +1,4 @@
+// @visx/zoom
 export { default as Zoom } from './Zoom';
 export {
   identityMatrix,

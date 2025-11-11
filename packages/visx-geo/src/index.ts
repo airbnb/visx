@@ -1,3 +1,4 @@
+// @visx/geo
 export { default as Albers } from './projections/Albers';
 export { default as AlbersUsa } from './projections/AlbersUsa';
 export { default as Mercator } from './projections/Mercator';

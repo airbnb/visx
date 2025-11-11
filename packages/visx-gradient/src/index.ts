@@ -1,3 +1,4 @@
+// @visx/gradient
 export { default as LinearGradient } from './gradients/LinearGradient';
 export { default as RadialGradient } from './gradients/RadialGradient';
 export { default as GradientDarkgreenGreen } from './gradients/GradientDarkgreenGreen';

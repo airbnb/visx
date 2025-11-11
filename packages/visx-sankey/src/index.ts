@@ -1,3 +1,4 @@
+// @visx/sankey
 export { default as Sankey } from './Sankey';
 export {
   sankey,

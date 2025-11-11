@@ -1,3 +1,4 @@
+// @visx/pattern
 export { default as Pattern } from './patterns/Pattern';
 export { default as PatternLines } from './patterns/Lines';
 export { default as PatternCircles } from './patterns/Circles';
