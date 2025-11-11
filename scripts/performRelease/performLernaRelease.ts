@@ -45,8 +45,8 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
 
     const { stdout, stderr } = await exec(
       // --no-verify-access is needed because the CI token isn't valid for that endpoint
-      // --provenance generates build attestation when using OIDC in GitHub Actions
-      `npx lerna publish ${version} --exact --yes --dist-tag ${distTag} --provenance`,
+      // provenance is automatically generated when using OIDC Trusted Publishers
+      `npx lerna publish ${version} --exact --yes --dist-tag ${distTag}`,
     );
     if (stdout) {
       console.log('Lerna output', stdout);
