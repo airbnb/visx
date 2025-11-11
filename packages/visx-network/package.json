@@ -1,6 +1,6 @@
 {
   "name": "@visx/network",
-  "version": "4.0.0-alpha.0",
+  "version": "4.0.1-alpha.0",
   "description": "visx network",
   "sideEffects": false,
   "repository": "https://github.com/airbnb/visx",

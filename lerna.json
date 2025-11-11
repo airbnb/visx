@@ -1,6 +1,8 @@
 {
-  "packages": ["packages/*"],
-  "version": "4.0.0-alpha.0",
+  "packages": [
+    "packages/*"
+  ],
+  "version": "4.0.1-alpha.0",
   "command": {
     "publish": {
       "allowBranch": "master"

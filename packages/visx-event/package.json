@@ -1,6 +1,6 @@
 {
   "name": "@visx/event",
-  "version": "4.0.0-alpha.0",
+  "version": "4.0.1-alpha.0",
   "description": "visx event",
   "sideEffects": false,
   "main": "lib/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@visx/mock-data",
-  "version": "4.0.0-alpha.0",
+  "version": "4.0.1-alpha.0",
   "description": "visx mock data",
   "sideEffects": false,
   "main": "lib/index.js",
