@@ -72,10 +72,10 @@ async function build() {
 
   const { stdout, stderr } = await exec(
     `babel \
-      --config-file ${BABEL_CONFIG_FILE} \
+      --config-file "${BABEL_CONFIG_FILE}" \
       --only ${transpileGlob} \
-      --out-dir ${VENDOR_CJS_PATH} \
-      ${NODE_MODULES_PATH}`,
+      --out-dir "${VENDOR_CJS_PATH}" \
+      "${NODE_MODULES_PATH}"`,
   );
 
   if (stdout) {
