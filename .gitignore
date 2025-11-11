@@ -11,6 +11,7 @@ logs/
 .idea/
 .next/
 .npm/
+.nx/
 .vscode/
 
 # Directories
