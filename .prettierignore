@@ -16,3 +16,4 @@ tsconfig.json
 tsconfig.eslint.json
 tsconfig.options.json
 CHANGELOG.md
+/.nx/workspace-data
