@@ -1,3 +1,4 @@
+// @visx/grid
 export { default as GridRows } from './grids/GridRows';
 export type { GridRowsProps, AllGridRowsProps } from './grids/GridRows';
 export { default as GridColumns } from './grids/GridColumns';

@@ -1,3 +1,4 @@
+// @visx/xychart
 // components
 export { default as Annotation } from './components/annotation/Annotation';
 export { default as AnimatedAnnotation } from './components/annotation/AnimatedAnnotation';

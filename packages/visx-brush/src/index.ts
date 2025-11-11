@@ -1,3 +1,4 @@
+// @visx/brush
 export { default as Brush } from './Brush';
 
 export type * from './types';

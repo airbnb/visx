@@ -1,3 +1,4 @@
+// @visx/mock-data
 export { default as genDateValue } from './generators/genDateValue';
 export { default as genRandomNormalPoints } from './generators/genRandomNormalPoints';
 export { default as getSeededRandom } from './generators/getSeededRandom';

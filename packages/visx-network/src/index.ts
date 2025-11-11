@@ -1,3 +1,4 @@
+// @visx/network
 export { default as Graph } from './Graph';
 export { default as Links } from './Links';
 export { default as Nodes } from './Nodes';

@@ -1,3 +1,4 @@
+// @visx/curve
 export {
   curveBasis,
   curveBasisClosed,

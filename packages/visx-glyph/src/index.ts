@@ -1,3 +1,4 @@
+// @visx/glyph
 export { default as Glyph } from './glyphs/Glyph';
 export { default as GlyphDot } from './glyphs/GlyphDot';
 export { default as GlyphCross } from './glyphs/GlyphCross';

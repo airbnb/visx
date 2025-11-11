@@ -1,3 +1,4 @@
+// @visx/axis
 export { default as Axis } from './axis/Axis';
 export type { AxisProps } from './axis/Axis';
 export { default as AxisLeft } from './axis/AxisLeft';

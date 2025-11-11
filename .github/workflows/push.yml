@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Needed for git push operations
+      id-token: write  # Required for OIDC trusted publishing
     steps:
       - uses: actions/checkout@v2 # checkout visx + this commit
         with:
@@ -55,13 +58,11 @@ jobs:
       - name: Release
         if: github.repository_owner == 'airbnb'
         # the following configurations are needed for lerna to
-        #   - have git credentials for commiting tags
-        #   - have correct npm credentials for publishing (yarn does not work)
+        #   - have git credentials for committing tags
+        #   - use OIDC trusted publishing for npm (no token required)
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          yarn npm logout
-          npm config set '//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}'
           yarn build:release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,3 +1,4 @@
+// @visx/shape
 export { default as Arc } from './shapes/Arc';
 export { default as Pie } from './shapes/Pie';
 export { default as Line } from './shapes/Line';
