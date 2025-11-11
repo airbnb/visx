@@ -209,8 +209,8 @@ class Brush extends Component<BrushProps> {
     if (brushRegion === 'chart') {
       left = 0;
       top = 0;
-      brushRegionWidth = width;
-      brushRegionHeight = height;
+      brushRegionWidth = width - margin.left - margin.right;
+      brushRegionHeight = height - margin.top - margin.bottom;
     } else if (brushRegion === 'yAxis') {
       top = 0;
       brushRegionHeight = height;
