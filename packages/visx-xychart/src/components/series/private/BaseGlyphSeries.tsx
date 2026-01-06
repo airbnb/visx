@@ -81,7 +81,7 @@ export function BaseGlyphSeries<
             datum,
           };
         })
-        .filter((point) => point) as GlyphProps<Datum>[],
+        .filter((point) => !!point) satisfies GlyphProps<Datum>[],
     [color, colorAccessor, data, getScaledX, getScaledY, size],
   );
 
