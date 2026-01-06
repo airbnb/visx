@@ -73,6 +73,7 @@ export function BaseGlyphSeries<
           if (!isValidNumber(y)) return null;
           return {
             key: `${i}`,
+            index: i,
             x,
             y,
             color: colorAccessor?.(datum, i) ?? color,
