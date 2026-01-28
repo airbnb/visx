@@ -157,6 +157,9 @@ reusable visualization charts or library without having to learn d3. No more sel
 
 ## In the wild
 
+- [mattrichmo](https://github.com/mattrichmo/)
+  ([Demo](https://mattrichmond.ca/data/data-visualization))
+  ([Around 20 experimental film data narrative visualizations. Using Imdb and Tmdb as datasets. (Sankey, Chord, Treemap, Voronoi) by @mattrichmo](https://github.com/mattrichmo/mattrichmondca-client))
 - [williaster/data-ui](https://github.com/williaster/data-ui)
   ([Demo](https://williaster.github.io/data-ui/))
 - [dylanmoz/trello](https://github.com/DylanMoz/dylanmoz.github.io/blob/source/src/pages/trello/TrelloGraph.js)
