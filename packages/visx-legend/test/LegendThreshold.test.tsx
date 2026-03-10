@@ -32,7 +32,9 @@ describe('<LegendThreshold />', () => {
     range.forEach((color, index) => {
       const legendItem = thresholdLegend[index];
       const legendShape = legendItem?.querySelector('.visx-legend-shape');
-      expect(legendShape?.querySelector('div')).toHaveStyle(`background: ${color}`);
+      const rectEl = legendShape?.querySelector('rect');
+      expect(rectEl).not.toBeNull();
+      expect(rectEl).toHaveAttribute('fill', color);
     });
   });
 
@@ -55,7 +57,9 @@ describe('<LegendThreshold />', () => {
     range.forEach((color, index) => {
       const legendItem = thresholdLegend[index];
       const legendShape = legendItem?.querySelector('.visx-legend-shape');
-      expect(legendShape?.querySelector('div')).toHaveStyle(`background: ${color}`);
+      const rectEl = legendShape?.querySelector('rect');
+      expect(rectEl).not.toBeNull();
+      expect(rectEl).toHaveAttribute('fill', color);
     });
   });
 
@@ -78,7 +82,9 @@ describe('<LegendThreshold />', () => {
     range.forEach((color, index) => {
       const legendItem = thresholdLegend[index];
       const legendShape = legendItem?.querySelector('.visx-legend-shape');
-      expect(legendShape?.querySelector('div')).toHaveStyle(`background: ${color}`);
+      const rectEl = legendShape?.querySelector('rect');
+      expect(rectEl).not.toBeNull();
+      expect(rectEl).toHaveAttribute('fill', color);
     });
   });
 });
