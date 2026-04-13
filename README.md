@@ -43,6 +43,10 @@ to generate your visualization with the benefits of react for updating the DOM.
   </strong>
   &bull;
   <strong>
+    <a href="./MIGRATION.md">Migration</a>
+  </strong>
+  &bull;
+  <strong>
     <a href="https://medium.com/vx-code/getting-started-with-vx-1756bb661410">Getting started tutorial</a>
   </strong>
 </p>
