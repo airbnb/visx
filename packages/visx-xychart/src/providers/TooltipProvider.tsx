@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import type { ReactNode } from 'react';
-import debounce from 'lodash/debounce';
+// eslint-disable-next-line import/extensions -- explicit .js required for strict Node ESM
+import debounce from 'lodash/debounce.js';
 import { useTooltip } from '@visx/tooltip';
 import TooltipContext from '../context/TooltipContext';
 import type { EventHandlerParams, TooltipContextType, TooltipData } from '../types';
