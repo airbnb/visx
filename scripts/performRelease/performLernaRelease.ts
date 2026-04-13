@@ -35,9 +35,7 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
 
   // perform release
   try {
-    const version = `${isPreRelease ? 'pre' : ''}${
-      isMajor ? 'major' : isMinor ? 'minor' : 'patch'
-    }`;
+    const version = isPreRelease ? 'prerelease' : isMajor ? 'major' : isMinor ? 'minor' : 'patch';
 
     const distTag = isPreRelease ? 'next' : 'latest';
 
@@ -46,7 +44,9 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
     const { stdout, stderr } = await exec(
       // --no-verify-access is needed because the CI token isn't valid for that endpoint
       // provenance is automatically generated when using OIDC Trusted Publishers
-      `npx lerna publish ${version} --exact --yes --dist-tag ${distTag}`,
+      `npx lerna publish ${version} --exact --yes --dist-tag ${distTag}${
+        isPreRelease ? ' --preid alpha' : ''
+      }`,
     );
     if (stdout) {
       console.log('Lerna output', stdout);
