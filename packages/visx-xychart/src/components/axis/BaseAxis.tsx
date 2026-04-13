@@ -23,7 +23,7 @@ export default function BaseAxis<Scale extends AxisScale>({
   AxisComponent,
   ...props
 }: BaseAxisProps<Scale>) {
-  const { theme, xScale, yScale, margin, width, height } = useContext(DataContext);
+  const { theme, xScale, yScale, margin, width, height, dataRegistry } = useContext(DataContext);
   const { orientation } = props;
 
   const axisStyles = useMemo(
@@ -72,7 +72,11 @@ export default function BaseAxis<Scale extends AxisScale>({
     | Scale
     | undefined;
 
-  return scale ? (
+  // Don't render axis until data is registered, otherwise the fallback scaleLinear()
+  // with domain [0,1] will cause tickFormat to receive incorrect intermediate values.
+  const hasRegisteredData = dataRegistry && dataRegistry.keys().length > 0;
+
+  return scale && hasRegisteredData ? (
     <AxisComponent
       top={topOffset}
       left={leftOffset}
