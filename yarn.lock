@@ -263,6 +263,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/helper-plugin-utils@npm:^7.14.5":
+  version: 7.28.6
+  resolution: "@babel/helper-plugin-utils@npm:7.28.6"
+  checksum: 10c0/3f5f8acc152fdbb69a84b8624145ff4f9b9f6e776cb989f9f968f8606eb7185c5c3cfcf3ba08534e37e1e0e1c118ac67080610333f56baa4f7376c99b5f1143d
+  languageName: node
+  linkType: hard
+
 "@babel/helper-remap-async-to-generator@npm:^7.27.1":
   version: 7.27.1
   resolution: "@babel/helper-remap-async-to-generator@npm:7.27.1"
@@ -4583,6 +4590,7 @@ __metadata:
     "@vitest/eslint-plugin": "npm:^1.4.0"
     "@vitest/ui": "npm:4"
     airbnb-js-shims: "npm:^2.2.1"
+    babel-plugin-add-import-extension: "npm:^1.6.0"
     chalk: "npm:4.1.0"
     eslint: "npm:^8.57.0"
     eslint-config-airbnb: "npm:^19.0.4"
@@ -5508,6 +5516,17 @@ __metadata:
     "@babel/core": ^7.0.0
     webpack: ">=2"
   checksum: 10c0/efdca9c3ef502af58b923a32123d660c54fd0be125b7b64562c8a43bda0a3a55dac0db32331674104e7e5184061b75c3a0e395b2c5ccdc7cb2125dd9ec7108d2
+  languageName: node
+  linkType: hard
+
+"babel-plugin-add-import-extension@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "babel-plugin-add-import-extension@npm:1.6.0"
+  dependencies:
+    "@babel/helper-plugin-utils": "npm:^7.14.5"
+  peerDependencies:
+    "@babel/core": ">=7.0.0"
+  checksum: 10c0/0d3e53f114af0c3ffb67b04a41d09e1e5cd27218b007cb094d305b28b693bd32ed56c7be764878f778bab418c64d73059921001d942b9b9c83569b0e2adff15b
   languageName: node
   linkType: hard
 
