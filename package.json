@@ -53,7 +53,7 @@
     "test:watch": "yarn run vitest watch",
     "vitest": "vitest",
     "vitest:ui": "vitest --ui",
-    "ts": "ts-node --project ./tsconfig.node.json",
+    "ts": "tsx --tsconfig ./tsconfig.node.json",
     "type": "yarn type:clean && yarn type:build",
     "type:build": "lerna exec -- tsc --build",
     "type:clean": "find . -type f -name 'tsconfig.tsbuildinfo' -delete",
@@ -104,7 +104,7 @@
     "react": "^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0",
     "react-dom": "^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0",
     "timezone-mock": "^1.1.0",
-    "ts-node": "^10.9.1",
+    "tsx": "^4.19.0",
     "typescript": "^5.7.0",
     "vitest": "4"
   },

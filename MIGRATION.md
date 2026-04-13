@@ -3,6 +3,11 @@
 This document tracks consumer-facing changes for each `4.0.0-alpha.*` release. Upgrades are
 cumulative — if you're jumping several versions, apply the steps from each section in order.
 
+## 4.0.0-alpha.4
+
+Internal only: replaced `ts-node` with `tsx` (esbuild-based) for faster TypeScript script execution.
+No consumer-facing changes.
+
 ## 4.0.0-alpha.3
 
 ### `@types/react` and `@types/react-dom` as peer dependencies
