@@ -35,16 +35,24 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
-    "@types/react": "*",
     "@visx/group": "workspace:*",
     "@visx/scale": "workspace:*",
     "@visx/vendor": "workspace:*",
     "classnames": "^2.3.1"
   },
   "peerDependencies": {
+    "@types/react": "*",
     "react": "^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0"
   }
 }

@@ -31,7 +31,6 @@
     "@types/d3-scale-chromatic": "^3.1.0",
     "@types/nprogress": "^0.2.0",
     "@types/prismjs": "^1.16.0",
-    "@types/react": "^19.0.0",
     "@visx/annotation": "workspace:*",
     "@visx/axis": "workspace:*",
     "@visx/bounds": "workspace:*",
@@ -89,7 +88,9 @@
     "topojson-client": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.0"
+    "@babel/core": "^7.26.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
   },
   "publishConfig": {
     "access": "public"

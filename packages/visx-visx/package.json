@@ -30,7 +30,10 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0"
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "react": "^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0",
+    "react-dom": "^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0"
   },
   "dependencies": {
     "@visx/annotation": "workspace:*",
@@ -73,5 +76,17 @@
       "import": "./esm/index.js",
       "require": "./lib/index.js"
     }
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    },
+    "@types/react-dom": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
   }
 }

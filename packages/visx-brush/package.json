@@ -30,7 +30,13 @@
     "access": "public"
   },
   "peerDependencies": {
+    "@types/react": "*",
     "react": "^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@visx/drag": "workspace:*",
@@ -46,5 +52,8 @@
       "import": "./esm/index.js",
       "require": "./lib/index.js"
     }
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0"
   }
 }

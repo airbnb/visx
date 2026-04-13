@@ -36,7 +36,13 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "peerDependencies": {
+    "@types/react": "*",
     "react": "^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@visx/group": "workspace:*",
@@ -44,5 +50,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0"
   }
 }
