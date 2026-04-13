@@ -11,10 +11,10 @@ React-based `@visx/*` packages now declare `@types/react` as a **peer** dependen
 bundling their own copy. That way your app supplies a single version and you avoid duplicate or
 conflicting installs.
 
-`@visx/bounds`, `@visx/tooltip`, and the `@visx/visx` meta-package all declare `@types/react-dom`
-as an optional peer directly (bounds and tooltip both type DOM-touching APIs; the umbrella matches
-the pattern of its DOM-touching members). `@visx/xychart` consumes `@visx/tooltip` transitively and
-its consumers should also install `@types/react-dom`.
+`@visx/bounds`, `@visx/tooltip`, `@visx/xychart`, and the `@visx/visx` meta-package all declare
+`@types/react-dom` as an optional peer directly (bounds and tooltip type DOM-touching APIs;
+xychart consumes tooltip and so transitively needs react-dom at runtime; the umbrella matches the
+pattern of its DOM-touching members).
 
 `@visx/brush` and `@visx/wordcloud` also declare `@types/react` as an optional peer so consumers
 installing either package directly get the same type-dependency signal as the rest of the
