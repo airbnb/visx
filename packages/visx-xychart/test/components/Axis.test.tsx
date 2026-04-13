@@ -8,6 +8,7 @@ import getDataContext from '../mocks/getDataContext';
 import { addMock, removeMock } from '../mocks/svgMock';
 
 const series = { key: 'visx', data: [{}], xAccessor: () => 4, yAccessor: () => 7 };
+const emptySeries = { key: 'visx', data: [] as object[], xAccessor: () => 4, yAccessor: () => 7 };
 
 function setup(
   children: React.ReactNode,
@@ -127,5 +128,40 @@ describe('<BaseAxis />', () => {
     expect(VisxAxisTick).toHaveAttribute('stroke-width', `${tickLineProps.strokeWidth}`);
     expect(VisxAxisTick).toHaveAttribute('stroke', `${tickLineProps.stroke}`);
     expect(VisxAxisTick).toHaveAttribute('opacity', `${tickLineProps.opacity}`);
+  });
+
+  it('should not render when dataRegistry is empty', () => {
+    const { container } = setup(
+      <BaseAxis orientation="bottom" AxisComponent={() => <Axis orientation="bottom" />} />,
+      getDataContext(), // no entries registered
+    );
+    expect(container.querySelectorAll('.visx-axis')).toHaveLength(0);
+  });
+
+  it('should not render when all registered entries have empty data', () => {
+    const { container } = setup(
+      <BaseAxis orientation="bottom" AxisComponent={() => <Axis orientation="bottom" />} />,
+      getDataContext(emptySeries),
+    );
+    expect(container.querySelectorAll('.visx-axis')).toHaveLength(0);
+  });
+
+  it('should not call tickFormat when dataRegistry has no data', () => {
+    const tickFormat = vi.fn((v: number) => String(v));
+    setup(
+      <BaseAxis
+        orientation="bottom"
+        AxisComponent={() => <Axis orientation="bottom" tickFormat={tickFormat} />}
+      />,
+      getDataContext(), // no entries registered
+    );
+    expect(tickFormat).not.toHaveBeenCalled();
+  });
+
+  it('should render when registered entries have non-empty data', () => {
+    const { container } = setup(
+      <BaseAxis orientation="bottom" AxisComponent={() => <Axis orientation="bottom" />} />,
+    );
+    expect(container.querySelectorAll('.visx-axis')).toHaveLength(1);
   });
 });

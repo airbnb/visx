@@ -3,6 +3,28 @@
 This document tracks consumer-facing changes for each `4.0.0-alpha.*` release. Upgrades are
 cumulative — if you're jumping several versions, apply the steps from each section in order.
 
+## 4.0.0-alpha.5
+
+### `@visx/xychart` axis rendering fix (breaking)
+
+`BaseAxis` no longer renders until at least one data series with non-empty `data` has been registered
+in `DataContext`. Previously, on initial render the axis could use the fallback `scaleLinear()`
+domain `[0, 1]`, causing `tickFormat` to receive incorrect intermediate values before real data
+loaded ([#1975](https://github.com/airbnb/visx/issues/1975)).
+
+This is a behavior change: axes that previously rendered immediately (showing `0`–`1` ticks while
+data was loading) will now render `null` until real data is available.
+
+**What you need to do:**
+
+- **Most consumers:** nothing — this is a bugfix. If you were working around stale tick labels on
+  first render, you can remove that workaround.
+- **If you relied on the axis being visible before data loaded** (e.g., to display a skeleton axis):
+  render a placeholder `<Axis />` from `@visx/axis` directly with your own scale until your data is
+  ready, then switch to the xychart `<Axis />`.
+
+Thank you [wildseansy](https://github.com/wildseansy) for the fix [#1979](https://github.com/airbnb/visx/pull/1979)
+
 ## 4.0.0-alpha.4
 
 Internal only: replaced `ts-node` with `tsx` (esbuild-based) for faster TypeScript script execution.

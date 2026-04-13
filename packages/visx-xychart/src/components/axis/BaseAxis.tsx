@@ -72,9 +72,10 @@ export default function BaseAxis<Scale extends AxisScale>({
     | Scale
     | undefined;
 
-  // Don't render axis until data is registered, otherwise the fallback scaleLinear()
-  // with domain [0,1] will cause tickFormat to receive incorrect intermediate values.
-  const hasRegisteredData = dataRegistry && dataRegistry.keys().length > 0;
+  // Don't render axis until data is registered with non-empty data, otherwise the
+  // fallback scaleLinear() with domain [0,1] will cause tickFormat to receive
+  // incorrect intermediate values.
+  const hasRegisteredData = dataRegistry?.entries().some((entry) => entry.data.length > 0) ?? false;
 
   return scale && hasRegisteredData ? (
     <AxisComponent
