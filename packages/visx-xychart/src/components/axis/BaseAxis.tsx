@@ -76,8 +76,7 @@ export default function BaseAxis<Scale extends AxisScale>({
   // fallback scaleLinear() with domain [0,1] will cause tickFormat to receive
   // incorrect intermediate values.
   const hasRegisteredData =
-    (dataRegistry?.keys().length ?? 0) > 0 &&
-    dataRegistry!.entries().some((entry) => entry.data.length > 0);
+    dataRegistry?.entries().some((entry) => entry.data.length > 0) ?? false;
 
   return scale && hasRegisteredData ? (
     <AxisComponent
