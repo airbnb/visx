@@ -1,4 +1,5 @@
-import debounce from 'lodash/debounce';
+// eslint-disable-next-line import/extensions -- explicit .js required for strict Node ESM
+import debounce from 'lodash/debounce.js';
 import type { RefObject } from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { DebounceSettings, PrivateWindow, ResizeObserverPolyfill } from '../types';

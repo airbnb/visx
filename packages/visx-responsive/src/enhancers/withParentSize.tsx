@@ -1,4 +1,5 @@
-import debounce from 'lodash/debounce';
+// eslint-disable-next-line import/extensions -- explicit .js required for strict Node ESM
+import debounce from 'lodash/debounce.js';
 import { Component } from 'react';
 import type { ComponentType } from 'react';
 import type {

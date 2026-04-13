@@ -1,4 +1,5 @@
-import memoize from 'lodash/memoize';
+// eslint-disable-next-line import/extensions -- explicit .js required for strict Node ESM
+import memoize from 'lodash/memoize.js';
 
 const MEASUREMENT_ELEMENT_ID = '__react_svg_text_measurement_id';
 
