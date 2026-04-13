@@ -39,12 +39,20 @@
   },
   "dependencies": {
     "@types/d3-hierarchy": "^1.1.6",
-    "@types/react": "*",
     "@visx/group": "workspace:*",
     "classnames": "^2.3.1",
     "d3-hierarchy": "^1.1.4"
   },
   "peerDependencies": {
+    "@types/react": "*",
     "react": "^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0"
   }
 }

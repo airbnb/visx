@@ -29,7 +29,6 @@
   "license": "MIT",
   "dependencies": {
     "@types/lodash": "^4.17.13",
-    "@types/react": "*",
     "@visx/curve": "workspace:*",
     "@visx/group": "workspace:*",
     "@visx/scale": "workspace:*",
@@ -38,6 +37,7 @@
     "lodash": "^4.17.21"
   },
   "peerDependencies": {
+    "@types/react": "*",
     "react": "^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0"
   },
   "publishConfig": {
@@ -45,6 +45,12 @@
   },
   "devDependencies": {
     "@types/d3-hierarchy": "^1.1.6",
+    "@types/react": "^19.0.0",
     "d3-hierarchy": "^1.1.8"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
   }
 }

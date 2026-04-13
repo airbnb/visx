@@ -4193,14 +4193,18 @@ __metadata:
   resolution: "@visx/annotation@workspace:packages/visx-annotation"
   dependencies:
     "@juggle/resize-observer": "npm:^3.3.1"
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@visx/drag": "workspace:*"
     "@visx/group": "workspace:*"
     "@visx/text": "workspace:*"
     classnames: "npm:^2.3.1"
     react-use-measure: "npm:^2.0.4"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4208,7 +4212,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/axis@workspace:packages/visx-axis"
   dependencies:
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@visx/group": "workspace:*"
     "@visx/point": "workspace:*"
     "@visx/scale": "workspace:*"
@@ -4216,19 +4220,27 @@ __metadata:
     "@visx/text": "workspace:*"
     classnames: "npm:^2.3.1"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
 "@visx/bounds@workspace:*, @visx/bounds@workspace:packages/visx-bounds":
   version: 0.0.0-use.local
   resolution: "@visx/bounds@workspace:packages/visx-bounds"
-  dependencies:
-    "@types/react": "npm:*"
-    "@types/react-dom": "npm:*"
   peerDependencies:
+    "@types/react": "*"
+    "@types/react-dom": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
     react-dom: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    "@types/react-dom":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4236,6 +4248,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/brush@workspace:packages/visx-brush"
   dependencies:
+    "@types/react": "npm:^19.0.0"
     "@visx/drag": "workspace:*"
     "@visx/event": "workspace:*"
     "@visx/group": "workspace:*"
@@ -4243,7 +4256,11 @@ __metadata:
     "@visx/shape": "workspace:*"
     classnames: "npm:^2.3.1"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4252,21 +4269,26 @@ __metadata:
   resolution: "@visx/chord@workspace:packages/visx-chord"
   dependencies:
     "@types/d3-chord": "npm:^1.0.9"
-    "@types/react": "npm:*"
     classnames: "npm:^2.3.1"
     d3-chord: "npm:^1.0.4"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
 "@visx/clip-path@workspace:*, @visx/clip-path@workspace:packages/visx-clip-path":
   version: 0.0.0-use.local
   resolution: "@visx/clip-path@workspace:packages/visx-clip-path"
-  dependencies:
-    "@types/react": "npm:*"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4282,11 +4304,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/delaunay@workspace:packages/visx-delaunay"
   dependencies:
-    "@types/react": "npm:*"
     "@visx/vendor": "workspace:*"
     classnames: "npm:^2.3.1"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4300,6 +4325,7 @@ __metadata:
     "@types/nprogress": "npm:^0.2.0"
     "@types/prismjs": "npm:^1.16.0"
     "@types/react": "npm:^19.0.0"
+    "@types/react-dom": "npm:^19.0.0"
     "@visx/annotation": "workspace:*"
     "@visx/axis": "workspace:*"
     "@visx/bounds": "workspace:*"
@@ -4362,11 +4388,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/drag@workspace:packages/visx-drag"
   dependencies:
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@visx/event": "workspace:*"
     "@visx/point": "workspace:*"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4374,8 +4404,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/event@workspace:packages/visx-event"
   dependencies:
-    "@types/react": "npm:*"
     "@visx/point": "workspace:*"
+  peerDependencies:
+    "@types/react": "*"
+    react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4384,14 +4419,18 @@ __metadata:
   resolution: "@visx/geo@workspace:packages/visx-geo"
   dependencies:
     "@types/geojson": "npm:*"
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@types/topojson-client": "npm:^3.1.5"
     "@visx/group": "workspace:*"
     "@visx/vendor": "workspace:*"
     classnames: "npm:^2.3.1"
     topojson-client: "npm:^3.1.0"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4399,22 +4438,28 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/glyph@workspace:packages/visx-glyph"
   dependencies:
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@visx/group": "workspace:*"
     "@visx/vendor": "workspace:*"
     classnames: "npm:^2.3.1"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
 "@visx/gradient@workspace:*, @visx/gradient@workspace:packages/visx-gradient":
   version: 0.0.0-use.local
   resolution: "@visx/gradient@workspace:packages/visx-gradient"
-  dependencies:
-    "@types/react": "npm:*"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4422,7 +4467,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/grid@workspace:packages/visx-grid"
   dependencies:
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@visx/curve": "workspace:*"
     "@visx/group": "workspace:*"
     "@visx/point": "workspace:*"
@@ -4430,7 +4475,11 @@ __metadata:
     "@visx/shape": "workspace:*"
     classnames: "npm:^2.3.1"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4438,10 +4487,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/group@workspace:packages/visx-group"
   dependencies:
-    "@types/react": "npm:*"
     classnames: "npm:^2.3.1"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4449,11 +4501,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/heatmap@workspace:packages/visx-heatmap"
   dependencies:
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@visx/group": "workspace:*"
     classnames: "npm:^2.3.1"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4462,12 +4518,16 @@ __metadata:
   resolution: "@visx/hierarchy@workspace:packages/visx-hierarchy"
   dependencies:
     "@types/d3-hierarchy": "npm:^1.1.6"
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@visx/group": "workspace:*"
     classnames: "npm:^2.3.1"
     d3-hierarchy: "npm:^1.1.4"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4475,12 +4535,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/legend@workspace:packages/visx-legend"
   dependencies:
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@visx/group": "workspace:*"
     "@visx/scale": "workspace:*"
     classnames: "npm:^2.3.1"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4488,12 +4552,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/marker@workspace:packages/visx-marker"
   dependencies:
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@visx/group": "workspace:*"
     "@visx/shape": "workspace:*"
     classnames: "npm:^2.3.1"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4510,11 +4578,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/network@workspace:packages/visx-network"
   dependencies:
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@visx/group": "workspace:*"
     classnames: "npm:^2.3.1"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4522,10 +4594,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/pattern@workspace:packages/visx-pattern"
   dependencies:
-    "@types/react": "npm:*"
     classnames: "npm:^2.3.1"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4539,7 +4614,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/react-spring@workspace:packages/visx-react-spring"
   dependencies:
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@visx/axis": "workspace:*"
     "@visx/grid": "workspace:*"
     "@visx/scale": "workspace:*"
@@ -4547,7 +4622,11 @@ __metadata:
     classnames: "npm:^2.3.1"
   peerDependencies:
     "@react-spring/web": ^9.7.5 || ^10.0.0
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4557,10 +4636,13 @@ __metadata:
   dependencies:
     "@juggle/resize-observer": "npm:^3.3.1"
     "@types/lodash": "npm:^4.17.13"
-    "@types/react": "npm:*"
     lodash: "npm:^4.17.21"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4621,13 +4703,17 @@ __metadata:
   resolution: "@visx/sankey@workspace:packages/visx-sankey"
   dependencies:
     "@types/d3-sankey": "npm:^0.12.4"
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@visx/group": "workspace:*"
     "@visx/vendor": "workspace:*"
     classnames: "npm:^2.3.1"
     d3-sankey: "npm:^0.12.3"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4645,7 +4731,7 @@ __metadata:
   dependencies:
     "@types/d3-hierarchy": "npm:^1.1.6"
     "@types/lodash": "npm:^4.17.13"
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@visx/curve": "workspace:*"
     "@visx/group": "workspace:*"
     "@visx/scale": "workspace:*"
@@ -4654,7 +4740,11 @@ __metadata:
     d3-hierarchy: "npm:^1.1.8"
     lodash: "npm:^4.17.21"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4662,13 +4752,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/stats@workspace:packages/visx-stats"
   dependencies:
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@visx/group": "workspace:*"
     "@visx/scale": "workspace:*"
     "@visx/vendor": "workspace:*"
     classnames: "npm:^2.3.1"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4677,12 +4771,15 @@ __metadata:
   resolution: "@visx/text@workspace:packages/visx-text"
   dependencies:
     "@types/lodash": "npm:^4.17.13"
-    "@types/react": "npm:*"
     classnames: "npm:^2.3.1"
     lodash: "npm:^4.17.21"
     reduce-css-calc: "npm:^1.3.0"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4690,12 +4787,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/threshold@workspace:packages/visx-threshold"
   dependencies:
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@visx/clip-path": "workspace:*"
     "@visx/shape": "workspace:*"
     classnames: "npm:^2.3.1"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4704,13 +4805,21 @@ __metadata:
   resolution: "@visx/tooltip@workspace:packages/visx-tooltip"
   dependencies:
     "@juggle/resize-observer": "npm:^3.3.1"
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
+    "@types/react-dom": "npm:^19.0.0"
     "@visx/bounds": "workspace:*"
     classnames: "npm:^2.3.1"
     react-use-measure: "npm:^2.0.4"
   peerDependencies:
+    "@types/react": "*"
+    "@types/react-dom": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
     react-dom: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    "@types/react-dom":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4755,6 +4864,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/visx@workspace:packages/visx-visx"
   dependencies:
+    "@types/react": "npm:^19.0.0"
+    "@types/react-dom": "npm:^19.0.0"
     "@visx/annotation": "workspace:*"
     "@visx/axis": "workspace:*"
     "@visx/bounds": "workspace:*"
@@ -4789,7 +4900,15 @@ __metadata:
     "@visx/xychart": "workspace:*"
     "@visx/zoom": "workspace:*"
   peerDependencies:
+    "@types/react": "*"
+    "@types/react-dom": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+    react-dom: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    "@types/react-dom":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4798,11 +4917,14 @@ __metadata:
   resolution: "@visx/voronoi@workspace:packages/visx-voronoi"
   dependencies:
     "@types/d3-voronoi": "npm:^1.1.9"
-    "@types/react": "npm:*"
     classnames: "npm:^2.3.1"
     d3-voronoi: "npm:^1.1.2"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4810,10 +4932,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/wordcloud@workspace:packages/visx-wordcloud"
   dependencies:
+    "@types/react": "npm:^19.0.0"
     "@visx/group": "workspace:*"
     d3-cloud: "npm:^1.2.7"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4823,7 +4950,8 @@ __metadata:
   dependencies:
     "@juggle/resize-observer": "npm:^3.3.1"
     "@types/lodash": "npm:^4.17.13"
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
+    "@types/react-dom": "npm:^19.0.0"
     "@visx/annotation": "workspace:*"
     "@visx/axis": "workspace:*"
     "@visx/event": "workspace:*"
@@ -4843,7 +4971,15 @@ __metadata:
     mitt: "npm:^2.1.0"
   peerDependencies:
     "@react-spring/web": ^9.7.5 || ^10.0.0
+    "@types/react": "*"
+    "@types/react-dom": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+    react-dom: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    "@types/react-dom":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4851,11 +4987,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/zoom@workspace:packages/visx-zoom"
   dependencies:
-    "@types/react": "npm:*"
+    "@types/react": "npm:^19.0.0"
     "@use-gesture/react": "npm:^10.3.1"
     "@visx/event": "workspace:*"
   peerDependencies:
+    "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -5607,12 +5747,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"baseline-browser-mapping@npm:^2.8.19":
-  version: 2.8.24
-  resolution: "baseline-browser-mapping@npm:2.8.24"
+"baseline-browser-mapping@npm:^2.10.18":
+  version: 2.10.18
+  resolution: "baseline-browser-mapping@npm:2.10.18"
   bin:
-    baseline-browser-mapping: dist/cli.js
-  checksum: 10c0/8add2f6fe6312134032caa1d385d07a939e25594566672a57d2eef2a53592252b8b56348cdd991d73d78741033d16a28d3da96ef3fc9f4d0bb9ea268124a53c3
+    baseline-browser-mapping: dist/cli.cjs
+  checksum: 10c0/cab0138dd70b3aefe83e27cd03013bfdea772d2329e6458178cceed34b7e3fde72b697c9e4c21fb3c796bcfb831d348bc947b017d8b64417045a34bf014c87b7
   languageName: node
   linkType: hard
 
@@ -5840,10 +5980,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001579, caniuse-lite@npm:^1.0.30001751":
-  version: 1.0.30001753
-  resolution: "caniuse-lite@npm:1.0.30001753"
-  checksum: 10c0/730344b6c54769f544f1d4bd7f99a122cd5f6e964e482adbcb18b63cda56e9c40aca1e3ab47c7154098803c9ba3772cca0aba936d1c924e67e8db8345712e5a8
+"caniuse-lite@npm:^1.0.30001787":
+  version: 1.0.30001787
+  resolution: "caniuse-lite@npm:1.0.30001787"
+  checksum: 10c0/93a6975afbf07f49c9077b348948bbc25b6a82596ccd07b4b6503e48f6f968e1a1e057cc25004db8a2d1d4f35f0c792739e33634edfcefc88ff184c9a2f7a036
   languageName: node
   linkType: hard
 
