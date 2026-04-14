@@ -3,6 +3,20 @@
 This document tracks consumer-facing changes for each `4.0.0-alpha.*` release. Upgrades are
 cumulative — if you're jumping several versions, apply the steps from each section in order.
 
+## 4.0.0-alpha.11
+
+Re-publish of alpha.10 which partially failed (see below). No code changes — all packages are now
+published at the same version.
+
+**What you need to do:** if you installed any `@visx/*` packages at `4.0.0-alpha.10`, upgrade to
+`alpha.11` to ensure all packages are in sync.
+
+## 4.0.0-alpha.10 (broken)
+
+⚠️ **Do not use this release.** A sigstore transparency log conflict caused `lerna publish` to fail
+partway through. 18 packages were never published at this version while the rest were, resulting in
+a version mismatch across the monorepo. Use `alpha.11` instead.
+
 ## 4.0.0-alpha.9
 
 ### ESM fix now published for all packages
