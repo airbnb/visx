@@ -33,7 +33,7 @@ export default function ParentSize({
   resizeObserverPolyfill,
   ...restProps
 }: ParentSizeProps & Omit<HTMLAttributes<HTMLDivElement>, keyof ParentSizeProps>) {
-  const { parentRef, resize, ...dimensions } = useParentSize({
+  const { parentRef, node, resize, ...dimensions } = useParentSize({
     initialSize,
     debounceTime,
     ignoreDimensions,
@@ -45,7 +45,7 @@ export default function ParentSize({
     <div style={parentSizeStyles} ref={parentRef} className={className} {...restProps}>
       {children({
         ...dimensions,
-        ref: parentRef.current,
+        ref: node,
         resize,
       })}
     </div>

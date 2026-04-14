@@ -1,7 +1,6 @@
 // eslint-disable-next-line import/extensions -- explicit .js required for strict Node ESM
 import debounce from 'lodash/debounce.js';
-import type { RefObject } from 'react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { DebounceSettings, PrivateWindow, ResizeObserverPolyfill } from '../types';
 
 export type ParentSizeState = {
@@ -20,8 +19,9 @@ export type UseParentSizeConfig = {
   ignoreDimensions?: keyof ParentSizeState | (keyof ParentSizeState)[];
 } & DebounceSettings;
 
-type UseParentSizeResult<T extends HTMLElement = HTMLDivElement> = ParentSizeState & {
-  parentRef: RefObject<T | null>;
+export type UseParentSizeResult<T extends HTMLElement = HTMLDivElement> = ParentSizeState & {
+  parentRef: (node: T | null) => void;
+  node: T | null;
   resize: (state: ParentSizeState) => void;
 };
 
@@ -40,7 +40,10 @@ export default function useParentSize<T extends HTMLElement = HTMLDivElement>({
   enableDebounceLeadingCall = true,
   resizeObserverPolyfill,
 }: UseParentSizeConfig = {}): UseParentSizeResult<T> {
-  const parentRef = useRef<T>(null);
+  const [node, setNode] = useState<T | null>(null);
+  const parentRef = useCallback((el: T | null) => {
+    setNode(el);
+  }, []);
   const animationFrameID = useRef(0);
 
   const [state, setState] = useState<ParentSizeState>({ ...defaultInitialSize, ...initialSize });
@@ -64,6 +67,11 @@ export default function useParentSize<T extends HTMLElement = HTMLDivElement>({
   }, [debounceTime, enableDebounceLeadingCall, ignoreDimensions]);
 
   useEffect(() => {
+    if (!node) {
+      resize.cancel();
+      return;
+    }
+
     const LocalResizeObserver =
       resizeObserverPolyfill || (window as unknown as PrivateWindow).ResizeObserver;
 
@@ -75,14 +83,14 @@ export default function useParentSize<T extends HTMLElement = HTMLDivElement>({
         });
       });
     });
-    if (parentRef.current) observer.observe(parentRef.current);
+    observer.observe(node);
 
     return () => {
       window.cancelAnimationFrame(animationFrameID.current);
       observer.disconnect();
       resize.cancel();
     };
-  }, [resize, resizeObserverPolyfill]);
+  }, [node, resize, resizeObserverPolyfill]);
 
-  return { parentRef, resize, ...state };
+  return { parentRef, node, resize, ...state };
 }
