@@ -3,6 +3,18 @@
 This document tracks consumer-facing changes for each `4.0.0-alpha.*` release. Upgrades are
 cumulative — if you're jumping several versions, apply the steps from each section in order.
 
+## 4.0.0-alpha.9
+
+### ESM fix now published for all packages
+
+Five packages (`@visx/vendor`, `@visx/point`, `@visx/scale`, `@visx/curve`, `@visx/mock-data`) were
+stuck on pre-alpha.2 versions and still shipped ESM output without `.js` extensions or the
+`esm/package.json` `"type": "module"` marker. This release force-publishes every package so the
+alpha.2 ESM fix ([#1976](https://github.com/airbnb/visx/issues/1976)) is present across the board.
+
+**What you need to do:** if you hit `ERR_MODULE_NOT_FOUND` in strict ESM environments (Vite SSR,
+Deno, edge runtimes) with any of those five packages, upgrading to this release resolves it.
+
 ## 4.0.0-alpha.8
 
 ### `@visx/responsive` useParentSize external ref support

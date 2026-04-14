@@ -45,7 +45,7 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
       // --no-verify-access is needed because the CI token isn't valid for that endpoint
       // provenance is automatically generated when using OIDC Trusted Publishers
       `npx lerna publish ${version} --exact --yes --dist-tag ${distTag}${
-        isPreRelease ? ' --preid alpha' : ''
+        isPreRelease ? ' --preid alpha --force-publish' : ''
       }`,
     );
     if (stdout) {
