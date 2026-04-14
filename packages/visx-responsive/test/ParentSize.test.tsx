@@ -1,10 +1,15 @@
 import React from 'react';
-import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { vi, describe, it, expect, afterEach } from 'vitest';
 import { ResizeObserver } from '@juggle/resize-observer';
 import { act, render } from '@testing-library/react';
 import { ParentSize } from '../src';
 
 describe('<ParentSize />', () => {
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.restoreAllMocks();
+  });
+
   it('should be defined', () => {
     expect(ParentSize).toBeDefined();
   });
@@ -56,8 +61,5 @@ describe('<ParentSize />', () => {
 
     expect(reportedDimensions.width).toBe(800);
     expect(reportedDimensions.height).toBe(600);
-
-    vi.useRealTimers();
-    vi.restoreAllMocks();
   });
 });
