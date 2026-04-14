@@ -3,6 +3,31 @@
 This document tracks consumer-facing changes for each `4.0.0-alpha.*` release. Upgrades are
 cumulative — if you're jumping several versions, apply the steps from each section in order.
 
+## 4.0.0-alpha.8
+
+### `@visx/responsive` useParentSize external ref support
+
+`useParentSize` now accepts an optional `externalRef` in its config object. If provided, the hook
+forwards the observed DOM node to both its internal state and the external ref, eliminating the need
+for a wrapper div when you already have a ref on the container element.
+
+```tsx
+const myRef = useRef<HTMLDivElement>(null);
+const { parentRef, width, height } = useParentSize({ externalRef: myRef });
+
+return <div ref={parentRef}>...</div>;
+// myRef.current is also set to the div element
+```
+
+Both `RefObject` and callback refs are supported.
+
+**What you need to do:**
+
+- **Most consumers:** nothing — this is an additive, non-breaking change. Existing usage without an
+  `externalRef` argument is unchanged.
+- **If you were adding a wrapper div to combine your own ref with `parentRef`:** you can now remove
+  the wrapper and pass your ref directly via the `externalRef` option.
+
 ## 4.0.0-alpha.7
 
 ### `@visx/responsive` ParentSize flex/grid infinite growth fix
