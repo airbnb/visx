@@ -1,6 +1,6 @@
 {
   "name": "@visx/geo",
-  "version": "4.0.0-alpha.10",
+  "version": "4.0.0-alpha.11",
   "description": "visx geo",
   "sideEffects": false,
   "main": "lib/index.js",
