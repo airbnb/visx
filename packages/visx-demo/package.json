@@ -1,6 +1,6 @@
 {
   "name": "@visx/demo",
-  "version": "4.0.0-alpha.5",
+  "version": "4.0.0-alpha.6",
   "description": "visx demo",
   "repository": "https://github.com/airbnb/visx",
   "scripts": {
