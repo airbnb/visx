@@ -1,6 +1,6 @@
 {
   "name": "@visx/drag",
-  "version": "4.0.0-alpha.3",
+  "version": "4.0.0-alpha.9",
   "description": "visx drag",
   "sideEffects": false,
   "main": "lib/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@visx/point",
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-alpha.9",
   "description": "visx point",
   "sideEffects": false,
   "main": "lib/index.js",

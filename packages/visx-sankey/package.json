@@ -1,6 +1,6 @@
 {
   "name": "@visx/sankey",
-  "version": "4.0.0-alpha.3",
+  "version": "4.0.0-alpha.9",
   "description": "visx sankey",
   "sideEffects": false,
   "main": "lib/index.js",
