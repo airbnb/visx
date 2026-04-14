@@ -1,3 +1,4 @@
+import type { RefObject } from 'react';
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { act, renderHook } from '@testing-library/react';
 import useParentSize from '../src/hooks/useParentSize';
@@ -178,5 +179,152 @@ describe('useParentSize', () => {
     });
 
     expect(result.current.node).toBe(div);
+  });
+
+  describe('external ref support', () => {
+    it('should forward the node to an external RefObject', () => {
+      const externalRef = { current: null } satisfies RefObject<HTMLDivElement | null>;
+      const { result } = renderHook(() =>
+        useParentSize({
+          resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
+          ref: externalRef,
+        }),
+      );
+
+      const div = document.createElement('div');
+      act(() => {
+        result.current.parentRef(div);
+      });
+
+      expect(externalRef.current).toBe(div);
+    });
+
+    it('should clear external RefObject when parentRef is called with null', () => {
+      const externalRef = { current: null } satisfies RefObject<HTMLDivElement | null>;
+      const { result } = renderHook(() =>
+        useParentSize({
+          resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
+          ref: externalRef,
+        }),
+      );
+
+      const div = document.createElement('div');
+      act(() => {
+        result.current.parentRef(div);
+      });
+      act(() => {
+        result.current.parentRef(null);
+      });
+
+      expect(externalRef.current).toBeNull();
+    });
+
+    it('should call an external callback ref with the node', () => {
+      const callbackRef = vi.fn();
+      const { result } = renderHook(() =>
+        useParentSize({
+          resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
+          ref: callbackRef,
+        }),
+      );
+
+      const div = document.createElement('div');
+      act(() => {
+        result.current.parentRef(div);
+      });
+
+      expect(callbackRef).toHaveBeenCalledWith(div);
+    });
+
+    it('should call external callback ref with null on detach', () => {
+      const callbackRef = vi.fn();
+      const { result } = renderHook(() =>
+        useParentSize({
+          resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
+          ref: callbackRef,
+        }),
+      );
+
+      const div = document.createElement('div');
+      act(() => {
+        result.current.parentRef(div);
+      });
+      act(() => {
+        result.current.parentRef(null);
+      });
+
+      expect(callbackRef).toHaveBeenCalledWith(null);
+    });
+
+    it('should still set the internal node when an external ref is provided', () => {
+      const externalRef = { current: null } satisfies RefObject<HTMLDivElement | null>;
+      const { result } = renderHook(() =>
+        useParentSize({
+          resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
+          ref: externalRef,
+        }),
+      );
+
+      const div = document.createElement('div');
+      act(() => {
+        result.current.parentRef(div);
+      });
+
+      expect(result.current.node).toBe(div);
+    });
+
+    it('should still observe the element and report dimensions with an external ref', () => {
+      const externalRef = { current: null } satisfies RefObject<HTMLDivElement | null>;
+      const { result } = renderHook(() =>
+        useParentSize({
+          resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
+          ref: externalRef,
+          enableDebounceLeadingCall: true,
+        }),
+      );
+
+      const div = document.createElement('div');
+      act(() => {
+        result.current.parentRef(div);
+      });
+
+      const observer = MockResizeObserver.instances.at(-1)!;
+      act(() => {
+        observer.trigger({ width: 500, height: 400 });
+      });
+
+      expect(result.current.width).toBe(500);
+      expect(result.current.height).toBe(400);
+    });
+
+    it('should not throw when ref is null', () => {
+      const { result } = renderHook(() =>
+        useParentSize({
+          resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
+          ref: null,
+        }),
+      );
+
+      const div = document.createElement('div');
+      expect(() => {
+        act(() => {
+          result.current.parentRef(div);
+        });
+      }).not.toThrow();
+    });
+
+    it('should return a stable parentRef when the external ref is a stable RefObject', () => {
+      const externalRef = { current: null } satisfies RefObject<HTMLDivElement | null>;
+      const { result, rerender } = renderHook(() =>
+        useParentSize({
+          resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
+          ref: externalRef,
+        }),
+      );
+
+      const firstParentRef = result.current.parentRef;
+      rerender();
+      expect(result.current.parentRef).toBe(firstParentRef);
+    });
   });
 });
