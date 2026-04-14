@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/extensions -- explicit .js required for strict Node ESM
 import debounce from 'lodash/debounce.js';
 import { Component } from 'react';
-import type { ComponentType } from 'react';
+import type { ComponentType, CSSProperties } from 'react';
 import type {
   DebounceSettings,
   Simplify,
@@ -10,7 +10,20 @@ import type {
   ResizeObserver,
 } from '../types';
 
-const CONTAINER_STYLES = { width: '100%', height: '100%' };
+const CONTAINER_STYLES: CSSProperties = {
+  width: '100%',
+  height: '100%',
+  position: 'relative',
+};
+
+const MEASUREMENT_STYLES: CSSProperties = {
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+  overflow: 'hidden',
+};
 
 /**
  * @deprecated
@@ -98,14 +111,16 @@ export default function withParentSize<P extends WithParentSizeProvidedProps>(
       const { initialWidth, initialHeight } = this.props;
       const { parentWidth = initialWidth, parentHeight = initialHeight } = this.state;
       return (
-        <div style={CONTAINER_STYLES} ref={this.setRef}>
-          {parentWidth != null && parentHeight != null && (
-            <BaseComponent
-              parentWidth={parentWidth}
-              parentHeight={parentHeight}
-              {...(this.props as P)}
-            />
-          )}
+        <div style={CONTAINER_STYLES}>
+          <div style={MEASUREMENT_STYLES} ref={this.setRef}>
+            {parentWidth != null && parentHeight != null && (
+              <BaseComponent
+                parentWidth={parentWidth}
+                parentHeight={parentHeight}
+                {...(this.props as P)}
+              />
+            )}
+          </div>
         </div>
       );
     }

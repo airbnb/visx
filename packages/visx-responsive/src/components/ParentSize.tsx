@@ -20,7 +20,16 @@ export type ParentSizeProps = {
   children: (args: ParentSizeProvidedProps) => ReactNode;
 } & UseParentSizeConfig;
 
-const defaultParentSizeStyles = { width: '100%', height: '100%' };
+const defaultOuterStyles: CSSProperties = { width: '100%', height: '100%', position: 'relative' };
+
+const measurementStyles: CSSProperties = {
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+  overflow: 'hidden',
+};
 
 export default function ParentSize({
   className,
@@ -28,9 +37,10 @@ export default function ParentSize({
   debounceTime,
   ignoreDimensions,
   initialSize,
-  parentSizeStyles = defaultParentSizeStyles,
+  parentSizeStyles,
   enableDebounceLeadingCall = true,
   resizeObserverPolyfill,
+  style,
   ...restProps
 }: ParentSizeProps & Omit<HTMLAttributes<HTMLDivElement>, keyof ParentSizeProps>) {
   const { parentRef, node, resize, ...dimensions } = useParentSize({
@@ -41,13 +51,19 @@ export default function ParentSize({
     resizeObserverPolyfill,
   });
 
+  const outerStyle: CSSProperties = parentSizeStyles
+    ? { position: 'relative', ...parentSizeStyles }
+    : { ...defaultOuterStyles, ...style };
+
   return (
-    <div style={parentSizeStyles} ref={parentRef} className={className} {...restProps}>
-      {children({
-        ...dimensions,
-        ref: node,
-        resize,
-      })}
+    <div style={outerStyle} className={className} {...restProps}>
+      <div style={measurementStyles} ref={parentRef}>
+        {children({
+          ...dimensions,
+          ref: node,
+          resize,
+        })}
+      </div>
     </div>
   );
 }

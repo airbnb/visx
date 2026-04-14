@@ -3,6 +3,37 @@
 This document tracks consumer-facing changes for each `4.0.0-alpha.*` release. Upgrades are
 cumulative — if you're jumping several versions, apply the steps from each section in order.
 
+## 4.0.0-alpha.7
+
+### `@visx/responsive` ParentSize flex/grid infinite growth fix
+
+`ParentSize` and `withParentSize` now render a two-div structure to prevent infinite height growth
+in flex and grid layouts ([#881](https://github.com/airbnb/visx/issues/881),
+[#1014](https://github.com/airbnb/visx/issues/1014)).
+
+Previously, the component rendered a single wrapper `<div style="width: 100%; height: 100%">`. In
+flex or grid containers, a child SVG's intrinsic height could grow the wrapper, triggering
+ResizeObserver in a feedback loop.
+
+The new structure uses an outer `<div style="width: 100%; height: 100%; position: relative">` and
+an inner `<div style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden">`
+that holds the ResizeObserver and children. Since the inner div is absolutely positioned, children's
+intrinsic sizes cannot grow the outer container.
+
+**What you need to do:**
+
+- **Most consumers:** nothing — the component API is unchanged and the visual result should be
+  identical or better (no more infinite growth).
+- **If you rely on the wrapper div's exact DOM structure** (e.g., querying it in tests or applying
+  CSS that targets a single wrapper div): the wrapper is now two nested divs. `className`, `style`,
+  and all other HTML attributes still apply to the outer div.
+- **If you use the deprecated `parentSizeStyles` prop:** it still works and applies to the outer div,
+  but `position: relative` is prepended to ensure the inner absolutely-positioned measurement div
+  works correctly. If you explicitly set `position` in your custom styles, your value takes
+  precedence.
+- **If you use `withParentSize`:** the same two-div structure applies. The container div is no longer
+  a single `<div style="width: 100%; height: 100%">`.
+
 ## 4.0.0-alpha.6
 
 ### `@visx/responsive` useParentSize callback ref fix
