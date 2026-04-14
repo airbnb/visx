@@ -187,7 +187,7 @@ describe('useParentSize', () => {
       const { result } = renderHook(() =>
         useParentSize({
           resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
-          ref: externalRef,
+          externalRef,
         }),
       );
 
@@ -204,7 +204,7 @@ describe('useParentSize', () => {
       const { result } = renderHook(() =>
         useParentSize({
           resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
-          ref: externalRef,
+          externalRef,
         }),
       );
 
@@ -224,7 +224,7 @@ describe('useParentSize', () => {
       const { result } = renderHook(() =>
         useParentSize({
           resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
-          ref: callbackRef,
+          externalRef: callbackRef,
         }),
       );
 
@@ -241,7 +241,7 @@ describe('useParentSize', () => {
       const { result } = renderHook(() =>
         useParentSize({
           resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
-          ref: callbackRef,
+          externalRef: callbackRef,
         }),
       );
 
@@ -261,7 +261,7 @@ describe('useParentSize', () => {
       const { result } = renderHook(() =>
         useParentSize({
           resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
-          ref: externalRef,
+          externalRef,
         }),
       );
 
@@ -278,7 +278,7 @@ describe('useParentSize', () => {
       const { result } = renderHook(() =>
         useParentSize({
           resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
-          ref: externalRef,
+          externalRef,
           enableDebounceLeadingCall: true,
         }),
       );
@@ -301,7 +301,7 @@ describe('useParentSize', () => {
       const { result } = renderHook(() =>
         useParentSize({
           resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
-          ref: null,
+          externalRef: null,
         }),
       );
 
@@ -318,7 +318,7 @@ describe('useParentSize', () => {
       const { result, rerender } = renderHook(() =>
         useParentSize({
           resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
-          ref: externalRef,
+          externalRef,
         }),
       );
 

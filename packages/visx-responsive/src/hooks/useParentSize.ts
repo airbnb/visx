@@ -19,7 +19,7 @@ export type UseParentSizeConfig<T extends HTMLElement = HTMLDivElement> = {
   /** Optional dimensions provided won't trigger a state change when changed. */
   ignoreDimensions?: keyof ParentSizeState | (keyof ParentSizeState)[];
   /** Optional external ref that also receives the measured DOM node. */
-  ref?: Ref<T>;
+  externalRef?: Ref<T>;
 } & DebounceSettings;
 
 export type UseParentSizeResult<T extends HTMLElement = HTMLDivElement> = ParentSizeState & {
@@ -36,16 +36,14 @@ const defaultInitialSize: ParentSizeState = {
   left: 0,
 };
 
-export default function useParentSize<T extends HTMLElement = HTMLDivElement>(
-  {
-    initialSize = defaultInitialSize,
-    debounceTime = 300,
-    ignoreDimensions = defaultIgnoreDimensions,
-    enableDebounceLeadingCall = true,
-    resizeObserverPolyfill,
-    ref: externalRef,
-  }: UseParentSizeConfig<T> = {} as UseParentSizeConfig<T>,
-): UseParentSizeResult<T> {
+export default function useParentSize<T extends HTMLElement = HTMLDivElement>({
+  initialSize = defaultInitialSize,
+  debounceTime = 300,
+  ignoreDimensions = defaultIgnoreDimensions,
+  enableDebounceLeadingCall = true,
+  resizeObserverPolyfill,
+  externalRef,
+}: UseParentSizeConfig<T> = {}): UseParentSizeResult<T> {
   const [node, setNode] = useState<T | null>(null);
   const parentRef = useCallback(
     (el: T | null) => {
