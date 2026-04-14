@@ -8,19 +8,29 @@ export type ParentSizeProvidedProps = ParentSizeState & {
 };
 
 export type ParentSizeProps = {
-  /** Optional `className` to add to the parent `div` wrapper used for size measurement. */
+  /** Optional `className` to add to the outer wrapper `div`. */
   className?: string;
   /**
-   * @deprecated - use `style` prop as all other props are passed directly to the parent `div`.
+   * @deprecated - use `style` prop as all other props are passed directly to the outer `div`.
    * @TODO remove in the next major version.
-   * Optional `style` object to apply to the parent `div` wrapper used for size measurement.
+   * Optional `style` object to apply to the outer wrapper `div`. Merged with default styles
+   * (`width: 100%; height: 100%; position: relative`); your values take precedence.
    * */
   parentSizeStyles?: CSSProperties;
   /** Child render function `({ width, height, top, left, ref, resize }) => ReactNode`. */
   children: (args: ParentSizeProvidedProps) => ReactNode;
 } & UseParentSizeConfig;
 
-const defaultParentSizeStyles = { width: '100%', height: '100%' };
+const defaultOuterStyles: CSSProperties = { width: '100%', height: '100%', position: 'relative' };
+
+const measurementStyles: CSSProperties = {
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+  overflow: 'hidden',
+};
 
 export default function ParentSize({
   className,
@@ -28,9 +38,10 @@ export default function ParentSize({
   debounceTime,
   ignoreDimensions,
   initialSize,
-  parentSizeStyles = defaultParentSizeStyles,
+  parentSizeStyles,
   enableDebounceLeadingCall = true,
   resizeObserverPolyfill,
+  style,
   ...restProps
 }: ParentSizeProps & Omit<HTMLAttributes<HTMLDivElement>, keyof ParentSizeProps>) {
   const { parentRef, node, resize, ...dimensions } = useParentSize({
@@ -41,13 +52,19 @@ export default function ParentSize({
     resizeObserverPolyfill,
   });
 
+  const outerStyle: CSSProperties = parentSizeStyles
+    ? { position: 'relative', ...parentSizeStyles, ...style }
+    : { ...defaultOuterStyles, ...style };
+
   return (
-    <div style={parentSizeStyles} ref={parentRef} className={className} {...restProps}>
-      {children({
-        ...dimensions,
-        ref: node,
-        resize,
-      })}
+    <div style={outerStyle} className={className} {...restProps}>
+      <div style={measurementStyles} ref={parentRef}>
+        {children({
+          ...dimensions,
+          ref: node,
+          resize,
+        })}
+      </div>
     </div>
   );
 }
