@@ -42,8 +42,6 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
     console.log(`Attempting to publish a '${version}' release.`);
 
     const { stdout, stderr } = await exec(
-      // --no-verify-access is needed because the CI token isn't valid for that endpoint
-      // provenance is automatically generated when using OIDC Trusted Publishers
       `npx lerna publish ${version} --exact --yes --dist-tag ${distTag}${
         isPreRelease ? ' --preid alpha --force-publish' : ''
       }`,
