@@ -8,12 +8,13 @@ export type ParentSizeProvidedProps = ParentSizeState & {
 };
 
 export type ParentSizeProps = {
-  /** Optional `className` to add to the parent `div` wrapper used for size measurement. */
+  /** Optional `className` to add to the outer wrapper `div`. */
   className?: string;
   /**
-   * @deprecated - use `style` prop as all other props are passed directly to the parent `div`.
+   * @deprecated - use `style` prop as all other props are passed directly to the outer `div`.
    * @TODO remove in the next major version.
-   * Optional `style` object to apply to the parent `div` wrapper used for size measurement.
+   * Optional `style` object to apply to the outer wrapper `div`. Merged with default styles
+   * (`width: 100%; height: 100%; position: relative`); your values take precedence.
    * */
   parentSizeStyles?: CSSProperties;
   /** Child render function `({ width, height, top, left, ref, resize }) => ReactNode`. */
@@ -52,7 +53,7 @@ export default function ParentSize({
   });
 
   const outerStyle: CSSProperties = parentSizeStyles
-    ? { position: 'relative', ...parentSizeStyles }
+    ? { position: 'relative', ...parentSizeStyles, ...style }
     : { ...defaultOuterStyles, ...style };
 
   return (

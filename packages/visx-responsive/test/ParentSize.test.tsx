@@ -171,5 +171,22 @@ describe('<ParentSize />', () => {
       // position: relative is still applied so inner absolute div works
       expect(outer.style.position).toBe('relative');
     });
+
+    it('merges style with parentSizeStyles when both are provided', () => {
+      const { container } = render(
+        <ParentSize
+          resizeObserverPolyfill={ResizeObserver}
+          parentSizeStyles={{ width: '50%', height: '300px' }}
+          style={{ background: 'blue' }}
+        >
+          {() => <div />}
+        </ParentSize>,
+      );
+      const outer = container.firstElementChild as HTMLElement;
+      expect(outer.style.width).toBe('50%');
+      expect(outer.style.height).toBe('300px');
+      expect(outer.style.background).toBe('blue');
+      expect(outer.style.position).toBe('relative');
+    });
   });
 });
