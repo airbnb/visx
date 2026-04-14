@@ -3,6 +3,32 @@
 This document tracks consumer-facing changes for each `4.0.0-alpha.*` release. Upgrades are
 cumulative — if you're jumping several versions, apply the steps from each section in order.
 
+## 4.0.0-alpha.6
+
+### `@visx/responsive` useParentSize callback ref fix
+
+`useParentSize` now uses a callback ref internally instead of `useRef`. This fixes a bug where the
+hook could permanently report 0×0 dimensions because `parentRef.current` was null when the
+`useEffect` first ran, and the dependency array never re-fired once the ref attached to the DOM
+([#1816](https://github.com/airbnb/visx/issues/1816)).
+
+The returned `parentRef` is now a callback ref (`(node: T | null) => void`) instead of a
+`RefObject<T | null>`. A new `node` property is also returned for direct access to the observed
+DOM element.
+
+**What you need to do:**
+
+- **Most consumers:** nothing — `<div ref={parentRef}>` works with both `RefObject` and callback
+  refs, and `ParentSize` component users are unaffected.
+- **If you access `parentRef.current` directly:** replace with the new `node` return value.
+
+  ```diff
+  - const { parentRef, width, height } = useParentSize();
+  - console.log(parentRef.current);
+  + const { parentRef, node, width, height } = useParentSize();
+  + console.log(node);
+  ```
+
 ## 4.0.0-alpha.5
 
 ### `@visx/xychart` axis rendering fix (breaking)
