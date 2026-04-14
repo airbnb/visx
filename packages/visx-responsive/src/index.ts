@@ -6,7 +6,11 @@ export type { WithParentSizeProvidedProps } from './enhancers/withParentSize';
 export { default as withScreenSize } from './enhancers/withScreenSize';
 export type { WithScreenSizeProvidedProps } from './enhancers/withScreenSize';
 export { default as useParentSize } from './hooks/useParentSize';
-export type { UseParentSizeConfig, UseParentSizeResult, ParentSizeState } from './hooks/useParentSize';
+export type {
+  UseParentSizeConfig,
+  UseParentSizeResult,
+  ParentSizeState,
+} from './hooks/useParentSize';
 export { default as useScreenSize } from './hooks/useScreenSize';
 export type { UseScreenSizeConfig } from './hooks/useScreenSize';
 

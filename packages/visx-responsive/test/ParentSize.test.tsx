@@ -1,8 +1,8 @@
-import React from 'react';
 import { vi, describe, it, expect, afterEach } from 'vitest';
 import { ResizeObserver } from '@juggle/resize-observer';
 import { act, render } from '@testing-library/react';
 import { ParentSize } from '../src';
+import type { ResizeObserverPolyfill } from '../src/types';
 
 describe('<ParentSize />', () => {
   afterEach(() => {
@@ -46,7 +46,7 @@ describe('<ParentSize />', () => {
     let reportedDimensions = { width: -1, height: -1, top: -1, left: -1 };
 
     render(
-      <ParentSize resizeObserverPolyfill={MockResizeObserver as any}>
+      <ParentSize resizeObserverPolyfill={MockResizeObserver as unknown as ResizeObserverPolyfill}>
         {({ width, height, top, left }) => {
           reportedDimensions = { width, height, top, left };
           return <div data-testid="child" />;

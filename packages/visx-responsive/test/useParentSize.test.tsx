@@ -1,7 +1,7 @@
-import React from 'react';
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { act, renderHook } from '@testing-library/react';
 import useParentSize from '../src/hooks/useParentSize';
+import type { ResizeObserverPolyfill } from '../src/types';
 
 // --- Mock ResizeObserver class (newable) ---
 type ROEntry = { contentRect: { left: number; top: number; width: number; height: number } };
@@ -46,7 +46,9 @@ describe('useParentSize', () => {
 
   it('should return initial dimensions of 0x0 by default', () => {
     const { result } = renderHook(() =>
-      useParentSize({ resizeObserverPolyfill: MockResizeObserver as any }),
+      useParentSize({
+        resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
+      }),
     );
 
     expect(result.current.width).toBe(0);
@@ -58,7 +60,7 @@ describe('useParentSize', () => {
   it('should respect initialSize', () => {
     const { result } = renderHook(() =>
       useParentSize({
-        resizeObserverPolyfill: MockResizeObserver as any,
+        resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
         initialSize: { width: 100, height: 50 },
       }),
     );
@@ -69,7 +71,9 @@ describe('useParentSize', () => {
 
   it('should observe the element when parentRef callback is called', () => {
     const { result } = renderHook(() =>
-      useParentSize({ resizeObserverPolyfill: MockResizeObserver as any }),
+      useParentSize({
+        resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
+      }),
     );
 
     const div = document.createElement('div');
@@ -86,7 +90,7 @@ describe('useParentSize', () => {
   it('should update dimensions when ResizeObserver fires', () => {
     const { result } = renderHook(() =>
       useParentSize({
-        resizeObserverPolyfill: MockResizeObserver as any,
+        resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
         enableDebounceLeadingCall: true,
       }),
     );
@@ -111,7 +115,9 @@ describe('useParentSize', () => {
 
   it('should disconnect observer on unmount', () => {
     const { result, unmount } = renderHook(() =>
-      useParentSize({ resizeObserverPolyfill: MockResizeObserver as any }),
+      useParentSize({
+        resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
+      }),
     );
 
     const div = document.createElement('div');
@@ -128,7 +134,9 @@ describe('useParentSize', () => {
 
   it('should re-observe when node changes', () => {
     const { result } = renderHook(() =>
-      useParentSize({ resizeObserverPolyfill: MockResizeObserver as any }),
+      useParentSize({
+        resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
+      }),
     );
 
     const div1 = document.createElement('div');
@@ -157,7 +165,9 @@ describe('useParentSize', () => {
 
   it('should return the current node', () => {
     const { result } = renderHook(() =>
-      useParentSize({ resizeObserverPolyfill: MockResizeObserver as any }),
+      useParentSize({
+        resizeObserverPolyfill: MockResizeObserver as unknown as ResizeObserverPolyfill,
+      }),
     );
 
     expect(result.current.node).toBeNull();
