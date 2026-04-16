@@ -2,6 +2,7 @@ import { vi } from 'vitest';
 import React, { useContext, useEffect } from 'react';
 import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import type { GlyphProps } from '../../src';
 import { AnimatedGlyphSeries, DataContext, GlyphSeries, useEventEmitter } from '../../src';
 import getDataContext from '../mocks/getDataContext';
 import setupTooltipTest from '../mocks/setupTooltipTest';
@@ -59,7 +60,9 @@ describe('<GlyphSeries />', () => {
   });
 
   it('should render a custom Glyph for each Datum', () => {
-    const customRenderGlyph = () => <rect className="custom-glyph" />;
+    const customRenderGlyph = (props: GlyphProps<{}>) => (
+      <rect className="custom-glyph" data-index={props.index} />
+    );
     const { container } = render(
       <DataContext.Provider value={getDataContext({ key: 'glyph', ...series })}>
         <svg>
@@ -67,7 +70,11 @@ describe('<GlyphSeries />', () => {
         </svg>
       </DataContext.Provider>,
     );
-    expect(container.querySelectorAll('.custom-glyph')).toHaveLength(series.data.length);
+    const glyphs = container.querySelectorAll('.custom-glyph');
+
+    expect(glyphs).toHaveLength(series.data.length);
+    expect(glyphs[0]).toHaveAttribute('data-index', '0');
+    expect(glyphs[1]).toHaveAttribute('data-index', '1');
   });
 
   it('should invoke showTooltip/hideTooltip on pointermove/pointerout', async () => {
