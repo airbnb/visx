@@ -14,8 +14,8 @@
     "@visx/responsive": "latest",
     "@visx/scale": "latest",
     "@visx/shape": "latest",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0",
+    "react-dom": "^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0",
     "react-scripts-ts": "3.1.0",
     "typescript": "^3"
   },
