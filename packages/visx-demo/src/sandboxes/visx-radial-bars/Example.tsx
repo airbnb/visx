@@ -40,7 +40,7 @@ export default function Example({ width, height, showControls = true }: RadialBa
   const innerRadius = radiusMax / 3;
 
   const xDomain = useMemo(
-    () => data.sort(sortAlphabetically ? alphabeticalSort : frequencySort).map(getLetter),
+    () => [...data].sort(sortAlphabetically ? alphabeticalSort : frequencySort).map(getLetter),
     [sortAlphabetically],
   );
 
@@ -83,9 +83,8 @@ export default function Example({ width, height, showControls = true }: RadialBa
             const textY = textRadius * Math.sin(midAngle - Math.PI / 2);
 
             return (
-              <>
+              <React.Fragment key={letter}>
                 <Arc
-                  key={`bar-${letter}`}
                   cornerRadius={4}
                   startAngle={startAngle}
                   endAngle={endAngle}
@@ -105,7 +104,7 @@ export default function Example({ width, height, showControls = true }: RadialBa
                 >
                   {letter}
                 </Text>
-              </>
+              </React.Fragment>
             );
           })}
         </Group>
