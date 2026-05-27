@@ -38,8 +38,7 @@ const Patterns: React.FC<{ id: string; prefersReducedMotion?: boolean }>[] = [
       )}
 
       {/* transform-origin is a recent svg attribute */}
-      {/* eslint-disable-next-line react/no-unknown-property */}
-      <circle cx={5} cy={5} r="3" stroke="none" fill="black" transform-origin="center" />
+      <circle cx={5} cy={5} r="3" stroke="none" fill="black" transformOrigin="center" />
     </CustomPattern>
   ),
   ({ id }) => (

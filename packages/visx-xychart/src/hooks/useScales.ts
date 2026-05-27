@@ -6,6 +6,14 @@ import { useMemo } from 'react';
 import type DataRegistry from '../classes/DataRegistry';
 import isDiscreteScale from '../utils/isDiscreteScale';
 
+function shouldZeroScale(scaleConfig: ScaleConfig<AxisScaleOutput>) {
+  return (
+    scaleCanBeZeroed(scaleConfig) &&
+    (scaleConfig.zero === true ||
+      (scaleConfig.zero !== false && !Object.prototype.hasOwnProperty.call(scaleConfig, 'domain')))
+  );
+}
+
 /** A hook for creating memoized x- and y-scales. */
 export default function useScales<
   XScale extends AxisScale,
@@ -45,20 +53,12 @@ export default function useScales<
 
     const xDomain = isDiscreteScale(xScaleConfig) ? xValues : d3Extent(xValues);
 
-    let xScale = (
-      scaleCanBeZeroed(xScaleConfig)
-        ? createScale({
-            range: [xMin, xMax],
-            domain: xDomain as [XScaleInput, XScaleInput],
-            zero: true,
-            ...xScaleConfig,
-          })
-        : createScale({
-            range: [xMin, xMax],
-            domain: xDomain as [XScaleInput, XScaleInput],
-            ...xScaleConfig,
-          })
-    ) as XScale;
+    let xScale = createScale({
+      range: [xMin, xMax],
+      domain: xDomain as [XScaleInput, XScaleInput],
+      ...xScaleConfig,
+      ...(shouldZeroScale(xScaleConfig) && { zero: true }),
+    }) as XScale;
 
     // apply any scale updates from the registry
     registryEntries.forEach((entry) => {
@@ -85,20 +85,12 @@ export default function useScales<
 
     const yDomain = isDiscreteScale(yScaleConfig) ? yValues : d3Extent(yValues);
 
-    let yScale = (
-      scaleCanBeZeroed(yScaleConfig)
-        ? createScale({
-            range: [yMin, yMax],
-            domain: yDomain as [YScaleInput, YScaleInput],
-            zero: true,
-            ...yScaleConfig,
-          })
-        : createScale({
-            range: [yMin, yMax],
-            domain: yDomain as [YScaleInput, YScaleInput],
-            ...yScaleConfig,
-          })
-    ) as YScale;
+    let yScale = createScale({
+      range: [yMin, yMax],
+      domain: yDomain as [YScaleInput, YScaleInput],
+      ...yScaleConfig,
+      ...(shouldZeroScale(yScaleConfig) && { zero: true }),
+    }) as YScale;
 
     // apply any scale updates from the registry
     registryEntries.forEach((entry) => {

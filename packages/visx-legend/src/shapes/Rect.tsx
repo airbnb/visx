@@ -12,14 +12,12 @@ export type ShapeRectProps = {
 };
 
 export default function ShapeRect({ fill, width, height, style }: ShapeRectProps) {
+  const cleanWidth = typeof width === 'undefined' ? 0 : width;
+  const cleanHeight = typeof height === 'undefined' ? 0 : height;
+
   return (
-    <div
-      style={{
-        width,
-        height,
-        background: fill,
-        ...style,
-      }}
-    />
+    <svg width={cleanWidth} height={cleanHeight}>
+      <rect width={cleanWidth} height={cleanHeight} fill={fill} style={style} />
+    </svg>
   );
 }

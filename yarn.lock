@@ -4505,7 +4505,7 @@ __metadata:
     d3-hierarchy: "npm:^3.1.2"
     d3-scale-chromatic: "npm:^3.1.0"
     d3-shape: "npm:^3.2.0"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:^4.18.1"
     next: "npm:^15.1.0"
     nprogress: "npm:^0.2.0"
     prismjs: "npm:^1.19.0"
@@ -4771,7 +4771,7 @@ __metadata:
   dependencies:
     "@juggle/resize-observer": "npm:^3.3.1"
     "@types/lodash": "npm:^4.17.13"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:^4.18.1"
   peerDependencies:
     "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
@@ -4873,7 +4873,7 @@ __metadata:
     "@visx/vendor": "workspace:*"
     classnames: "npm:^2.3.1"
     d3-hierarchy: "npm:^1.1.8"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:^4.18.1"
   peerDependencies:
     "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
@@ -4907,7 +4907,7 @@ __metadata:
   dependencies:
     "@types/lodash": "npm:^4.17.13"
     classnames: "npm:^2.3.1"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:^4.18.1"
     reduce-css-calc: "npm:^1.3.0"
   peerDependencies:
     "@types/react": "*"
@@ -5102,7 +5102,7 @@ __metadata:
     "@visx/voronoi": "workspace:*"
     classnames: "npm:^2.3.1"
     d3-interpolate-path: "npm:2.2.1"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:^4.18.1"
     mitt: "npm:^2.1.0"
   peerDependencies:
     "@react-spring/web": ^9.7.5 || ^10.0.0
@@ -10267,10 +10267,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.21":
-  version: 4.17.21
-  resolution: "lodash@npm:4.17.21"
-  checksum: 10c0/d8cbea072bb08655bb4c989da418994b073a608dffa608b09ac04b43a791b12aeae7cd7ad919aa4c925f33b48490b5cfe6c1f71d827956071dae2e7bb3a6b74c
+"lodash@npm:^4.18.1":
+  version: 4.18.1
+  resolution: "lodash@npm:4.18.1"
+  checksum: 10c0/757228fc68805c59789e82185135cf85f05d0b2d3d54631d680ca79ec21944ec8314d4533639a14b8bcfbd97a517e78960933041a5af17ecb693ec6eecb99a27
   languageName: node
   linkType: hard
 
@@ -12446,14 +12446,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^19.0.0":
-  version: 19.2.0
-  resolution: "react-dom@npm:19.2.0"
+"react-dom@npm:^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0":
+  version: 19.2.6
+  resolution: "react-dom@npm:19.2.6"
   dependencies:
     scheduler: "npm:^0.27.0"
   peerDependencies:
-    react: ^19.2.0
-  checksum: 10c0/fa2cae05248d01288e91523b590ce4e7635b1e13f1344e225f850d722a8da037bf0782f63b1c1d46353334e0c696909b82e582f8cad607948fde6f7646cc18d9
+    react: ^19.2.6
+  checksum: 10c0/dbf2aef67857c03a612bc9316a4562e5066f43fa04bf28f7f0734963fc1350da2c9f8eb973930655453281079f30cc8222bab383dbec4b5097084e2c081e3334
   languageName: node
   linkType: hard
 
@@ -12522,10 +12522,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^19.0.0":
-  version: 19.2.0
-  resolution: "react@npm:19.2.0"
-  checksum: 10c0/1b6d64eacb9324725bfe1e7860cb7a6b8a34bc89a482920765ebff5c10578eb487e6b46b2f0df263bd27a25edbdae2c45e5ea5d81ae61404301c1a7192c38330
+"react@npm:^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0":
+  version: 19.2.6
+  resolution: "react@npm:19.2.6"
+  checksum: 10c0/66afde33b9a9ee87b1e1cae39d8e7e040d1262e719524fd70660c4d4ce79929c532ac19fc3df5a911edaf02768fdf2c49de4ede1ba99bc6aad72796e0e26e798
   languageName: node
   linkType: hard
 

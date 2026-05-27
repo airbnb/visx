@@ -35,6 +35,24 @@ const selectedBrushStyle = {
 const getDate = (d: AppleStock) => new Date(d.date);
 const getStockValue = (d: AppleStock) => d.close;
 
+const initialBrushDomain = {
+  x0: getDate(stock[50]).getTime(),
+  x1: getDate(stock[100]).getTime(),
+  y0: 0,
+  y1: max(stock, getStockValue) || 0,
+};
+
+function getFilteredStock(domain: Bounds | null) {
+  if (!domain) return stock;
+
+  const { x0, x1, y0, y1 } = domain;
+  return stock.filter((s) => {
+    const x = getDate(s).getTime();
+    const y = getStockValue(s);
+    return x > x0 && x < x1 && y > y0 && y < y1;
+  });
+}
+
 export type BrushProps = {
   width: number;
   height: number;
@@ -54,17 +72,11 @@ function BrushChart({
   },
 }: BrushProps) {
   const brushRef = useRef<BaseBrush | null>(null);
-  const [filteredStock, setFilteredStock] = useState(stock);
+  const [filteredStock, setFilteredStock] = useState(() => getFilteredStock(initialBrushDomain));
 
   const onBrushChange = (domain: Bounds | null) => {
     if (!domain) return;
-    const { x0, x1, y0, y1 } = domain;
-    const stockCopy = stock.filter((s) => {
-      const x = getDate(s).getTime();
-      const y = getStockValue(s);
-      return x > x0 && x < x1 && y > y0 && y < y1;
-    });
-    setFilteredStock(stockCopy);
+    setFilteredStock(getFilteredStock(domain));
   };
 
   const innerHeight = height - margin.top - margin.bottom;
