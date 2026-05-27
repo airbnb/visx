@@ -120,6 +120,7 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "caniuse-lite": "^1.0.30001787",
-    "baseline-browser-mapping": "^2.10.18"
+    "baseline-browser-mapping": "^2.10.18",
+    "lodash": "^4.18.1"
   }
 }

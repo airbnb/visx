@@ -4505,7 +4505,7 @@ __metadata:
     d3-hierarchy: "npm:^3.1.2"
     d3-scale-chromatic: "npm:^3.1.0"
     d3-shape: "npm:^3.2.0"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:^4.18.1"
     next: "npm:^15.1.0"
     nprogress: "npm:^0.2.0"
     prismjs: "npm:^1.19.0"
@@ -4771,7 +4771,7 @@ __metadata:
   dependencies:
     "@juggle/resize-observer": "npm:^3.3.1"
     "@types/lodash": "npm:^4.17.13"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:^4.18.1"
   peerDependencies:
     "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
@@ -4873,7 +4873,7 @@ __metadata:
     "@visx/vendor": "workspace:*"
     classnames: "npm:^2.3.1"
     d3-hierarchy: "npm:^1.1.8"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:^4.18.1"
   peerDependencies:
     "@types/react": "*"
     react: ^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
@@ -4907,7 +4907,7 @@ __metadata:
   dependencies:
     "@types/lodash": "npm:^4.17.13"
     classnames: "npm:^2.3.1"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:^4.18.1"
     reduce-css-calc: "npm:^1.3.0"
   peerDependencies:
     "@types/react": "*"
@@ -5102,7 +5102,7 @@ __metadata:
     "@visx/voronoi": "workspace:*"
     classnames: "npm:^2.3.1"
     d3-interpolate-path: "npm:2.2.1"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:^4.18.1"
     mitt: "npm:^2.1.0"
   peerDependencies:
     "@react-spring/web": ^9.7.5 || ^10.0.0
@@ -10267,10 +10267,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.21":
-  version: 4.17.21
-  resolution: "lodash@npm:4.17.21"
-  checksum: 10c0/d8cbea072bb08655bb4c989da418994b073a608dffa608b09ac04b43a791b12aeae7cd7ad919aa4c925f33b48490b5cfe6c1f71d827956071dae2e7bb3a6b74c
+"lodash@npm:^4.18.1":
+  version: 4.18.1
+  resolution: "lodash@npm:4.18.1"
+  checksum: 10c0/757228fc68805c59789e82185135cf85f05d0b2d3d54631d680ca79ec21944ec8314d4533639a14b8bcfbd97a517e78960933041a5af17ecb693ec6eecb99a27
   languageName: node
   linkType: hard
 

@@ -3,10 +3,29 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
 import { Grid } from '../src';
+import type {
+  GridAngleProps,
+  GridPolarProps,
+  GridProps,
+  GridRadialProps,
+} from '../src';
+
+type ExportedGridTypes = [
+  GridProps<any, any>,
+  GridAngleProps<any>,
+  GridRadialProps<any>,
+  GridPolarProps<any, any>,
+];
+
+const exportedGridTypesAreAvailable: ExportedGridTypes | null = null;
 
 describe('<Grid />', () => {
   it('should be defined', () => {
     expect(Grid).toBeDefined();
+  });
+
+  it('should export grid prop types', () => {
+    expect(exportedGridTypesAreAvailable).toBeNull();
   });
 
   it('should create grid lines', () => {

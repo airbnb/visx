@@ -128,7 +128,7 @@ function Example({
           colorScale={rectColorScale}
           opacityScale={opacityScale}
           binWidth={binWidth}
-          binHeight={binWidth}
+          binHeight={binHeight}
           gap={2}
         >
           {(heatmap) =>
