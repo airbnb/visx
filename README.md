@@ -17,7 +17,7 @@ visx is a collection of reusable low-level visualization components. visx combin
 to generate your visualization with the benefits of react for updating the DOM.
 
 > [!IMPORTANT]
-> **visx v4 is in alpha** with React 19 support. Install with the `@next` tag:
+> **visx v4 is in alpha** and requires React 18 or 19. Install with the `@next` tag:
 >
 > ```bash
 > npm install @visx/shape@next
@@ -177,7 +177,8 @@ visualization charts or library without having to learn d3. No more selections o
 
 1. Does visx work with [preact](https://preactjs.com/)?
 
-   > yup! need to alias `react` + `react-dom` and use `preact/compat`.
+   > yup! alias `react` + `react-dom` to `preact/compat`. For visx v4, configure your
+   > package manager to satisfy the React 18/19 peer dependency range.
 
 1. I like using d3.
 

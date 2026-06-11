@@ -38,8 +38,8 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@types/react": "*",
-    "react": "^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0"
+    "@types/react": "^18.0.0 || ^19.0.0",
+    "react": "^18.0.0 || ^19.0.0"
   },
   "dependencies": {
     "@use-gesture/react": "^10.3.1",

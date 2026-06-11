@@ -3,6 +3,26 @@
 This document tracks consumer-facing changes for each `4.0.0-alpha.*` release. Upgrades are
 cumulative — if you're jumping several versions, apply the steps from each section in order.
 
+## 4.0.0-alpha.15
+
+### React 18 or 19 is now required
+
+React-based `@visx/*` packages now declare `react` peer dependencies as
+`^18.0.0 || ^19.0.0`. Packages that depend on `react-dom` declare the same supported range for
+their `react-dom` peer dependency. Optional `@types/react` and, where applicable,
+`@types/react-dom` peer dependencies use the same supported major-version range.
+
+**What you need to do:**
+
+- **React 18 or 19 consumers:** no runtime code changes are expected for this peer dependency
+  update.
+- **React 16 or 17 consumers:** stay on visx v3 or upgrade your app to React 18+ before installing
+  visx v4.
+- **TypeScript consumers:** install `@types/react` and, when needed, `@types/react-dom` using the
+  major version that matches your React version.
+- **Preact consumers:** continue aliasing `react` and `react-dom` to `preact/compat`, and configure
+  your package manager to satisfy the React 18/19 peer dependency range.
+
 ## 4.0.0-alpha.14
 
 Re-publish of alpha.12 and alpha.13, which partially failed (see below). No intended code changes
@@ -192,13 +212,13 @@ pattern of its DOM-touching members).
 installing either package directly get the same type-dependency signal as the rest of the
 React-based `@visx/*` packages.
 
-The peers are marked `optional` via `peerDependenciesMeta`, so non-TypeScript consumers and React
-19+ consumers who rely on React's built-in types will not see missing-peer warnings.
+The peers are marked `optional` via `peerDependenciesMeta`, so non-TypeScript consumers will not
+see missing-peer warnings.
 
 **What you need to do:**
 
-- **React 18 and earlier (TypeScript users):** add `@types/react` as a dev dependency matching
-  your React version:
+- **React 18 or 19 (TypeScript users):** add `@types/react` as a dev dependency matching your React
+  version:
 
   ```bash
   yarn add -D @types/react
@@ -212,9 +232,6 @@ The peers are marked `optional` via `peerDependenciesMeta`, so non-TypeScript co
   ```
 
   Use the major versions that align with your `react` / `react-dom` versions.
-
-- **React 19+:** rely on the types shipped with `react` and `react-dom`. The optional peer means no
-  install warning either way.
 
 - **Non-TypeScript consumers:** no action needed.
 
