@@ -7,9 +7,10 @@ cumulative — if you're jumping several versions, apply the steps from each sec
 
 ### React 18 or 19 is now required
 
-React-based `@visx/*` packages now declare `react` and `react-dom` peer dependencies as
-`^18.0.0 || ^19.0.0`. Optional `@types/react` and `@types/react-dom` peer dependencies use the
-same supported major-version range.
+React-based `@visx/*` packages now declare `react` peer dependencies as
+`^18.0.0 || ^19.0.0`. Packages that depend on `react-dom` declare the same supported range for
+their `react-dom` peer dependency. Optional `@types/react` and, where applicable,
+`@types/react-dom` peer dependencies use the same supported major-version range.
 
 **What you need to do:**
 

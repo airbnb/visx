@@ -37,7 +37,7 @@ const Patterns: React.FC<{ id: string; prefersReducedMotion?: boolean }>[] = [
         />
       )}
 
-      {/* transformOrigin is a recent SVG attribute */}
+      {/* SVG attribute is transform-origin; React uses camelCased transformOrigin */}
       <circle cx={5} cy={5} r="3" stroke="none" fill="black" transformOrigin="center" />
     </CustomPattern>
   ),

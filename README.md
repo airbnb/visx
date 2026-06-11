@@ -17,7 +17,7 @@ visx is a collection of reusable low-level visualization components. visx combin
 to generate your visualization with the benefits of react for updating the DOM.
 
 > [!IMPORTANT]
-> **visx v4 is in alpha** with React 18 and 19 support. Install with the `@next` tag:
+> **visx v4 is in alpha** and requires React 18 or 19. Install with the `@next` tag:
 >
 > ```bash
 > npm install @visx/shape@next
