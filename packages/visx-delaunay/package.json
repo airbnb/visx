@@ -1,6 +1,6 @@
 {
   "name": "@visx/delaunay",
-  "version": "4.0.0-alpha.15",
+  "version": "4.0.0-alpha.16",
   "description": "visx delaunay",
   "sideEffects": false,
   "main": "lib/index.js",
