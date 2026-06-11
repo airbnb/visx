@@ -3,13 +3,13 @@
 This document tracks consumer-facing changes for each `4.0.0-alpha.*` release. Upgrades are
 cumulative — if you're jumping several versions, apply the steps from each section in order.
 
-## 4.0.0-alpha.13
+## 4.0.0-alpha.14
 
-Re-publish of alpha.12, which partially failed (see below). No intended code changes relative to
-alpha.12 — all packages are now published at the same version.
+Re-publish of alpha.12 and alpha.13, which partially failed (see below). No intended code changes
+relative to alpha.12 — all packages are now published at the same version.
 
-**What you need to do:** if you installed any `@visx/*` packages at `4.0.0-alpha.12`, upgrade to
-`alpha.13` to ensure all packages are in sync.
+**What you need to do:** if you installed any `@visx/*` packages at `4.0.0-alpha.12` or
+`4.0.0-alpha.13`, upgrade to `alpha.14` to ensure all packages are in sync.
 
 ### Lodash removed from package dependencies
 
@@ -28,11 +28,17 @@ the existing debounce options in `@visx/responsive`.
 This release also fixes the XYChart docs/demo example so it passes its known `width` into
 `XYChart`. No consumer code changes are needed for that docs-only fix.
 
+## 4.0.0-alpha.13 (broken)
+
+⚠️ **Do not use this release.** An npm provenance transparency log conflict caused `lerna publish`
+to fail partway through. Some packages were never published at this version while the rest were,
+resulting in a version mismatch across the monorepo. Use `alpha.14` instead.
+
 ## 4.0.0-alpha.12 (broken)
 
 ⚠️ **Do not use this release.** An npm provenance transparency log conflict caused `lerna publish`
 to fail partway through. Some packages were never published at this version while the rest were,
-resulting in a version mismatch across the monorepo. Use `alpha.13` instead.
+resulting in a version mismatch across the monorepo. Use `alpha.14` instead.
 
 ## 4.0.0-alpha.11
 
