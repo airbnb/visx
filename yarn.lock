@@ -4432,7 +4432,7 @@ __metadata:
     d3-hierarchy: "npm:^3.1.2"
     d3-scale-chromatic: "npm:^3.1.0"
     d3-shape: "npm:^3.2.0"
-    next: "npm:^15.5.18"
+    next: "npm:~15.5.18"
     nprogress: "npm:^0.2.0"
     prismjs: "npm:^1.19.0"
     raw-loader: "npm:^4.0.0"
@@ -11016,7 +11016,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:^15.5.18":
+"next@npm:~15.5.18":
   version: 15.5.19
   resolution: "next@npm:15.5.19"
   dependencies:
@@ -12156,7 +12156,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.5.15":
+"postcss@npm:8.5.15, postcss@npm:^8.5.15":
   version: 8.5.15
   resolution: "postcss@npm:8.5.15"
   dependencies:

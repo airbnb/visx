@@ -119,7 +119,7 @@
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "postcss": "8.5.15",
+    "postcss@npm:8.4.31": "8.5.15",
     "caniuse-lite": "^1.0.30001787",
     "baseline-browser-mapping": "^2.10.18"
   }
