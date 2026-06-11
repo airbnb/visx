@@ -11,7 +11,7 @@
     "charts"
   ],
   "engines": {
-    "node": ">=22.0.0",
+    "node": ">=24.0.0",
     "yarn": ">=4.0.0"
   },
   "contributors": [
@@ -32,9 +32,9 @@
   "scripts": {
     "build:vendor": "yarn run ts ./packages/visx-vendor/scripts/buildVendor",
     "babel": "yarn run babel:cjs && yarn run babel:esm",
-    "babel:cjs": "lerna exec --ignore '@visx/{demo,vendor}' --parallel -- babel --root-mode upward --delete-dir-on-start src/ --out-dir lib --extensions .ts,.tsx",
-    "babel:esm": "ESM=true lerna exec --ignore '@visx/{demo,vendor}' --parallel -- babel --root-mode upward --delete-dir-on-start src/ --out-dir esm --extensions .ts,.tsx && node ./scripts/writeEsmPackageJson.js",
-    "babel:pkg": "lerna exec --scope $PKG -- babel --root-mode upward --delete-dir-on-start src/ --out-dir lib --extensions .ts,.tsx && lerna exec --scope $PKG -- ESM=true babel --root-mode upward --delete-dir-on-start src/ --out-dir esm --extensions .ts,.tsx && node ./scripts/writeEsmPackageJson.js",
+    "babel:cjs": "lerna exec --ignore '@visx/{demo,vendor}' --parallel -- 'babel --root-mode upward --delete-dir-on-start src/ --out-dir lib --extensions .ts,.tsx'",
+    "babel:esm": "ESM=true lerna exec --ignore '@visx/{demo,vendor}' --parallel -- 'babel --root-mode upward --delete-dir-on-start src/ --out-dir esm --extensions .ts,.tsx' && node ./scripts/writeEsmPackageJson.js",
+    "babel:pkg": "lerna exec --scope $PKG -- 'babel --root-mode upward --delete-dir-on-start src/ --out-dir lib --extensions .ts,.tsx' && lerna exec --scope $PKG -- 'ESM=true babel --root-mode upward --delete-dir-on-start src/ --out-dir esm --extensions .ts,.tsx' && node ./scripts/writeEsmPackageJson.js",
     "build": "yarn run build:vendor && yarn run babel && yarn run type",
     "build:sizes": "yarn run ts ./scripts/computeBuildSizes.ts",
     "build:release": "yarn run ts ./scripts/performRelease/index.ts",
@@ -42,7 +42,7 @@
     "check:sizes": "yarn run ts ./scripts/compareBuildSizes.ts",
     "clean": "rm -rf ./packages/**/{lib,esm}",
     "docs:generate": "yarn run ts ./scripts/generateDocs.ts",
-    "format": "lerna exec --parallel -- prettier --write --ignore-path ../../.prettierignore .",
+    "format": "lerna exec --parallel -- 'prettier --write --ignore-path ../../.prettierignore .'",
     "lint": "eslint packages/ --quiet",
     "lint:fix": "yarn run lint --fix",
     "postinstall": "yarn run ts ./scripts/postInstall.ts",
@@ -55,9 +55,9 @@
     "vitest:ui": "vitest --ui",
     "ts": "tsx --tsconfig ./tsconfig.node.json",
     "type": "yarn type:clean && yarn type:build",
-    "type:build": "lerna exec -- tsc --build",
+    "type:build": "lerna exec -- 'tsc --build'",
     "type:clean": "find . -type f -name 'tsconfig.tsbuildinfo' -delete",
-    "type:pkg": "lerna exec --scope $PKG -- tsc --build --verbose",
+    "type:pkg": "lerna exec --scope $PKG -- 'tsc --build --verbose'",
     "type:update-refs": "yarn run ts ./scripts/updateTsReferences.ts",
     "vendor-check": "yarn run ts ./packages/visx-vendor/scripts/flagVendorRequirements.ts"
   },

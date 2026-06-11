@@ -12,14 +12,15 @@ jobs:
       id-token: write       # Required for OIDC trusted publishing
       pull-requests: write  # Needed to post release comments on PRs
     steps:
-      - uses: actions/checkout@v2 # checkout visx + this commit
+      - uses: actions/checkout@v6 # checkout visx + this commit
         with:
           # pulls all commits (needed for lerna to correctly release only changed packages)
           fetch-depth: '0'
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v6
         with:
-          node-version: '22.21.1'
+          node-version: '24.x'
           registry-url: 'https://registry.npmjs.org'
+          check-latest: true
 
       - name: Enable Corepack
         run: corepack enable
@@ -67,7 +68,7 @@ jobs:
 
       - name: Build and deploy gallery
         # below we
-        # - setup git credentials provided via actions/checkout@v2
+        # - setup git credentials provided via actions/checkout@v6
         # - initialize gh-pages-branch as an orphan branch so we don't build history
         # - checkout the current commit and create gh-pages-root-dir/ as a new worktree
         #   - outside that directory HEAD is detached at $GITHUB_SHA
