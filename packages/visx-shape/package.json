@@ -28,13 +28,11 @@
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
-    "@types/lodash": "^4.17.13",
     "@visx/curve": "workspace:*",
     "@visx/group": "workspace:*",
     "@visx/scale": "workspace:*",
     "@visx/vendor": "workspace:*",
-    "classnames": "^2.3.1",
-    "lodash": "^4.17.21"
+    "classnames": "^2.3.1"
   },
   "peerDependencies": {
     "@types/react": "*",

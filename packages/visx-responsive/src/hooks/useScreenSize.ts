@@ -1,7 +1,6 @@
-// eslint-disable-next-line import/extensions -- explicit .js required for strict Node ESM
-import debounce from 'lodash/debounce.js';
 import { useEffect, useMemo, useState } from 'react';
 import type { DebounceSettings } from '../types/index';
+import { debounce } from '../utils/debounce';
 
 interface ScreenSize {
   width: number;

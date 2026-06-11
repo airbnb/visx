@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import type { ReactNode } from 'react';
-// eslint-disable-next-line import/extensions -- explicit .js required for strict Node ESM
-import debounce from 'lodash/debounce.js';
+import { debounce } from '@visx/responsive';
+import type { DebouncedFunction } from '@visx/responsive';
 import { useTooltip } from '@visx/tooltip';
 import TooltipContext from '../context/TooltipContext';
 import type { EventHandlerParams, TooltipContextType, TooltipData } from '../types';
@@ -27,7 +27,7 @@ export default function TooltipProvider<Datum extends object>({
     hideTooltip: privateHideTooltip,
   } = useTooltip<TooltipData<Datum>>(undefined);
 
-  const debouncedHideTooltip = useRef<ReturnType<typeof debounce> | null>(null);
+  const debouncedHideTooltip = useRef<DebouncedFunction<() => void> | null>(null);
 
   function cancelDeboundedHideTooltip() {
     if (debouncedHideTooltip.current) {

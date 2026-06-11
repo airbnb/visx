@@ -1,11 +1,17 @@
 import React, { useMemo } from 'react';
-import { chunk } from 'lodash';
+
 import { curveCardinal } from '@visx/curve';
 import { LinePath, SplitLinePath } from '@visx/shape';
 import { LinearGradient } from '@visx/gradient';
 import type { SplitLinePathRenderer } from '@visx/shape';
 import generateSinSegments from './generateSinSegments';
 import generateSnakePath from './generateSnakePath';
+
+function chunk<T>(array: T[], size: number): T[][] {
+  const result: T[][] = [];
+  for (let i = 0; i < array.length; i += size) result.push(array.slice(i, i + size));
+  return result;
+}
 
 type Point = { x: number; y: number };
 const getX = (d: Point) => d.x;

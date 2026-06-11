@@ -50,7 +50,6 @@
     "react-dom": "^16.14.0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0"
   },
   "dependencies": {
-    "@types/lodash": "^4.17.13",
     "@visx/annotation": "workspace:*",
     "@visx/axis": "workspace:*",
     "@visx/event": "workspace:*",
@@ -66,7 +65,6 @@
     "@visx/voronoi": "workspace:*",
     "classnames": "^2.3.1",
     "d3-interpolate-path": "2.2.1",
-    "lodash": "^4.17.21",
     "mitt": "^2.1.0"
   },
   "devDependencies": {

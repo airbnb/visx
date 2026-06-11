@@ -1,8 +1,7 @@
-// eslint-disable-next-line import/extensions -- explicit .js required for strict Node ESM
-import debounce from 'lodash/debounce.js';
 import { Component } from 'react';
 import type { ComponentType } from 'react';
 import type { Simplify, DebounceSettings } from '../types';
+import { debounce } from '../utils/debounce';
 
 type WithScreenSizeConfig = {
   /** @deprecated use `debounceTime` instead */
