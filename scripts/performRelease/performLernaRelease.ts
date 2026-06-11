@@ -42,7 +42,7 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
     console.log(`Attempting to publish a '${version}' release.`);
 
     const publishCommand = [
-      'npx lerna publish',
+      'yarn lerna publish',
       version,
       '--exact',
       '--yes',
