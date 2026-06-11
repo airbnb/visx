@@ -14,6 +14,12 @@ export default function Docs() {
           your use case, or you can simply add the umbrella <a href="/visx/docs/visx">@visx/visx</a>{' '}
           package to use them all.
           <br /> <br />
+          Upgrading from visx 3? Read the{' '}
+          <a href="https://github.com/airbnb/visx/blob/master/MIGRATION.md">
+            visx 4 migration guide
+          </a>{' '}
+          for upgrade steps.
+          <br /> <br />
           Individual packages can be roughly categorized as follows:
         </p>
         <PackageList grid />

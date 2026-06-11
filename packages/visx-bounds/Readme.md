@@ -25,13 +25,21 @@ Example usage with a `<Tooltip />` component
 import React from 'react';
 import { withBoundingRects, WithBoundingRectsProps } from '@visx/bounds';
 
-type TooltipProps = WithBoundingRectsProps & {
+type TooltipProps = Omit<WithBoundingRectsProps, 'nodeRef'> & {
   left: number;
   top: number;
+  nodeRef?: React.Ref<HTMLDivElement>;
   children?: React.ReactNode;
 };
 
-function Tooltip({ left: initialLeft, top: initialTop, rect, parentRect, children }: TooltipProps) {
+function Tooltip({
+  left: initialLeft,
+  top: initialTop,
+  rect,
+  parentRect,
+  nodeRef,
+  children,
+}: TooltipProps) {
   let left = initialLeft;
   let top = initialTop;
 
@@ -40,7 +48,11 @@ function Tooltip({ left: initialLeft, top: initialTop, rect, parentRect, childre
     top = rect.bottom > parentRect.bottom ? top - rect.height : top;
   }
 
-  return <div style={{ top, left, ...myTheme }}>{children}</div>;
+  return (
+    <div ref={nodeRef} style={{ top, left, ...myTheme }}>
+      {children}
+    </div>
+  );
 }
 
 export default withBoundingRects(Tooltip);

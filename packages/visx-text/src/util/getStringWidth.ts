@@ -3,6 +3,8 @@ import memoize from './memoize';
 const MEASUREMENT_ELEMENT_ID = '__react_svg_text_measurement_id';
 
 function getStringWidth(str: string, style?: object) {
+  if (typeof document === 'undefined') return null;
+
   try {
     // Calculate length of each word to be used to determine number of words per line
     let textEl = document.getElementById(MEASUREMENT_ELEMENT_ID) as SVGTextElement | null;
@@ -23,8 +25,7 @@ function getStringWidth(str: string, style?: object) {
     Object.assign(textEl.style, style);
     textEl.textContent = str;
     return textEl.getComputedTextLength();
-  } catch (e) {
-    console.warn(e);
+  } catch {
     return null;
   }
 }
