@@ -5,8 +5,8 @@ cumulative — if you're jumping several versions, apply the steps from each sec
 
 ## 4.0.0-alpha.13
 
-Re-publish of alpha.12, which partially failed (see below). No intended code changes — all packages
-are now published at the same version.
+Re-publish of alpha.12, which partially failed (see below). No intended code changes relative to
+alpha.12 — all packages are now published at the same version.
 
 **What you need to do:** if you installed any `@visx/*` packages at `4.0.0-alpha.12`, upgrade to
 `alpha.13` to ensure all packages are in sync.
