@@ -1,6 +1,6 @@
 {
   "name": "@visx/brush",
-  "version": "4.0.0-alpha.11",
+  "version": "4.0.0-alpha.12",
   "description": "visx brush",
   "sideEffects": false,
   "main": "lib/index.js",
