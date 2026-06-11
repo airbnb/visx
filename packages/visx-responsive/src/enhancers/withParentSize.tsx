@@ -1,5 +1,3 @@
-// eslint-disable-next-line import/extensions -- explicit .js required for strict Node ESM
-import debounce from 'lodash/debounce.js';
 import { Component } from 'react';
 import type { ComponentType, CSSProperties } from 'react';
 import type {
@@ -9,6 +7,7 @@ import type {
   ResizeObserverPolyfill,
   ResizeObserver,
 } from '../types';
+import { debounce } from '../utils/debounce';
 
 const CONTAINER_STYLES: CSSProperties = {
   width: '100%',

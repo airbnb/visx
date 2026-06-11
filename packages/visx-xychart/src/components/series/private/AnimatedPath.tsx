@@ -3,8 +3,7 @@ import type { SVGProps } from 'react';
 import { animated, useSpring } from '@react-spring/web';
 // @ts-expect-error no types
 import { interpolatePath } from 'd3-interpolate-path';
-// eslint-disable-next-line import/extensions -- explicit .js required for strict Node ESM
-import debounce from 'lodash/debounce.js';
+import { debounce } from '@visx/responsive';
 
 function AnimatedPath({
   d,

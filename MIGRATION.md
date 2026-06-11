@@ -3,6 +3,25 @@
 This document tracks consumer-facing changes for each `4.0.0-alpha.*` release. Upgrades are
 cumulative — if you're jumping several versions, apply the steps from each section in order.
 
+## 4.0.0-alpha.12
+
+### Lodash removed from package dependencies
+
+`@visx/responsive`, `@visx/text`, `@visx/xychart`, and `@visx/shape` no longer declare direct
+`lodash` or `@types/lodash` dependencies. Internal `debounce`, `memoize`, and `chunk` usage has
+been replaced with small local helpers. Public visx APIs are intended to behave the same, including
+the existing debounce options in `@visx/responsive`.
+
+**What you need to do:**
+
+- **Most consumers:** nothing — this removes an implementation dependency from visx packages.
+- **If your app imported `lodash` without declaring it in your own `package.json`:** add `lodash`
+  as a direct dependency. It may have worked before only because a visx package installed it
+  transitively.
+
+This release also fixes the XYChart docs/demo example so it passes its known `width` into
+`XYChart`. No consumer code changes are needed for that docs-only fix.
+
 ## 4.0.0-alpha.11
 
 Re-publish of alpha.10 which partially failed (see below). No code changes — all packages are now

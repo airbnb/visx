@@ -17,3 +17,5 @@ export type { UseScreenSizeConfig } from './hooks/useScreenSize';
 export type { ParentSizeProps, ParentSizeProvidedProps } from './components/ParentSize';
 export type { ScaleSVGProps } from './components/ScaleSVG';
 export type * from './types';
+export { debounce } from './utils/debounce';
+export type { DebouncedFunction } from './utils/debounce';

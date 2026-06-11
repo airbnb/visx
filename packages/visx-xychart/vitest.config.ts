@@ -18,6 +18,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@visx/xychart': path.resolve(__dirname, './src'),
+      '@visx/responsive': path.resolve(__dirname, '../visx-responsive/src'),
     },
   },
 });
