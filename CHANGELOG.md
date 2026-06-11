@@ -1,4 +1,5 @@
 # Changelog
+- [v4.0.0](#v400)
 - [v3.12.0](#v3120)
 - [v3.11.0](#v3110)
 - [v3.10.4](#v3104)
@@ -6,10 +7,10 @@
 - [v3.10.2](#v3102)
 - [v3.10.1](#v3101)
 - [v3.10.0](#v3100)
-- [v3.9.0](#v390)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v390">v3.9.0</a></li>
   <li><a href="#v380">v3.8.0</a></li>
   <li><a href="#v370">v3.7.0</a></li>
   <li><a href="#v361">v3.6.1</a></li>
@@ -181,6 +182,130 @@
 </details>
 
 ------
+# v4.0.0 (2026-06-11)
+
+#### :rocket: Enhancements
+
+- Add react@19 to peer dependencies of all packages [#1889](https://github.com/airbnb/visx/pull/1889)
+- Upgrade d3-shape, d3-path to 3 [#1960](https://github.com/airbnb/visx/pull/1960)
+- React 19 Support [#1968](https://github.com/airbnb/visx/pull/1968)
+- refactor(deps): remove lodash package usage [#2006](https://github.com/airbnb/visx/pull/2006)
+- Breaking: Require React 18 or 19 [#2009](https://github.com/airbnb/visx/pull/2009)
+
+#### :bug: Bug Fix
+
+- Add return type to `withBoundingRects` [#1837](https://github.com/airbnb/visx/pull/1837)
+- fix(demo): fix delaunay-voronoi demo [#1758](https://github.com/airbnb/visx/pull/1758)
+- Fix for stacked bars with a mix of strings and numbers in the x-axis [#1884](https://github.com/airbnb/visx/pull/1884)
+- fix(xychart): remove console.debug message for overriding existing registry keys. fixes #1860 [#1934](https://github.com/airbnb/visx/pull/1934)
+- React 19 Support [#1968](https://github.com/airbnb/visx/pull/1968)
+- refactor(deps): remove lodash package usage [#2006](https://github.com/airbnb/visx/pull/2006)
+- fix(release): republish alpha.12 as alpha.13 [#2007](https://github.com/airbnb/visx/pull/2007)
+- fix(release): recover alpha.14 publish [#2008](https://github.com/airbnb/visx/pull/2008)
+- Breaking: Require React 18 or 19 [#2009](https://github.com/airbnb/visx/pull/2009)
+- Resolve Dependabot alerts [#2010](https://github.com/airbnb/visx/pull/2010)
+- Resolve brace-expansion Dependabot alert [#2011](https://github.com/airbnb/visx/pull/2011)
+
+### :boom:  Breaking Changes
+
+- Toolchain updates. Node 18, TypeScript 5, Next 13 [#1938](https://github.com/airbnb/visx/pull/1938)
+- Remove prop-types [#1953](https://github.com/airbnb/visx/pull/1953)
+- Upgrade to Yarn 4 [#1954](https://github.com/airbnb/visx/pull/1954)
+- Upgrade d3-shape, d3-path to 3 [#1960](https://github.com/airbnb/visx/pull/1960)
+- React 19 Support [#1968](https://github.com/airbnb/visx/pull/1968)
+- Breaking: Require React 18 or 19 [#2009](https://github.com/airbnb/visx/pull/2009)
+
+### :memo: Documentation
+
+- docs: remove remix button from README usage section [#1944](https://github.com/airbnb/visx/pull/1944)
+- refactor(deps): remove lodash package usage [#2006](https://github.com/airbnb/visx/pull/2006)
+- fix(release): republish alpha.12 as alpha.13 [#2007](https://github.com/airbnb/visx/pull/2007)
+- Breaking: Require React 18 or 19 [#2009](https://github.com/airbnb/visx/pull/2009)
+- Resolve Dependabot alerts [#2010](https://github.com/airbnb/visx/pull/2010)
+- Resolve brace-expansion Dependabot alert [#2011](https://github.com/airbnb/visx/pull/2011)
+
+### :house:  Internal
+
+- Upgrade babel [#1891](https://github.com/airbnb/visx/pull/1891)
+- internal: Remove Enzyme from visx [#1893](https://github.com/airbnb/visx/pull/1893)
+- [workflows] Update actions/cache from v1 to v4.3.0 [#1926](https://github.com/airbnb/visx/pull/1926)
+- internal(test): reorder expected output in combineBarStackData tests [#1933](https://github.com/airbnb/visx/pull/1933)
+- internal(demo): update footer [#1932](https://github.com/airbnb/visx/pull/1932)
+- perf(demo): lazy render example tiles [#1896](https://github.com/airbnb/visx/pull/1896)
+- Migrate to vitest [#1935](https://github.com/airbnb/visx/pull/1935)
+- fix(push): Update node version in GitHub Actions workflow [#1936](https://github.com/airbnb/visx/pull/1936)
+- Toolchain updates. Node 18, TypeScript 5, Next 13 [#1938](https://github.com/airbnb/visx/pull/1938)
+- demo: rm deps and update styles [#1940](https://github.com/airbnb/visx/pull/1940)
+- fix(performLernaRelease): fix type error [#1939](https://github.com/airbnb/visx/pull/1939)
+- fix: type errors in release scripts [#1941](https://github.com/airbnb/visx/pull/1941)
+- feat: add documentation generation step to push workflow [#1942](https://github.com/airbnb/visx/pull/1942)
+- fix: remove unused dependencies from package.json and yarn.lock [#1943](https://github.com/airbnb/visx/pull/1943)
+- Remove jest [#1945](https://github.com/airbnb/visx/pull/1945)
+- Node 20 [#1946](https://github.com/airbnb/visx/pull/1946)
+- Migrate to jsdom [#1947](https://github.com/airbnb/visx/pull/1947)
+- Upgrade to vitest 3 [#1949](https://github.com/airbnb/visx/pull/1949)
+- Node 22 [#1950](https://github.com/airbnb/visx/pull/1950)
+- Upgrade to vitest 4 [#1951](https://github.com/airbnb/visx/pull/1951)
+- Upgrade to Next 14 [#1952](https://github.com/airbnb/visx/pull/1952)
+- Upgrade to Yarn 4 [#1954](https://github.com/airbnb/visx/pull/1954)
+- Remove Handlebars resolution [#1955](https://github.com/airbnb/visx/pull/1955)
+- Remove node-fetch [#1956](https://github.com/airbnb/visx/pull/1956)
+- Upgrade to react-markdown 9 [#1957](https://github.com/airbnb/visx/pull/1957)
+- Fix push workflow [#1958](https://github.com/airbnb/visx/pull/1958)
+- Remove markdown-loader [#1959](https://github.com/airbnb/visx/pull/1959)
+- Fix Yarn peer dependency warnings [#1961](https://github.com/airbnb/visx/pull/1961)
+- Update next.config.js [#1962](https://github.com/airbnb/visx/pull/1962)
+- Update Lerna link in README.md [#1963](https://github.com/airbnb/visx/pull/1963)
+- Update d3 dependencies to latest versions in demo [#1965](https://github.com/airbnb/visx/pull/1965)
+- Add CNAME for custom domain [#1966](https://github.com/airbnb/visx/pull/1966)
+- fix gh-pages deploy [#1967](https://github.com/airbnb/visx/pull/1967)
+- React 19 Support [#1968](https://github.com/airbnb/visx/pull/1968)
+- Cleanup Resolutions [#1969](https://github.com/airbnb/visx/pull/1969)
+- Upgrade Lerna to v9 [#1970](https://github.com/airbnb/visx/pull/1970)
+- OIDC trusted publishing [#1971](https://github.com/airbnb/visx/pull/1971)
+- Fix release script [#1972](https://github.com/airbnb/visx/pull/1972)
+- Add PR write permission for release comments [#1973](https://github.com/airbnb/visx/pull/1973)
+- refactor(deps): remove lodash package usage [#2006](https://github.com/airbnb/visx/pull/2006)
+- fix(release): republish alpha.12 as alpha.13 [#2007](https://github.com/airbnb/visx/pull/2007)
+- fix(release): recover alpha.14 publish [#2008](https://github.com/airbnb/visx/pull/2008)
+- Breaking: Require React 18 or 19 [#2009](https://github.com/airbnb/visx/pull/2009)
+- Resolve Dependabot alerts [#2010](https://github.com/airbnb/visx/pull/2010)
+- Resolve brace-expansion Dependabot alert [#2011](https://github.com/airbnb/visx/pull/2011)
+- Throttle release GitHub requests [#2014](https://github.com/airbnb/visx/pull/2014)
+
+#### Uncategorized
+
+- Upgrade `@testing-library/*` dependencies [#1890](https://github.com/airbnb/visx/pull/1890)
+- docs: add UCSF data library to In the wild [#1899](https://github.com/airbnb/visx/pull/1899)
+- Fix typo in visx-tooltip readme [#1920](https://github.com/airbnb/visx/pull/1920)
+- Docs: Fix link [#1898](https://github.com/airbnb/visx/pull/1898)
+- fix(release): prerelease bump + reset alpha baseline to 4.0.0-alpha.0 [#1990](https://github.com/airbnb/visx/pull/1990)
+- Fix: Node ESM compatibility for published esm/ output (#1976) [#1991](https://github.com/airbnb/visx/pull/1991)
+- refactor(types)!: @types/react as optional peer dependency [#1992](https://github.com/airbnb/visx/pull/1992)
+- build(deps): replace ts-node with tsx [#1993](https://github.com/airbnb/visx/pull/1993)
+- Prevent tickFormat from receiving incorrect intermediate values on initial render [#1979](https://github.com/airbnb/visx/pull/1979)
+- fix(xychart)!: tighten BaseAxis empty-data guard, add tests [#1994](https://github.com/airbnb/visx/pull/1994)
+- fix(responsive): use callback ref in useParentSize to fix 0×0 stuck dimensions (#1816) [#1995](https://github.com/airbnb/visx/pull/1995)
+- fix(responsive): prevent infinite height growth in flex/grid layouts (#881, #1014) [#1996](https://github.com/airbnb/visx/pull/1996)
+- feat(responsive): support custom ref in useParentSize [#1997](https://github.com/airbnb/visx/pull/1997)
+- fix(release): force-publish all packages during alpha releases [#1998](https://github.com/airbnb/visx/pull/1998)
+- docs(readme): modernize README for v4 alpha [#1999](https://github.com/airbnb/visx/pull/1999)
+- docs(migration): note broken alpha.10 and upcoming alpha.11 re-publish [#2000](https://github.com/airbnb/visx/pull/2000)
+- visx 4 stable release [#2012](https://github.com/airbnb/visx/pull/2012)
+- Fix stable release tag selection [#2013](https://github.com/airbnb/visx/pull/2013)
+  
+#### :trophy: Contributors
+- [bycoffe](https://github.com/bycoffe)
+- [chazcb](https://github.com/chazcb)
+- [darthmaim](https://github.com/darthmaim)
+- [hshoff](https://github.com/hshoff)
+- [kelvin27315](https://github.com/kelvin27315)
+- [maflaven](https://github.com/maflaven)
+- [reganperkins](https://github.com/reganperkins)
+- [tordans](https://github.com/tordans)
+- [wildseansy](https://github.com/wildseansy)
+- [williaster](https://github.com/williaster)
+
 # v3.12.0 (2024-11-07)
 
 #### :rocket: Enhancements
