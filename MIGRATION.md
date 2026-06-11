@@ -3,6 +3,11 @@
 This document tracks consumer-facing changes for each `4.0.0-alpha.*` release. Upgrades are
 cumulative — if you're jumping several versions, apply the steps from each section in order.
 
+## 4.0.0-alpha.16
+
+Internal only: updated demo, test, release, and build-tool dependencies to resolve Dependabot
+security alerts. No consumer-facing visx API changes are expected.
+
 ## 4.0.0-alpha.15
 
 ### React 18 or 19 is now required
