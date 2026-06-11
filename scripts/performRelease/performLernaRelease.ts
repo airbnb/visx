@@ -41,11 +41,22 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
 
     console.log(`Attempting to publish a '${version}' release.`);
 
-    const { stdout, stderr } = await exec(
-      `npx lerna publish ${version} --exact --yes --dist-tag ${distTag}${
-        isPreRelease ? ' --preid alpha --force-publish' : ''
-      }`,
-    );
+    const publishCommand = [
+      'npx lerna publish',
+      version,
+      '--exact',
+      '--yes',
+      `--dist-tag ${distTag}`,
+      '--concurrency 1',
+      '--throttle',
+      '--throttle-size 1',
+      '--throttle-delay 5',
+      isPreRelease ? '--preid alpha --force-publish' : '',
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    const { stdout, stderr } = await exec(publishCommand);
     if (stdout) {
       console.log('Lerna output', stdout);
     }
