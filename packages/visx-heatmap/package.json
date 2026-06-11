@@ -1,6 +1,6 @@
 {
   "name": "@visx/heatmap",
-  "version": "4.0.0-alpha.18",
+  "version": "4.0.0",
   "description": "visx heatmap",
   "sideEffects": false,
   "main": "lib/index.js",
