@@ -1,13 +1,59 @@
 import chalk from 'chalk';
+import childProcess from 'child_process';
+import util from 'util';
 
 import fetchCommitsSinceTag from './fetchCommitsSinceTag';
 import fetchPRsForCommits from './fetchPRsForCommits';
-import fetchTags from './fetchTags';
 import getGitHubClient from '../utils/getGitHubClient';
 import performLernaRelease from './performLernaRelease';
 import postReleaseOnPrs from './postReleaseOnPrs';
 import updateChangelog from './updateChangelog';
 import createGithubRelease from './createGithubRelease';
+
+const execFile = util.promisify(childProcess.execFile);
+
+type ReleaseTag = {
+  name: string;
+  commit: {
+    sha: string;
+  };
+};
+
+function getErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message : String(error);
+}
+
+async function getMostRecentReachableTag(excludeAlpha = false): Promise<ReleaseTag | null> {
+  const describeArgs = ['describe', '--tags', '--abbrev=0'];
+
+  if (excludeAlpha) {
+    describeArgs.push('--exclude', '*alpha*');
+  }
+
+  describeArgs.push('HEAD');
+
+  try {
+    const { stdout: tagStdout } = await execFile('git', describeArgs);
+    const name = tagStdout.trim();
+    const { stdout: shaStdout } = await execFile('git', ['rev-list', '-n', '1', name]);
+
+    return {
+      name,
+      commit: {
+        sha: shaStdout.trim(),
+      },
+    };
+  } catch (error) {
+    const tagType = excludeAlpha ? 'non-alpha reachable tag' : 'reachable tag';
+    console.warn(
+      `Could not resolve most recent ${tagType} with \`git ${describeArgs.join(
+        ' ',
+      )}\`: ${getErrorMessage(error)}`,
+    );
+    return null;
+  }
+}
+
 /**
  * Performs a release + updates changelog as needed using the following approach
  * - fetch PRs for all commits since last non-alpha tag
@@ -23,9 +69,8 @@ async function performRelease() {
   // fetch most recent alpha + non-alpha tags
   // this allows posting on PRs for the alpha / non-alpha release
   // while only using PRs since the last (alpha or non-alpha) tag to dictate the next release version
-  const tagsRequest = await fetchTags(client); // sorted new => old
-  const mostRecentTag = tagsRequest.data[0];
-  const mostRecentNonAlphaTag = tagsRequest.data.find((tag) => !tag.name.includes('alpha'));
+  const mostRecentTag = await getMostRecentReachableTag();
+  const mostRecentNonAlphaTag = await getMostRecentReachableTag(true);
 
   if (!mostRecentTag || !mostRecentNonAlphaTag) {
     console.log('Could not find recent tag. Exiting.');
@@ -70,11 +115,10 @@ async function performRelease() {
   // get multiple major version bumps
   const isPreRelease = await performLernaRelease(prsSinceLastTag);
 
-  const newTagsRequest = await fetchTags(client);
-  const newTag = newTagsRequest.data[0];
+  const newTag = await getMostRecentReachableTag();
 
   // no new tag was created, bail
-  if (newTag.name === mostRecentTag.name) {
+  if (!newTag || newTag.name === mostRecentTag.name) {
     console.log('Newest tag equals previous tag, will not update changelog or post on PRs.');
     process.exit(0);
   }
