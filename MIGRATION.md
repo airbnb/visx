@@ -3,6 +3,11 @@
 This document tracks consumer-facing changes for each `4.0.0-alpha.*` release. Upgrades are
 cumulative — if you're jumping several versions, apply the steps from each section in order.
 
+## 4.0.0-alpha.17
+
+Internal only: updated transitive `brace-expansion` lockfile entries to resolve a Dependabot
+security alert. No consumer-facing visx API changes are expected.
+
 ## 4.0.0-alpha.16
 
 Internal only: updated demo, test, release, and build-tool dependencies to resolve Dependabot
