@@ -1,6 +1,6 @@
 {
   "name": "@visx/vendor",
-  "version": "4.0.0-alpha.14",
+  "version": "4.0.0-alpha.15",
   "description": "vendored packages for visx",
   "sideEffects": false,
   "installConfig": {
