@@ -11,7 +11,7 @@ export type XYChartProps = {
 
 type City = 'San Francisco' | 'New York' | 'Austin';
 
-export default function Example({ height }: XYChartProps) {
+export default function Example({ width, height }: XYChartProps) {
   return (
     <ExampleControls>
       {({
@@ -76,6 +76,7 @@ export default function Example({ height }: XYChartProps) {
           theme={theme}
           xScale={config.x}
           yScale={config.y}
+          width={width}
           height={Math.min(400, height)}
           captureEvents={!editAnnotationLabelPosition}
           onPointerUp={(d) => {
