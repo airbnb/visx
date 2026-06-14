@@ -1,6 +1,10 @@
 import { createThemeStyle, defineTheme, darkTheme, lightTheme } from '../src';
 
 describe('defineTheme', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it('defaults to lightTheme and deep-merges overrides', () => {
     const theme = defineTheme({
       name: 'brand',
@@ -78,6 +82,43 @@ describe('defineTheme', () => {
     expect(theme.colors.categorical[2]).toBe('#333333');
     expect(theme.colors.categorical[3]).toBe(lightTheme.colors.categorical[3]);
     expect(theme.colors.categorical[11]).toBe(lightTheme.colors.categorical[11]);
+  });
+
+  it('warns when override and base cannot provide at least five categorical colors', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const shortBaseTheme = {
+      ...lightTheme,
+      colors: {
+        ...lightTheme.colors,
+        categorical: ['#111111', '#222222', '#333333', '#444444'],
+      },
+    } as unknown as typeof lightTheme;
+    const theme = defineTheme(
+      {
+        colors: {
+          categorical: ['#aaaaaa'],
+        },
+      },
+      shortBaseTheme,
+    );
+
+    expect(theme.colors.categorical).toEqual([
+      '#aaaaaa',
+      '#222222',
+      '#333333',
+      '#444444',
+      '#aaaaaa',
+      '#222222',
+      '#333333',
+      '#444444',
+      '#aaaaaa',
+      '#222222',
+      '#333333',
+      '#444444',
+    ]);
+    expect(warn).toHaveBeenCalledWith(
+      '[@visx/theme] categorical palettes should include at least 5 colors; received 4. The palette will be normalized to fill 12 runtime colors.',
+    );
   });
 
   it('returns a definition that createThemeStyle can emit', () => {

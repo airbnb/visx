@@ -2,6 +2,7 @@ import { Fragment, createElement } from 'react';
 import type { JSX as ReactJSX, ReactNode } from 'react';
 import createThemeStyle from '../tokens/style';
 import type { CSSVarStyle, VisxThemeDefinition } from '../tokens/types';
+import warn from '../utils/warn';
 
 export type ThemeScopeElement = keyof ReactJSX.IntrinsicElements;
 
@@ -24,9 +25,7 @@ interface EmittingThemeScopeProps extends BaseThemeScopeProps {
 export type ThemeScopeProps = AutoThemeScopeProps | EmittingThemeScopeProps;
 
 function warnInvalidFalseElement() {
-  if (process.env.NODE_ENV !== 'production') {
-    console.warn('[@visx/theme] ThemeScope requires a wrapper element for non-auto themes.');
-  }
+  warn('[@visx/theme] ThemeScope requires a wrapper element for non-auto themes.');
 }
 
 export default function ThemeScope({

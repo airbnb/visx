@@ -26,6 +26,10 @@ describe('built-in themes', () => {
 });
 
 describe('createRuntimeTheme', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it('uses auto mode with light fallbacks by default', () => {
     const theme = createRuntimeTheme();
 
@@ -72,6 +76,27 @@ describe('createRuntimeTheme', () => {
     expect(theme.colors.categorical[4]).toBe('var(--chart-5, #555555)');
     expect(theme.colors.categorical[5]).toBe('var(--chart-6, #111111)');
     expect(theme.colors.categorical[11]).toBe('var(--chart-12, #222222)');
+  });
+
+  it('warns and repeats when a theme definition has fewer than five categorical colors', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const shortTheme = {
+      ...lightTheme,
+      name: 'short',
+      colors: {
+        ...lightTheme.colors,
+        categorical: ['#111111', '#222222', '#333333', '#444444'],
+      },
+    } as unknown as VisxThemeDefinition;
+    const theme = createRuntimeTheme(shortTheme);
+
+    expect(theme.colors.categorical).toHaveLength(12);
+    expect(theme.colors.categorical[0]).toBe('var(--chart-1, #111111)');
+    expect(theme.colors.categorical[4]).toBe('var(--chart-5, #111111)');
+    expect(theme.colors.categorical[11]).toBe('var(--chart-12, #444444)');
+    expect(warn).toHaveBeenCalledWith(
+      '[@visx/theme] categorical palettes should include at least 5 colors; received 4. The palette will be normalized to fill 12 runtime colors.',
+    );
   });
 
   it('keeps font family CSS-backed while leaving font sizes numeric', () => {

@@ -1,4 +1,5 @@
 import lightTheme from '../tokens/light';
+import normalizeCategoricalColors from '../tokens/categorical';
 import type { CategoricalColorScale, VisxThemeDefinition } from '../tokens/types';
 
 type DeepPartialObject<T> = {
@@ -15,11 +16,17 @@ function normalizeCategoricalOverride(
   override: readonly string[] | undefined,
   base: CategoricalColorScale,
 ): CategoricalColorScale {
+  const normalize = (colors: readonly string[]) =>
+    normalizeCategoricalColors(colors) as unknown as CategoricalColorScale;
+
   if (override == null) {
-    return [...base] as CategoricalColorScale;
+    return normalize(base);
   }
 
-  return base.map((color, index) => override[index] ?? color) as unknown as CategoricalColorScale;
+  const colorCount = Math.max(override.length, base.length);
+  const merged = Array.from({ length: colorCount }, (_, index) => override[index] ?? base[index]);
+
+  return normalize(merged);
 }
 
 export default function defineTheme(
