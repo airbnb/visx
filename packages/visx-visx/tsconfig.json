@@ -97,6 +97,9 @@
       "path": "../visx-text"
     },
     {
+      "path": "../visx-theme"
+    },
+    {
       "path": "../visx-threshold"
     },
     {
