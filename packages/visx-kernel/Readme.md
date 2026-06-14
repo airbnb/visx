@@ -9,3 +9,8 @@ consumer package.
 
 The package is intentionally small. Public hooks and pure helpers are added only
 when a first-party hook needs the shared behavior.
+
+## v1 non-goals
+
+Symbol keys are not supported as accessors in v1. Use a string key or an accessor
+function.
