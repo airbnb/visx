@@ -11,6 +11,10 @@ describe('entry boundaries', () => {
     expect(rootEntry).not.toContain("'use client'");
     expect(rootEntry).not.toContain('"use client"');
     expect(rootEntry).not.toContain('ThemeProvider');
+    expect(rootEntry).not.toContain('useAxisStyle');
+    expect(rootEntry).not.toContain('useCategoricalScale');
+    expect(rootEntry).not.toContain('useColor');
+    expect(rootEntry).not.toContain('useGridStyle');
     expect(rootEntry).not.toContain('useTheme');
   });
 
@@ -24,7 +28,13 @@ describe('entry boundaries', () => {
     const clientSources = [
       'packages/visx-theme/src/react/ThemeContext.tsx',
       'packages/visx-theme/src/react/ThemeProvider.tsx',
+      'packages/visx-theme/src/react/categoricalColor.ts',
+      'packages/visx-theme/src/react/useAxisStyle.ts',
+      'packages/visx-theme/src/react/useCategoricalScale.ts',
+      'packages/visx-theme/src/react/useColor.ts',
+      'packages/visx-theme/src/react/useGridStyle.ts',
       'packages/visx-theme/src/react/useTheme.ts',
+      'packages/visx-theme/src/react/warn.ts',
     ].map(readSource);
     const source = clientSources.join('\n');
 
