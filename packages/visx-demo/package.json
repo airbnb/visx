@@ -61,6 +61,7 @@
     "@visx/shape": "workspace:*",
     "@visx/stats": "workspace:*",
     "@visx/text": "workspace:*",
+    "@visx/theme": "workspace:*",
     "@visx/threshold": "workspace:*",
     "@visx/tooltip": "workspace:*",
     "@visx/vendor": "workspace:*",

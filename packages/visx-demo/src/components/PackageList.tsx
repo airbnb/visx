@@ -55,6 +55,10 @@ export default function PackageList({
               <Link href="/docs/shape">shape</Link>
               {!compact && <p>Fundamental visualization shape primatives, the core of visx</p>}
             </li>
+            <li className={cx(emphasizePackage === 'theme' && 'emphasize')}>
+              <Link href="/docs/theme">theme</Link>
+              {!compact && <p>Share visual tokens across visx charts</p>}
+            </li>
             <li className={cx(emphasizePackage === 'tooltip' && 'emphasize')}>
               <Link href="/docs/tooltip">tooltip</Link>
               {!compact && <p>Show details on demand</p>}
