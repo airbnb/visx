@@ -14,3 +14,7 @@ when a first-party hook needs the shared behavior.
 
 Symbol keys are not supported as accessors in v1. Use a string key or an accessor
 function.
+
+`toPath2D(d)` returns a real `Path2D` in browsers. On the server, it returns a
+minimal object that stores the path string for cache identity and string
+inspection; it is not a drawing polyfill.
