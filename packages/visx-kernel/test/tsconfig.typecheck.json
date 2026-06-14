@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "composite": false,
+    "emitDeclarationOnly": false,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": ["node"]
+  },
+  "extends": "../../../tsconfig.options.json",
+  "files": ["api.typecheck.ts"]
+}

@@ -18,3 +18,17 @@ function.
 `toPath2D(d)` returns a real `Path2D` in browsers. On the server, it returns a
 minimal object that stores the path string for cache identity and string
 inspection; it is not a drawing polyfill.
+
+## Review gate
+
+The public value export surface is locked by `test/apiSurface.test.ts`. API
+changes should update that test intentionally.
+
+TypeScript ergonomics are checked by `test/api.typecheck.ts`, which uses
+realistic call sites without casts. Run it with `yarn type:kernel-api`.
+
+Pure helpers must import and run on the server. Hooks may be imported on the
+server, but must only be used during React render.
+
+This package currently follows the repo's fixed visx package version. Publishing
+it as `@visx/kernel@1.0.0` requires a release-mode decision before Phase 6.
