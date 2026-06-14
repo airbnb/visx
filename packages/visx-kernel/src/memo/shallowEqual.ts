@@ -4,12 +4,24 @@ function isObjectLike(value: unknown): value is ShallowValue {
   return typeof value === 'object' && value !== null;
 }
 
+function shallowValueEqual(previous: unknown, next: unknown) {
+  if (previous instanceof Date || next instanceof Date) {
+    return (
+      previous instanceof Date &&
+      next instanceof Date &&
+      Object.is(previous.getTime(), next.getTime())
+    );
+  }
+
+  return Object.is(previous, next);
+}
+
 function shallowEqualArrays(previous: readonly unknown[], next: readonly unknown[]) {
   if (previous.length !== next.length) {
     return false;
   }
 
-  return previous.every((value, index) => Object.is(value, next[index]));
+  return previous.every((value, index) => shallowValueEqual(value, next[index]));
 }
 
 export default function shallowEqual(previous: unknown, next: unknown) {
@@ -19,6 +31,14 @@ export default function shallowEqual(previous: unknown, next: unknown) {
 
   if (!isObjectLike(previous) || !isObjectLike(next)) {
     return false;
+  }
+
+  if (previous instanceof Date || next instanceof Date) {
+    return (
+      previous instanceof Date &&
+      next instanceof Date &&
+      Object.is(previous.getTime(), next.getTime())
+    );
   }
 
   if (Array.isArray(previous) || Array.isArray(next)) {
@@ -40,6 +60,6 @@ export default function shallowEqual(previous: unknown, next: unknown) {
   return previousKeys.every(
     (key) =>
       Object.prototype.hasOwnProperty.call(nextRecord, key) &&
-      Object.is(previousRecord[key], nextRecord[key]),
+      shallowValueEqual(previousRecord[key], nextRecord[key]),
   );
 }

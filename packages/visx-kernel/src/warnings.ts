@@ -1,4 +1,4 @@
-export type WarnCode = never;
+export type WarnCode = 'EMPTY_DATA' | 'NAN_IN_DATA';
 
 export type KernelWarning<Code extends string = string> = {
   code: Code;
