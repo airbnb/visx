@@ -1,13 +1,51 @@
 # @visx/theme
 
-Utilities for sharing visual tokens across visx charts. The package is split into an RSC-safe root
-entry for CSS scoping and a client entry for React hooks.
+Utilities for sharing visual tokens across visx charts without changing the low-level visx primitive
+model. The package is split into an RSC-safe root entry for CSS scoping and a client entry for React
+hooks.
 
 ## Installation
 
 ```sh
 npm install --save @visx/theme
 ```
+
+## Motivation
+
+visx is intentionally low level: primitives take props, compose freely, and stay out of your app's
+state model. That is what makes visx useful for unusual charts, custom dashboards, and product
+interfaces that do not fit a fixed charting API.
+
+The tradeoff is that every primitive chart tends to rebuild the same styling layer:
+
+- categorical colors for each series
+- axis strokes, tick labels, and grid lines
+- text colors, font family, and chart surfaces
+- light/dark color branches
+- design-system token plumbing
+
+That works for one chart. It gets noisy when a dashboard has many charts built from different visx
+packages. Small differences creep in, dark mode becomes duplicated JavaScript, and teams end up
+copying local helpers from chart to chart.
+
+`@visx/theme` gives those charts a shared visual language while keeping the rendering primitives
+plain. It does not make `@visx/axis`, `@visx/grid`, or `@visx/shape` theme-aware. Instead, it gives
+you CSS-ready values and small prop helpers that you can pass to the primitives you already use.
+
+## Primitive-first design
+
+The theme package is a convenience layer, not a chart framework.
+
+- visx primitives remain prop-driven.
+- Theme hooks return ordinary strings, numbers, and prop objects.
+- CSS owns resolved colors through custom properties.
+- Explicit chart props and `ChartConfig.color` overrides always win.
+- Apps own light/dark mode, class names, data attributes, and design-system providers.
+- You can use one hook, the whole provider, or only `ThemeScope`.
+
+This keeps shadcn/ui integration zero-config for common apps without making shadcn/ui a requirement
+or a constraint. If a chart needs a custom palette, a per-series CSS variable, a hand-tuned axis, or
+no theme integration at all, the primitive API still supports that.
 
 ## Basic usage
 
