@@ -14,6 +14,41 @@ targets, and the published ESM output. For most apps, the upgrade is:
 6. If you rely on generated runtime `propTypes`, migrate those checks into your app.
 7. If you still need IE11, stay on visx 3.
 
+## 4.1
+
+### `@visx/theme` adds shared visual tokens for primitive charts
+
+visx 4.1 introduces `@visx/theme`, an optional package for sharing chart colors, typography, axis,
+grid, and layout defaults across low-level visx charts. The package keeps visx primitives
+prop-driven: `@visx/axis`, `@visx/grid`, and `@visx/shape` do not read theme context automatically.
+
+Use the server-compatible root entry when a chart only needs scoped CSS variables:
+
+```tsx
+import { ThemeScope } from '@visx/theme';
+
+<ThemeScope theme="auto">
+  <Chart />
+</ThemeScope>;
+```
+
+Use the client entry when chart components need hook-derived props:
+
+```tsx
+import { ThemeProvider, useAxisStyle, useGridStyle, useColor } from '@visx/theme/react';
+```
+
+`theme="auto"` is designed for shadcn/ui-style CSS variables such as `--chart-1`, `--background`,
+`--border`, and `--muted-foreground`. It does not install a mode switcher, read the DOM, or update
+JS-only layout values when a CSS class changes.
+
+Existing `@visx/xychart` themes remain supported for `XYChart`. New primitive charts can reuse the
+same visual choices with `fromXYChartTheme` from `@visx/theme`.
+
+**What you need to do:** nothing unless you want to opt in. Existing visx charts continue to work.
+Add `@visx/theme` only when you want shared visual tokens or shadcn/ui-compatible CSS variable
+theming for primitive charts.
+
 ## From visx 3.x
 
 Upgrade every visx package in your application at the same time. Mixing visx 3 and visx 4 packages
