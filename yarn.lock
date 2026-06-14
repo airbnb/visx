@@ -4742,7 +4742,6 @@ __metadata:
     airbnb-js-shims: "npm:^2.2.1"
     babel-plugin-add-import-extension: "npm:^1.6.0"
     chalk: "npm:4.1.0"
-    esbuild: "npm:0.27.7"
     eslint: "npm:^8.57.0"
     eslint-config-airbnb: "npm:^19.0.4"
     eslint-config-prettier: "npm:^8.5.0"
@@ -7403,7 +7402,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.27.7, esbuild@npm:~0.27.0":
+"esbuild@npm:~0.27.0":
   version: 0.27.7
   resolution: "esbuild@npm:0.27.7"
   dependencies:
