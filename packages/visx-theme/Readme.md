@@ -92,6 +92,38 @@ JS-only numeric values cannot update from CSS alone:
 Auto mode uses the light theme numeric defaults for those JS-only values. Pass an explicit theme
 object from `defineTheme` when light and dark modes need different layout measurements.
 
+## Migrating from `@visx/xychart`
+
+Existing xychart code can keep using `XYChartTheme` directly. New primitive charts can reuse the
+same visual choices with `fromXYChartTheme`.
+
+```tsx
+import { XYChart, buildChartTheme } from '@visx/xychart';
+import { ThemeScope, fromXYChartTheme } from '@visx/theme';
+
+const legacyTheme = buildChartTheme({
+  backgroundColor: '#ffffff',
+  colors: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'],
+  gridColor: '#f3f4f6',
+  gridColorDark: '#e5e7eb',
+  tickLength: 4,
+});
+
+const primitiveTheme = fromXYChartTheme(legacyTheme);
+
+export function Dashboard() {
+  return (
+    <>
+      <XYChart theme={legacyTheme}>{/* existing chart */}</XYChart>
+      <ThemeScope theme={primitiveTheme}>{/* new primitive chart */}</ThemeScope>
+    </>
+  );
+}
+```
+
+The adapter is one-way and structural. `@visx/theme` does not import from `@visx/xychart`, and there
+is no `toXYChartTheme` adapter.
+
 ## Recipes
 
 ### Line chart

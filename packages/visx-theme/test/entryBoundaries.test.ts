@@ -48,4 +48,10 @@ describe('entry boundaries', () => {
     expect(source).not.toMatch(/\bgetComputedStyle\b/);
     expect(source).not.toMatch(/\bmatchMedia\b/);
   });
+
+  it('keeps the xychart adapter structurally decoupled from @visx/xychart', () => {
+    const source = readSource('packages/visx-theme/src/compat/fromXYChartTheme.ts');
+
+    expect(source).not.toContain('@visx/xychart');
+  });
 });
