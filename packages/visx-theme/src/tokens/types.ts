@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import type { ComponentType, CSSProperties } from 'react';
 
 export type VisxThemeMode = 'light' | 'dark' | 'auto';
 
@@ -103,3 +103,16 @@ export type CSSVarName = `--${string}`;
 export type CSSVarStyle = CSSProperties & {
   [key: CSSVarName]: string | number | undefined;
 };
+
+export interface ChartSeriesConfig {
+  /** Human-readable label for legends, tooltips, and screen reader output. */
+  label: string;
+
+  /** Optional icon for legends and tooltips. Client-side only if passed across RSC boundaries. */
+  icon?: ComponentType<{ className?: string }>;
+
+  /** Explicit color override. May be any CSS color, including var(...). */
+  color?: string;
+}
+
+export type ChartConfig<K extends string = string> = Record<K, ChartSeriesConfig>;
