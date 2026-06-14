@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "composite": false,
+    "emitDeclarationOnly": false,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": []
+  },
+  "extends": "../../../tsconfig.options.json",
+  "files": ["fromXYChartTheme.typecheck.ts"],
+  "references": [
+    {
+      "path": ".."
+    },
+    {
+      "path": "../../visx-xychart"
+    }
+  ]
+}

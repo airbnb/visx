@@ -63,6 +63,7 @@
     "@visx/scale": "workspace:*",
     "@visx/shape": "workspace:*",
     "@visx/text": "workspace:*",
+    "@visx/theme": "workspace:*",
     "@visx/threshold": "workspace:*",
     "@visx/tooltip": "workspace:*",
     "@visx/voronoi": "workspace:*",

@@ -37,6 +37,7 @@ export default defineConfig({
       'packages/visx-sankey/vitest.config.ts',
       'packages/visx-shape/vitest.config.ts',
       'packages/visx-text/vitest.config.ts',
+      'packages/visx-theme/vitest.config.ts',
       'packages/visx-wordcloud/vitest.config.ts',
       'packages/visx-xychart/vitest.config.ts',
       'packages/visx-visx/vitest.config.ts',

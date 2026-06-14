@@ -48,6 +48,7 @@ export type VisxPackage =
   | 'shape'
   | 'stats'
   | 'text'
+  | 'theme'
   | 'threshold'
   | 'tooltip'
   | 'voronoi'

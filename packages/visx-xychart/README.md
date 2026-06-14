@@ -148,6 +148,31 @@ const customTheme = buildChartTheme({
 () => <XYChart theme={customTheme} />
 ```
 
+For new charts built from low-level visx primitives, use `@visx/theme` as the shared visual token
+layer. `@visx/xychart` themes remain supported for `XYChart`, while `@visx/theme` is designed for
+RSC-safe CSS variable scoping, shadcn/ui-style tokens, and prop-driven primitive charts.
+
+Existing `XYChartTheme` objects can be reused with `fromXYChartTheme`:
+
+```tsx
+import { buildChartTheme } from '@visx/xychart';
+import { ThemeScope, fromXYChartTheme } from '@visx/theme';
+
+const xychartTheme = buildChartTheme({
+  backgroundColor: '#ffffff',
+  colors: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'],
+  gridColor: '#f3f4f6',
+  gridColorDark: '#e5e7eb',
+  tickLength: 4,
+});
+
+const primitiveTheme = fromXYChartTheme(xychartTheme);
+
+<ThemeScope theme={primitiveTheme}>
+  <PrimitiveChart />
+</ThemeScope>;
+```
+
 </details>
 
 <details>
