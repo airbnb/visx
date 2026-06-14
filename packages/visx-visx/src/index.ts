@@ -14,6 +14,7 @@ import * as Grid from '@visx/grid';
 import * as Group from '@visx/group';
 import * as Heatmap from '@visx/heatmap';
 import * as Hierarchy from '@visx/hierarchy';
+import * as Kernel from '@visx/kernel';
 import * as Legend from '@visx/legend';
 import * as Marker from '@visx/marker';
 import * as MockData from '@visx/mock-data';
@@ -48,6 +49,7 @@ export {
   Group,
   Heatmap,
   Hierarchy,
+  Kernel,
   Legend,
   Marker,
   MockData,

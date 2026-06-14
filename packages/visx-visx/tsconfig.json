@@ -64,6 +64,9 @@
       "path": "../visx-hierarchy"
     },
     {
+      "path": "../visx-kernel"
+    },
+    {
       "path": "../visx-legend"
     },
     {

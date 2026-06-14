@@ -4593,6 +4593,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@visx/kernel@workspace:*, @visx/kernel@workspace:packages/visx-kernel":
+  version: 0.0.0-use.local
+  resolution: "@visx/kernel@workspace:packages/visx-kernel"
+  peerDependencies:
+    react: ^18.0.0 || ^19.0.0
+  languageName: unknown
+  linkType: soft
+
 "@visx/legend@workspace:*, @visx/legend@workspace:packages/visx-legend":
   version: 0.0.0-use.local
   resolution: "@visx/legend@workspace:packages/visx-legend"
@@ -4952,6 +4960,7 @@ __metadata:
     "@visx/group": "workspace:*"
     "@visx/heatmap": "workspace:*"
     "@visx/hierarchy": "workspace:*"
+    "@visx/kernel": "workspace:*"
     "@visx/legend": "workspace:*"
     "@visx/marker": "workspace:*"
     "@visx/mock-data": "workspace:*"
