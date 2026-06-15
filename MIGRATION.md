@@ -16,6 +16,21 @@ targets, and the published ESM output. For most apps, the upgrade is:
 
 ## 4.1
 
+### `@visx/kernel` adds shared primitives for first-party hooks
+
+visx 4.1 introduces `@visx/kernel`, a small shared package for the cross-cutting primitives used by
+first-party hooks: structural memoization, accessor normalization, stable callbacks, stable refs,
+stable ids, domain computation, number formatting, path-string helpers, `Path2D` caching, and
+structured development warnings.
+
+The package gives hooks like `useScale`, `useAxis`, and `usePie` one consistent place to normalize
+user input before doing package-specific math. Existing component APIs do not change, and
+`@visx/kernel` does not add rendering opinions.
+
+**What you need to do:** nothing unless you want to build directly on these low-level primitives.
+Existing visx charts continue to work. Future hook APIs may use `@visx/kernel` internally, but
+consumers do not need to install or import it directly unless they opt in.
+
 ### `@visx/theme` adds shared visual tokens for primitive charts
 
 visx 4.1 introduces `@visx/theme`, an optional package for sharing chart colors, typography, axis,

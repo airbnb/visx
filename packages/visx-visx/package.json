@@ -52,6 +52,7 @@
     "@visx/group": "workspace:*",
     "@visx/heatmap": "workspace:*",
     "@visx/hierarchy": "workspace:*",
+    "@visx/kernel": "workspace:*",
     "@visx/legend": "workspace:*",
     "@visx/marker": "workspace:*",
     "@visx/mock-data": "workspace:*",
