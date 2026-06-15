@@ -1,7 +1,7 @@
 {
-  "name": "@visx/axis",
+  "name": "@visx/chart",
   "version": "4.0.0",
-  "description": "visx axis",
+  "description": "visx chart-level hooks",
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -11,11 +11,6 @@
       "types": "./lib/index.d.ts",
       "import": "./esm/index.js",
       "require": "./lib/index.js"
-    },
-    "./react": {
-      "types": "./lib/react/index.d.ts",
-      "import": "./esm/react/index.js",
-      "require": "./lib/react/index.js"
     }
   },
   "files": [
@@ -29,9 +24,9 @@
   "keywords": [
     "visx",
     "react",
-    "d3",
     "visualizations",
-    "charts"
+    "charts",
+    "hooks"
   ],
   "author": "@hshoff",
   "license": "MIT",
@@ -40,12 +35,7 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
-    "@visx/group": "workspace:*",
-    "@visx/point": "workspace:*",
-    "@visx/scale": "workspace:*",
-    "@visx/shape": "workspace:*",
-    "@visx/text": "workspace:*",
-    "classnames": "^2.3.1"
+    "@visx/kernel": "workspace:*"
   },
   "peerDependencies": {
     "@types/react": "^18.0.0 || ^19.0.0",

@@ -17,6 +17,10 @@ describe('visx', () => {
     expect(visx.Bounds.withBoundingRects).toBeDefined();
   });
 
+  it('should export @visx/chart', () => {
+    expect(visx.Chart.useChartDimensions).toBeDefined();
+  });
+
   it('should export @visx/clip-path', () => {
     expect(visx.ClipPath.ClipPath).toBeDefined();
   });

@@ -1,7 +1,14 @@
 import { curveBasis, stackOrderDescending, stackOffsetExpand } from '@visx/vendor/d3-shape';
+import { arcPath, areaPath, linePath } from '../../src';
 import { arc, area, pie, line, radialLine, stack } from '../../src/util/D3ShapeFactories';
 
 describe('D3ShapeFactories', () => {
+  it('exports registry-facing path aliases', () => {
+    expect(arcPath).toBe(arc);
+    expect(areaPath).toBe(area);
+    expect(linePath).toBe(line);
+  });
+
   describe('arc()', () => {
     it('innerRadius', () => {
       expect(arc({ innerRadius: 1 }).innerRadius()({})).toBe(1);

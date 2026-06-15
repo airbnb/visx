@@ -14,7 +14,7 @@ targets, and the published ESM output. For most apps, the upgrade is:
 6. If you rely on generated runtime `propTypes`, migrate those checks into your app.
 7. If you still need IE11, stay on visx 3.
 
-## 4.1
+## 4.1 (coming soon)
 
 ### `@visx/kernel` adds shared primitives for first-party hooks
 
@@ -23,9 +23,9 @@ first-party hooks: structural memoization, accessor normalization, stable callba
 stable ids, domain computation, number formatting, path-string helpers, `Path2D` caching, and
 structured development warnings.
 
-The package gives hooks like `useScale`, `useAxis`, and `usePie` one consistent place to normalize
-user input before doing package-specific math. Existing component APIs do not change, and
-`@visx/kernel` does not add rendering opinions.
+The package gives first-party hooks a consistent place to normalize user input before doing
+package-specific math when that normalization is appropriate. Existing component APIs do not change,
+and `@visx/kernel` does not add rendering opinions.
 
 **What you need to do:** nothing unless you want to build directly on these low-level primitives.
 Existing visx charts continue to work. Future hook APIs may use `@visx/kernel` internally, but
@@ -63,6 +63,29 @@ same visual choices with `fromXYChartTheme` from `@visx/theme`.
 **What you need to do:** nothing unless you want to opt in. Existing visx charts continue to work.
 Add `@visx/theme` only when you want shared visual tokens or shadcn/ui-compatible CSS variable
 theming for primitive charts.
+
+### Registry-oriented hooks for primitive charts
+
+visx 4.1 adds the first hook and helper APIs used to build primitive charts for the visx chart
+registry. These APIs are additive and live in package roots or explicit React subpaths:
+
+```tsx
+import { useChartDimensions } from '@visx/chart';
+import { useAxis } from '@visx/axis/react';
+import { useScale } from '@visx/scale/react';
+import { arcPath, areaPath, linePath } from '@visx/shape';
+import { usePie } from '@visx/shape/react';
+import { useColorScale } from '@visx/theme/react';
+import { useVoronoi } from '@visx/voronoi/react';
+```
+
+Existing component APIs continue to work. `<Axis />` and `<Pie />` reuse the extracted hook logic
+internally, but their public props and rendering behavior are unchanged. Hooks that need React are
+exported from `/react` subpaths; root package imports such as `@visx/scale` remain available for
+non-React code.
+
+**What you need to do:** nothing unless you want to author hook-based primitive charts. Continue
+using existing components as before, or opt into the new hooks from the import paths above.
 
 ## From visx 3.x
 

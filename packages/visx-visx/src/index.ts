@@ -3,6 +3,7 @@ import * as Annotation from '@visx/annotation';
 import * as Axis from '@visx/axis';
 import * as Bounds from '@visx/bounds';
 import * as Brush from '@visx/brush';
+import * as Chart from '@visx/chart';
 import * as ClipPath from '@visx/clip-path';
 import * as Curve from '@visx/curve';
 import * as Drag from '@visx/drag';
@@ -38,6 +39,7 @@ export {
   Axis,
   Bounds,
   Brush,
+  Chart,
   ClipPath,
   Curve,
   Drag,

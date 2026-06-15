@@ -2,7 +2,7 @@ import { voronoi as d3Voronoi } from 'd3-voronoi';
 
 const CLIP_PADDING = 1;
 
-interface Config<Datum> {
+export interface VoronoiConfig<Datum> {
   /** The total width of the voronoi layout. */
   width?: number;
   /** The total width of the voronoi layout. */
@@ -17,7 +17,7 @@ interface Config<Datum> {
  * Returns a configured d3 voronoi `layout`. calling `layout(data)` returns a voronoi *diagram*.
  * Alternatively call `layout.polygons(data)`, `layout.triangles(data)`, `layout.links(data)`
  */
-export default function voronoi<Datum>({ width = 0, height = 0, x, y }: Config<Datum>) {
+export default function voronoi<Datum>({ width = 0, height = 0, x, y }: VoronoiConfig<Datum>) {
   const voronoiGenerator = d3Voronoi<Datum>();
 
   if (x) voronoiGenerator.x(x);

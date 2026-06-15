@@ -18,6 +18,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@visx/scale': path.resolve(__dirname, './src'),
+      '@visx/scale/react': path.resolve(__dirname, './src/react'),
     },
   },
 });

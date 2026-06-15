@@ -11,6 +11,11 @@
       "types": "./lib/index.d.ts",
       "import": "./esm/index.js",
       "require": "./lib/index.js"
+    },
+    "./react": {
+      "types": "./lib/react/index.d.ts",
+      "import": "./esm/react/index.js",
+      "require": "./lib/react/index.js"
     }
   },
   "files": [
@@ -39,6 +44,7 @@
   },
   "dependencies": {
     "@types/d3-voronoi": "^1.1.9",
+    "@visx/kernel": "workspace:*",
     "classnames": "^2.3.1",
     "d3-voronoi": "^1.1.2"
   },
@@ -50,5 +56,8 @@
     "@types/react": {
       "optional": true
     }
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0"
   }
 }
