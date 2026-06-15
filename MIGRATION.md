@@ -68,7 +68,8 @@ theming for primitive charts.
 
 visx 4.1 introduces `@visx/a11y`, an optional package for adding chart semantics to primitive SVG
 charts. It provides server-safe helpers for generated ARIA props, text descriptions, and hidden data
-tables, plus a client hook for pre-bound chart props, data-table fallback, and live announcements.
+tables, plus a client hook for pre-bound chart props, roving keyboard focus, data-table fallback,
+and live announcements.
 
 These helpers do not replace the chart render tree or hide non-data elements automatically. If your
 chart includes decorative chrome such as grid lines, axis ticks, background rectangles, or clipping
@@ -76,8 +77,8 @@ helpers, render those elements with `aria-hidden="true"` so assistive technology
 chart title, description, series, data marks, and table fallback.
 
 **What you need to do:** nothing unless you want to opt in. Existing visx charts continue to work.
-Add `@visx/a11y` only when you want generated chart semantics or a data-table fallback for primitive
-charts.
+Add `@visx/a11y` only when you want generated chart semantics, keyboard exploration, or a data-table
+fallback for primitive charts.
 
 ### Registry-oriented hooks for primitive charts
 
