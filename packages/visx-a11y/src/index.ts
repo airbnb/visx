@@ -10,8 +10,17 @@ export {
 export { getChartAriaProps } from './generators/ariaProps';
 export { generateDataTableHTML } from './generators/dataTableHTML';
 export { generateChartDescription } from './generators/description';
+export { useChartA11y } from './useChartA11y';
 export { ChartA11yAnnouncer } from './components/ChartA11yAnnouncer';
 export { ChartA11yDataTable } from './components/ChartA11yDataTable';
+export type {
+  ChartA11yMode,
+  UseChartA11yAnnouncerProps,
+  UseChartA11yDataTableProps,
+  UseChartA11yPointProps,
+  UseChartA11yResult,
+  UseChartA11ySvgProps,
+} from './useChartA11y';
 export type {
   ChartA11yAnnouncerProps,
   ChartA11yLivePoliteness,
