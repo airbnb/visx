@@ -3,6 +3,7 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   test: {
     projects: [
+      'packages/visx-a11y/vitest.config.ts',
       'packages/visx-scale/vitest.config.ts',
       'packages/visx-point/vitest.config.ts',
       'packages/visx-curve/vitest.config.ts',
