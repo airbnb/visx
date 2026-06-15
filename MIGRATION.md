@@ -23,9 +23,9 @@ first-party hooks: structural memoization, accessor normalization, stable callba
 stable ids, domain computation, number formatting, path-string helpers, `Path2D` caching, and
 structured development warnings.
 
-The package gives hooks like `useScale`, `useAxis`, and `usePie` one consistent place to normalize
-user input before doing package-specific math. Existing component APIs do not change, and
-`@visx/kernel` does not add rendering opinions.
+The package gives first-party hooks a consistent place to normalize user input before doing
+package-specific math when that normalization is appropriate. Existing component APIs do not change,
+and `@visx/kernel` does not add rendering opinions.
 
 **What you need to do:** nothing unless you want to build directly on these low-level primitives.
 Existing visx charts continue to work. Future hook APIs may use `@visx/kernel` internally, but
