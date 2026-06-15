@@ -1,7 +1,7 @@
 import { act, render, renderHook } from '@testing-library/react';
 
-import { useChartA11y } from '../src';
 import type { ChartA11yConfig } from '../src';
+import { useChartA11y } from '../src/react';
 
 type Datum = {
   label: string;

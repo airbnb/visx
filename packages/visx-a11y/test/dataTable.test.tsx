@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
 
-import { ChartA11yDataTable } from '../src';
 import type { ChartA11yConfig } from '../src';
+import { ChartA11yDataTable } from '../src/react';
 
 type Datum = {
   label: string;

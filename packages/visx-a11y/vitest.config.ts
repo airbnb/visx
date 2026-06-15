@@ -18,6 +18,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@visx/a11y': path.resolve(__dirname, './src'),
+      '@visx/a11y/react': path.resolve(__dirname, './src/react'),
       '@visx/a11y/server': path.resolve(__dirname, './src/server.ts'),
     },
   },

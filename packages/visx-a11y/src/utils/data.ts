@@ -27,11 +27,7 @@ function isNestedSeriesData<Datum>(
     return false;
   }
 
-  if ((seriesConfig?.length ?? 0) > 1) {
-    return true;
-  }
-
-  return Array.isArray(firstDatum[0]);
+  return (seriesConfig?.length ?? 0) > 1;
 }
 
 function getSeriesLabel<Datum>(

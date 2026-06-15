@@ -1,8 +1,8 @@
 # @visx/a11y
 
 Accessibility helpers for primitive visx charts without changing the low-level visx primitive model.
-The package is split into a server-safe entry for generated semantics and a client root entry for
-React hooks and companion components.
+The package is split into server-safe entries for generated semantics and a client React entry for
+hooks and companion components.
 
 ## Installation
 
@@ -84,13 +84,13 @@ const description = generateChartDescription(config);
 const tableHtml = generateDataTableHTML(config);
 ```
 
-Use `useChartA11y` from the root entry when chart components need React-bound props and companion
+Use `useChartA11y` from the React entry when chart components need React-bound props and companion
 components.
 
 ```tsx
 'use client';
 
-import { useChartA11y } from '@visx/a11y';
+import { useChartA11y } from '@visx/a11y/react';
 
 export function RevenueChart({ data }) {
   const a11y = useChartA11y({

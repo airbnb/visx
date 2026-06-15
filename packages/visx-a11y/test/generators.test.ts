@@ -101,6 +101,23 @@ describe('generateChartDescription', () => {
     );
   });
 
+  it('summarizes large dense charts without spreading every value into Math.min or Math.max', () => {
+    const denseData = Array.from({ length: 10000 }, (_, index) => ({
+      label: `Point ${index}`,
+      value: index,
+    }));
+
+    expect(
+      generateChartDescription({
+        ...lineConfig,
+        data: denseData,
+        pointDescriptionThreshold: 1,
+      }),
+    ).toBe(
+      'line chart of Revenue. 10000 data points. Values range from $0 to $9999 with an average of $4999.5.',
+    );
+  });
+
   it('summarizes pie charts by segment share', () => {
     expect(
       generateChartDescription({

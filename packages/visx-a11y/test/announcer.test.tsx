@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
 
-import { ChartA11yAnnouncer } from '../src';
+import { ChartA11yAnnouncer } from '../src/react';
 
 describe('ChartA11yAnnouncer', () => {
   it('renders a visually hidden polite live region by default', () => {

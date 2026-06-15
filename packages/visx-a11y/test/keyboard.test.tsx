@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { normalizeChartA11yData, useChartA11y } from '../src';
 import type { ChartA11yConfig } from '../src';
+import { normalizeChartA11yData, useChartA11y } from '../src/react';
 
 type Datum = {
   category: string;

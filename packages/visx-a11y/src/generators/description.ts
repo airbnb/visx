@@ -34,10 +34,15 @@ function generateDenseDescription<Datum>(config: ChartA11yConfig<Datum>) {
     return `${getChartTypeLabel(config)} "${config.title}" has no numeric values.`;
   }
 
-  const values = points.map(({ y }) => y);
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
+  const { min, max, sum } = points.reduce(
+    (stats, { y }) => ({
+      min: Math.min(stats.min, y),
+      max: Math.max(stats.max, y),
+      sum: stats.sum + y,
+    }),
+    { min: points[0].y, max: points[0].y, sum: 0 },
+  );
+  const mean = sum / points.length;
 
   return `${getChartTypeLabel(config)} of ${config.title}. ${
     points.length
