@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@types/d3-voronoi": "^1.1.9",
+    "@visx/kernel": "workspace:*",
     "classnames": "^2.3.1",
     "d3-voronoi": "^1.1.2"
   },

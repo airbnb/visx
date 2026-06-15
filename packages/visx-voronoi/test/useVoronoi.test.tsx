@@ -16,6 +16,16 @@ function VoronoiProbe({
   return null;
 }
 
+function StringAccessorVoronoiProbe({
+  onVoronoi,
+}: {
+  onVoronoi: (layout: ReturnType<typeof useVoronoi<Datum>>) => void;
+}) {
+  onVoronoi(useVoronoi<Datum>({ width: 10, height: 20, x: 'x', y: 'y' }));
+
+  return null;
+}
+
 describe('useVoronoi', () => {
   it('creates a configured voronoi layout', () => {
     const onVoronoi = vi.fn();
@@ -23,8 +33,20 @@ describe('useVoronoi', () => {
     render(<VoronoiProbe onVoronoi={onVoronoi} />);
 
     const layout = onVoronoi.mock.calls[0][0] as ReturnType<typeof useVoronoi<Datum>>;
-    expect(layout.x()).toBe(x);
-    expect(layout.y()).toBe(y);
+    expect(layout.x()({ x: 3, y: 4 })).toBe(3);
+    expect(layout.y()({ x: 3, y: 4 })).toBe(4);
     expect(layout.extent()?.[1]).toEqual([11, 21]);
+  });
+
+  it('normalizes string accessors and keeps equal configs stable', () => {
+    const onVoronoi = vi.fn();
+    const { rerender } = render(<StringAccessorVoronoiProbe onVoronoi={onVoronoi} />);
+
+    rerender(<StringAccessorVoronoiProbe onVoronoi={onVoronoi} />);
+
+    const layout = onVoronoi.mock.calls[0][0] as ReturnType<typeof useVoronoi<Datum>>;
+    expect(layout.x()({ x: 3, y: 4 })).toBe(3);
+    expect(layout.y()({ x: 3, y: 4 })).toBe(4);
+    expect(onVoronoi.mock.calls[1][0]).toBe(layout);
   });
 });

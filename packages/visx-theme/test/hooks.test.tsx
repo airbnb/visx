@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import { createRuntimeTheme, defineTheme, lightTheme } from '../src';
+import type { ColorScaleAccessor } from '../src/react';
 import {
   ThemeProvider,
   useAxisStyle,
@@ -69,6 +70,20 @@ function ColorScaleProbe({ onColors }: { onColors: (colors: string[]) => void })
   });
 
   onColors([colorFor('alpha'), colorFor('beta'), colorFor('gamma')]);
+
+  return null;
+}
+
+function ColorScaleIdentityProbe({
+  domain,
+  onColorFor,
+  range,
+}: {
+  domain: readonly ['alpha', 'beta'];
+  onColorFor: (colorFor: ColorScaleAccessor<readonly ['alpha', 'beta']>) => void;
+  range: readonly string[];
+}) {
+  onColorFor(useColorScale(domain, { range }));
 
   return null;
 }
@@ -183,6 +198,27 @@ describe('@visx/theme/react hooks', () => {
     render(<ColorScaleProbe onColors={onColors} />);
 
     expect(onColors).toHaveBeenCalledWith(['red', 'green', 'red']);
+  });
+
+  it('keeps color scale accessors stable for structurally equal inputs', () => {
+    const onColorFor = vi.fn();
+    const { rerender } = render(
+      <ColorScaleIdentityProbe
+        domain={['alpha', 'beta']}
+        onColorFor={onColorFor}
+        range={['red', 'green']}
+      />,
+    );
+
+    rerender(
+      <ColorScaleIdentityProbe
+        domain={['alpha', 'beta']}
+        onColorFor={onColorFor}
+        range={['red', 'green']}
+      />,
+    );
+
+    expect(onColorFor.mock.calls[1][0]).toBe(onColorFor.mock.calls[0][0]);
   });
 
   it('warns and falls back for color scale keys outside the domain', () => {

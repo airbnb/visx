@@ -1,3 +1,5 @@
+import { useStructuralMemo } from '@visx/kernel';
+import { useMemo } from 'react';
 import { getCategoricalColor } from './categoricalColor';
 import useTheme from './useTheme';
 import warn from './warn';
@@ -14,16 +16,22 @@ export default function useColorScale<const Domain extends readonly string[]>(
   { range }: UseColorScaleOptions = {},
 ): ColorScaleAccessor<Domain> {
   const theme = useTheme();
-  const colors = range ?? theme.colors.categorical;
+  const stableDomain = useStructuralMemo(domain, 1);
+  const stableRange = useStructuralMemo(range, 1);
+  const fallbackColors = theme.colors.categorical;
+  const colors = stableRange ?? fallbackColors;
 
-  return (key) => {
-    const index = domain.indexOf(key);
+  return useMemo(
+    () => (key) => {
+      const index = stableDomain.indexOf(key);
 
-    if (index < 0) {
-      warn(`[@visx/theme] useColorScale received "${key}" outside its domain; using index 0.`);
-      return colors[0] ?? getCategoricalColor(theme.colors.categorical, 0);
-    }
+      if (index < 0) {
+        warn(`[@visx/theme] useColorScale received "${key}" outside its domain; using index 0.`);
+        return colors[0] ?? getCategoricalColor(fallbackColors, 0);
+      }
 
-    return colors[index % colors.length] ?? getCategoricalColor(theme.colors.categorical, index);
-  };
+      return colors[index % colors.length] ?? getCategoricalColor(fallbackColors, index);
+    },
+    [colors, fallbackColors, stableDomain],
+  );
 }
