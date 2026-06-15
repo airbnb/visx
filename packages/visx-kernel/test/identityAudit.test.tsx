@@ -1,6 +1,6 @@
 import React, { StrictMode } from 'react';
 import { renderHook } from '@testing-library/react';
-import { useDomain, useLatestRef, useStableCallback, useStructuralMemo } from '../src';
+import { useDomain, useLatestRef, useStableCallback, useStableId, useStructuralMemo } from '../src';
 
 type Datum = {
   value: number;
@@ -16,9 +16,10 @@ describe('@visx/kernel identity audit', () => {
         const options = useStructuralMemo({ tickCount: 5 }, 1);
         const latestDataRef = useLatestRef(data);
         const callback = useStableCallback(() => latestDataRef.current.length);
+        const clipId = useStableId('clip');
         const domain = useDomain({ data, accessor: 'value', type: 'linear' });
 
-        return { callback, domain, latestDataRef, options };
+        return { callback, clipId, domain, latestDataRef, options };
       },
       {
         initialProps: { data: [{ value: 1 }, { value: 3 }] },
@@ -33,6 +34,7 @@ describe('@visx/kernel identity audit', () => {
     expect(result.current.latestDataRef).toBe(firstResult.latestDataRef);
     expect(result.current.callback).toBe(firstResult.callback);
     expect(result.current.callback()).toBe(2);
+    expect(result.current.clipId).toBe(firstResult.clipId);
     expect(result.current.domain).toBe(firstResult.domain);
   });
 });

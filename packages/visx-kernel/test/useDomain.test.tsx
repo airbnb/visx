@@ -93,9 +93,9 @@ describe('useDomain', () => {
   });
 
   it('emits NAN_IN_DATA and EMPTY_DATA warnings for invalid numeric domains', () => {
-    const warnings: string[] = [];
-    setWarnHandler(({ code, source }) => {
-      warnings.push(`${source}:${code}`);
+    const warnings: Array<{ code: string; details: unknown; source: string }> = [];
+    setWarnHandler(({ code, details, source }) => {
+      warnings.push({ code, details, source });
     });
 
     renderHook(() =>
@@ -107,8 +107,16 @@ describe('useDomain', () => {
     );
 
     expect(warnings).toEqual([
-      '[@visx/kernel/useDomain]:NAN_IN_DATA',
-      '[@visx/kernel/useDomain]:EMPTY_DATA',
+      {
+        code: 'NAN_IN_DATA',
+        details: { invalidValues: 1, totalValues: 1 },
+        source: '[@visx/kernel/useDomain]',
+      },
+      {
+        code: 'EMPTY_DATA',
+        details: { totalValues: 1 },
+        source: '[@visx/kernel/useDomain]',
+      },
     ]);
   });
 });

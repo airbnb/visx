@@ -11,6 +11,7 @@ describe('@visx/kernel public API', () => {
       'useDomain',
       'useLatestRef',
       'useStableCallback',
+      'useStableId',
       'useStructuralMemo',
     ]);
   });

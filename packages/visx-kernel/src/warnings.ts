@@ -1,7 +1,9 @@
 export type WarnCode = 'EMPTY_DATA' | 'NAN_IN_DATA';
+export type WarnDetails = Readonly<Record<string, unknown>>;
 
 export type KernelWarning<Code extends string = string> = {
   code: Code;
+  details?: WarnDetails;
   message: string;
   source: string;
 };
@@ -16,7 +18,11 @@ function formatWarning({ code, message, source }: KernelWarning) {
 
 function defaultWarnHandler(warning: KernelWarning) {
   if (process.env.NODE_ENV !== 'production') {
-    console.warn(formatWarning(warning));
+    if (warning.details) {
+      console.warn(formatWarning(warning), warning.details);
+    } else {
+      console.warn(formatWarning(warning));
+    }
   }
 }
 
@@ -36,17 +42,35 @@ export function resetWarnCache() {
   warnedMessages.clear();
 }
 
-export function devWarn<Code extends string>(code: Code, message: string, source = '@visx/kernel') {
+function getDetailsKey(details?: WarnDetails) {
+  if (!details) {
+    return '';
+  }
+
+  try {
+    return JSON.stringify(details);
+  } catch {
+    return '[unserializable]';
+  }
+}
+
+export function devWarn<Code extends string>(
+  code: Code,
+  message: string,
+  source?: string,
+  details?: WarnDetails,
+) {
   if (process.env.NODE_ENV === 'production') {
     return;
   }
 
-  const key = `${source}:${code}:${message}`;
+  const warningSource = source ?? '@visx/kernel';
+  const key = `${warningSource}:${code}:${message}:${getDetailsKey(details)}`;
 
   if (warnedMessages.has(key)) {
     return;
   }
 
   warnedMessages.add(key);
-  warnHandler({ code, message, source });
+  warnHandler({ code, details, message, source: warningSource });
 }

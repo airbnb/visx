@@ -6,19 +6,19 @@ describe('devWarn', () => {
     resetWarnCache();
   });
 
-  it('dedupes warnings by source, code, and message', () => {
+  it('dedupes warnings by source, code, message, and details', () => {
     const warnings: string[] = [];
-    setWarnHandler(({ code, message, source }) => {
-      warnings.push(`${source}:${code}:${message}`);
+    setWarnHandler(({ code, details, message, source }) => {
+      warnings.push(`${source}:${code}:${message}:${JSON.stringify(details)}`);
     });
 
-    devWarn('TEST_WARNING', 'first message', '[@visx/kernel/test]');
-    devWarn('TEST_WARNING', 'first message', '[@visx/kernel/test]');
-    devWarn('TEST_WARNING', 'second message', '[@visx/kernel/test]');
+    devWarn('TEST_WARNING', 'first message', '[@visx/kernel/test]', { count: 1 });
+    devWarn('TEST_WARNING', 'first message', '[@visx/kernel/test]', { count: 1 });
+    devWarn('TEST_WARNING', 'first message', '[@visx/kernel/test]', { count: 2 });
 
     expect(warnings).toEqual([
-      '[@visx/kernel/test]:TEST_WARNING:first message',
-      '[@visx/kernel/test]:TEST_WARNING:second message',
+      '[@visx/kernel/test]:TEST_WARNING:first message:{"count":1}',
+      '[@visx/kernel/test]:TEST_WARNING:first message:{"count":2}',
     ]);
   });
 
@@ -36,6 +36,18 @@ describe('devWarn', () => {
 
     expect(warnings).toEqual(['custom:custom handler']);
     expect(warnSpy).toHaveBeenCalledWith('[@visx/kernel/test] SECOND_WARNING: default handler');
+
+    warnSpy.mockRestore();
+  });
+
+  it('passes details to the default console warning', () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    devWarn('TEST_WARNING', 'with details', '[@visx/kernel/test]', { count: 3 });
+
+    expect(warnSpy).toHaveBeenCalledWith('[@visx/kernel/test] TEST_WARNING: with details', {
+      count: 3,
+    });
 
     warnSpy.mockRestore();
   });

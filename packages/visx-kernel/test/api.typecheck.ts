@@ -5,6 +5,7 @@ import {
   toPath2D,
   useDomain,
   useLatestRef,
+  useStableId,
   useStableCallback,
   useStructuralMemo,
 } from '../src';
@@ -28,6 +29,7 @@ const formatted: string = formatNumber(value, { maximumFractionDigits: 1 });
 
 export function KernelApiTypecheck() {
   const memoizedOptions: { tickCount: number } = useStructuralMemo({ tickCount: 5 }, 1);
+  const clipId: string = useStableId('clip');
   const latestDataRef = useLatestRef(data);
   const stableFormatter: (prefix: string) => string = useStableCallback(
     (prefix: string) => `${prefix}${latestDataRef.current.length}`,
@@ -50,6 +52,7 @@ export function KernelApiTypecheck() {
 
   return {
     bandDomain,
+    clipId,
     formatted,
     linearDomain,
     memoizedOptions,

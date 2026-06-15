@@ -22,12 +22,15 @@ export type UseDomainOptions<D, V, T extends DomainType> = {
   type: T;
 };
 
-function warnEmptyData() {
-  devWarn('EMPTY_DATA', 'No valid values available to form a domain.', SOURCE);
+function warnEmptyData(totalValues: number) {
+  devWarn('EMPTY_DATA', 'No valid values available to form a domain.', SOURCE, { totalValues });
 }
 
-function warnNaNInData() {
-  devWarn('NAN_IN_DATA', 'Encountered NaN while computing a domain.', SOURCE);
+function warnNaNInData(invalidValues: number, totalValues: number) {
+  devWarn('NAN_IN_DATA', 'Encountered NaN while computing a domain.', SOURCE, {
+    invalidValues,
+    totalValues,
+  });
 }
 
 function getNumber(value: unknown) {
@@ -79,28 +82,28 @@ export default function useDomain<D, V, T extends DomainType>({
         ),
       );
 
-      if (values.length === 0) warnEmptyData();
+      if (values.length === 0) warnEmptyData(stableData.length);
 
       return values;
     }
 
-    let foundInvalidNumber = false;
+    let invalidValues = 0;
     const values = stableData.flatMap((datum, index) => {
       const value = stableAccessor(datum, index, stableData);
       const number = type === 'time' ? getTime(value) : getNumber(value);
 
       if (number === undefined) {
-        if (value != null) foundInvalidNumber = true;
+        if (value != null) invalidValues += 1;
         return [];
       }
 
       return [number];
     });
 
-    if (foundInvalidNumber) warnNaNInData();
+    if (invalidValues > 0) warnNaNInData(invalidValues, stableData.length);
 
     if (values.length === 0) {
-      warnEmptyData();
+      warnEmptyData(stableData.length);
       return type === 'time' ? [new Date(0), new Date(0)] : [0, 0];
     }
 

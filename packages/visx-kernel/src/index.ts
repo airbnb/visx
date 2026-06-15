@@ -2,6 +2,7 @@
 export { default as normalizeAccessor } from './accessors/normalizeAccessor';
 export { default as useDomain } from './domain/useDomain';
 export { default as formatNumber } from './format/formatNumber';
+export { default as useStableId } from './ids/useStableId';
 export { default as useStructuralMemo } from './memo/useStructuralMemo';
 export { default as createPath } from './path/createPath';
 export { default as toPath2D } from './path/toPath2D';
@@ -21,4 +22,4 @@ export type {
 export type { FormatNumberOptions } from './format/formatNumber';
 export type { StructuralMemoDepth } from './memo/useStructuralMemo';
 export type { PathBuilder } from './path/createPath';
-export type { KernelWarning, WarnCode, WarnHandler } from './warnings';
+export type { KernelWarning, WarnCode, WarnDetails, WarnHandler } from './warnings';
