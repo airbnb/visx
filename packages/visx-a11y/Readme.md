@@ -1,32 +1,129 @@
 # @visx/a11y
 
-Accessibility helpers for primitive visx charts.
+Accessibility helpers for primitive visx charts without changing the low-level visx primitive model.
+The package is split into a server-safe entry for generated semantics and a client root entry for
+React hooks and companion components.
 
-`@visx/a11y` will provide spreadable chart semantics, data table fallbacks, live announcements, and
-keyboard navigation helpers for charts built from low-level visx packages. The package follows the
-same primitive-first model as the rest of visx: hooks and helpers own accessibility state and
-generated semantics, while users keep control of their SVG render tree.
+## Installation
 
-This package is being introduced for the visx chart registry work. The initial implementation will
-focus on semantic SVG annotation, server-safe description and table generators, and React helpers
-that registry items can compose without adopting a new chart component.
-
-## Entry points
-
-```tsx
-import type { ChartA11yConfig } from '@visx/a11y';
-import { ChartA11yDataTable, useChartA11y } from '@visx/a11y';
-import { generateChartDescription, getChartAriaProps } from '@visx/a11y/server';
+```sh
+npm install --save @visx/a11y
 ```
 
-The root entry is reserved for React hooks and components. The `server` entry is reserved for pure
-helpers that can run during server rendering.
+## Motivation
 
-## Semantic Hook
+visx is intentionally low level: primitives take props, compose freely, and stay out of your app's
+state model. That is what makes visx useful for unusual charts, custom dashboards, and product
+interfaces that do not fit a fixed charting API.
 
-`useChartA11y` is the lowest-friction adoption path for client-rendered charts. It returns
-spreadable SVG, series, and point props, a generated description, pre-bound data table and announcer
-components, and an imperative `announce` helper.
+The tradeoff is that primitive charts tend to rebuild the same accessibility layer:
+
+- chart titles and long descriptions
+- series labels and point value labels
+- hidden data tables for exact values
+- live regions for async chart updates
+- keyboard affordances for chart exploration
+- rules for hiding decorative SVG chrome
+
+That works for one chart. It gets noisy when a registry or dashboard has many charts built from
+different visx packages. Small differences creep in, dense charts can produce too much screen reader
+output, and teams end up copying local helpers from chart to chart.
+
+`@visx/a11y` gives those charts a shared semantic layer while keeping the rendering primitives
+plain. It does not ship a chart component, impose SVG structure, or hide non-data elements
+automatically. Instead, it gives you spreadable props, generated descriptions, table fallbacks, and
+small React helpers that you can attach to the primitives you already render.
+
+## Primitive-first design
+
+The a11y package is a semantics layer, not a chart framework.
+
+- visx primitives remain prop-driven.
+- Server helpers are pure functions with no DOM or React hook requirements.
+- The client hook uses React `useId()` only when `id` is omitted.
+- Consumers own the SVG render tree, focus ring styling, and decorative element visibility.
+- Data table and announcer components are independently usable.
+- Dense charts degrade to summary descriptions above `pointDescriptionThreshold`.
+- `keyboardNavEnabled` is part of the API, while full keyboard traversal is added in a follow-up.
+
+This keeps chart registry items and product charts able to opt in one layer at a time. If a chart
+needs custom descriptions, a visible data table, a separate live region, or no interactive keyboard
+state yet, the primitive API still supports that.
+
+## Basic usage
+
+Use the server entry when a server-rendered chart only needs generated SVG semantics, a text
+description, or an HTML table fallback.
+
+```tsx
+import type { ChartA11yConfig } from '@visx/a11y/server';
+import {
+  generateChartDescription,
+  generateDataTableHTML,
+  getChartAriaProps,
+} from '@visx/a11y/server';
+
+type Datum = {
+  month: string;
+  revenue: number;
+};
+
+const config: ChartA11yConfig<Datum> = {
+  id: 'revenue-chart',
+  title: 'Revenue by month',
+  chartType: 'line',
+  data,
+  x: (datum) => datum.month,
+  y: (datum) => datum.revenue,
+  yLabel: 'Revenue',
+  formatY: (value) => `$${value}`,
+};
+
+const a11y = getChartAriaProps(config);
+const description = generateChartDescription(config);
+const tableHtml = generateDataTableHTML(config);
+```
+
+Use `useChartA11y` from the root entry when chart components need React-bound props and companion
+components.
+
+```tsx
+'use client';
+
+import { useChartA11y } from '@visx/a11y';
+
+export function RevenueChart({ data }) {
+  const a11y = useChartA11y({
+    id: 'revenue-chart',
+    title: 'Revenue by month',
+    chartType: 'line',
+    data,
+    x: (datum) => datum.month,
+    y: (datum) => datum.revenue,
+    yLabel: 'Revenue',
+    formatY: (value) => `$${value}`,
+  });
+
+  return (
+    <>
+      <svg {...a11y.svgProps}>
+        <desc id={a11y.descriptionId}>{a11y.description}</desc>
+        {/* chart marks */}
+      </svg>
+      <a11y.DataTable />
+      <a11y.Announcer />
+    </>
+  );
+}
+```
+
+## Recipes
+
+### Level 1: Chart semantics, description, and table fallback
+
+Start by spreading `svgProps`, rendering the generated description, and adding the pre-bound data
+table and live announcer. This gives the chart an accessible name, a chart-level description, and an
+exact-value table fallback without changing the visual chart.
 
 ```tsx
 const a11y = useChartA11y({
@@ -38,6 +135,41 @@ const a11y = useChartA11y({
   y: (datum) => datum.revenue,
   yLabel: 'Revenue',
   formatY: (value) => `$${value}`,
+});
+
+return (
+  <>
+    <svg {...a11y.svgProps}>
+      <desc id={a11y.descriptionId}>{a11y.description}</desc>
+      <g>
+        {data.map((datum) => (
+          <circle key={datum.month} />
+        ))}
+      </g>
+    </svg>
+    <a11y.DataTable />
+    <a11y.Announcer />
+  </>
+);
+```
+
+### Level 2: Series and point semantics
+
+After Level 1 is in place, spread `getSeriesProps` on each rendered series group and `getPointProps`
+on each rendered data mark. This adds per-series labels and per-point value labels for charts below
+the configured `pointDescriptionThreshold`.
+
+```tsx
+const a11y = useChartA11y({
+  id: 'revenue-chart',
+  title: 'Revenue by month',
+  chartType: 'line',
+  data,
+  x: (datum) => datum.month,
+  y: (datum) => datum.revenue,
+  yLabel: 'Revenue',
+  formatY: (value) => `$${value}`,
+  series: [{ label: 'Revenue' }],
 });
 
 return (
@@ -56,6 +188,19 @@ return (
 );
 ```
 
-The hook uses React `useId()` only when `id` is omitted. Server-safe helpers remain pure and derive
-ids from explicit `id` / `idPrefix` inputs. `keyboardNavEnabled` is part of the hook API, but full
-keyboard traversal is intentionally left to the dedicated keyboard-navigation follow-up.
+### Decorative chart chrome
+
+`@visx/a11y` annotates the chart elements it receives through the hook. Consumers are responsible
+for hiding decorative chart chrome from assistive technology. Grid lines, axis ticks, background
+rects, clipping helpers, and other non-data elements should usually be rendered with
+`aria-hidden="true"` so screen readers focus on the title, description, series, points, and data
+table.
+
+```tsx
+<svg {...a11y.svgProps}>
+  <rect aria-hidden="true" width={width} height={height} />
+  <GridRows aria-hidden="true" scale={yScale} width={innerWidth} />
+  <AxisBottom aria-hidden="true" scale={xScale} />
+  <g {...a11y.getSeriesProps(0)}>{/* data marks */}</g>
+</svg>
+```

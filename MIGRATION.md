@@ -64,6 +64,21 @@ same visual choices with `fromXYChartTheme` from `@visx/theme`.
 Add `@visx/theme` only when you want shared visual tokens or shadcn/ui-compatible CSS variable
 theming for primitive charts.
 
+### `@visx/a11y` adds opt-in accessibility helpers for primitive charts
+
+visx 4.1 introduces `@visx/a11y`, an optional package for adding chart semantics to primitive SVG
+charts. It provides server-safe helpers for generated ARIA props, text descriptions, and hidden data
+tables, plus a client hook for pre-bound chart props, data-table fallback, and live announcements.
+
+These helpers do not replace the chart render tree or hide non-data elements automatically. If your
+chart includes decorative chrome such as grid lines, axis ticks, background rectangles, or clipping
+helpers, render those elements with `aria-hidden="true"` so assistive technology focuses on the
+chart title, description, series, data marks, and table fallback.
+
+**What you need to do:** nothing unless you want to opt in. Existing visx charts continue to work.
+Add `@visx/a11y` only when you want generated chart semantics or a data-table fallback for primitive
+charts.
+
 ### Registry-oriented hooks for primitive charts
 
 visx 4.1 adds the first hook and helper APIs used to build primitive charts for the visx chart
