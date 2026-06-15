@@ -62,6 +62,20 @@ describe('normalizeChartA11yData', () => {
       maxSeriesLength: 2,
     });
   });
+
+  it('keeps flat tuple data as one series', () => {
+    const tupleData: [number, number][] = [
+      [0, 10],
+      [1, 20],
+    ];
+
+    expect(normalizeChartA11yData({ data: tupleData })).toEqual({
+      series: [{ index: 0, label: 'Data', data: tupleData }],
+      isMultiSeries: false,
+      pointCount: 2,
+      maxSeriesLength: 2,
+    });
+  });
 });
 
 describe('@visx/a11y constants', () => {

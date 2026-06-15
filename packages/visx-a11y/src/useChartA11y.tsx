@@ -25,7 +25,7 @@ export type { ChartA11yMode } from './keyboard/stateMachine';
 
 export type UseChartA11ySvgProps = ChartA11ySvgProps & UseChartKeyboardNavSvgProps;
 
-export type UseChartA11yPointProps = ChartA11yPointProps & UseChartKeyboardNavPointProps;
+export type UseChartA11yPointProps = Partial<ChartA11yPointProps> & UseChartKeyboardNavPointProps;
 
 export type UseChartA11yDataTableProps<Datum> = Pick<
   ChartA11yDataTableProps<Datum>,
@@ -98,15 +98,11 @@ export function useChartA11y<Datum>(config: ChartA11yConfig<Datum>): UseChartA11
       const pointProps = ariaProps.points[seriesIndex]?.[index];
 
       return {
-        ...(pointProps ?? {
-          role: 'graphics-symbol',
-          'aria-roledescription': hookConfig.locale?.pointRoleDescription ?? 'data point',
-          'aria-label': '',
-        }),
+        ...pointProps,
         ...getKeyboardPointProps(seriesIndex, index),
       };
     },
-    [ariaProps.points, getKeyboardPointProps, hookConfig.locale],
+    [ariaProps.points, getKeyboardPointProps],
   );
 
   const DataTable = useCallback(

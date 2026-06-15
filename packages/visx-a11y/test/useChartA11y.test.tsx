@@ -83,6 +83,18 @@ describe('useChartA11y', () => {
     expect(result.current.svgProps.onKeyDown).toBeUndefined();
   });
 
+  it('preserves omitted point semantics above the point description threshold', () => {
+    const { result } = renderHook(() =>
+      useChartA11y({ ...lineConfig, pointDescriptionThreshold: 1 }),
+    );
+    const pointProps = result.current.getPointProps(0, 0);
+
+    expect(pointProps.role).toBeUndefined();
+    expect(pointProps['aria-roledescription']).toBeUndefined();
+    expect(pointProps['aria-label']).toBeUndefined();
+    expect(pointProps.tabIndex).toBe(-1);
+  });
+
   it('returns a pre-bound data table component', () => {
     const { result } = renderHook(() => useChartA11y(lineConfig));
     const { DataTable } = result.current;

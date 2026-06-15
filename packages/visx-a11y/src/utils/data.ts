@@ -19,8 +19,19 @@ export type NormalizedChartA11yData<Datum> = {
 
 function isNestedSeriesData<Datum>(
   data: ChartA11yConfig<Datum>['data'],
+  seriesConfig: readonly ChartA11ySeriesConfig<Datum>[] | undefined,
 ): data is readonly (readonly Datum[])[] {
-  return Array.isArray(data[0]);
+  const firstDatum = data[0];
+
+  if (!Array.isArray(firstDatum)) {
+    return false;
+  }
+
+  if ((seriesConfig?.length ?? 0) > 1) {
+    return true;
+  }
+
+  return Array.isArray(firstDatum[0]);
 }
 
 function getSeriesLabel<Datum>(
@@ -45,10 +56,10 @@ export function normalizeChartA11yData<Datum>({
 }: Pick<ChartA11yConfig<Datum>, 'data' | 'series'>): NormalizedChartA11yData<Datum> {
   let seriesData: readonly (readonly Datum[])[];
 
-  if (isNestedSeriesData(data)) {
-    seriesData = data;
-  } else if (seriesConfig?.some((series) => series.data)) {
+  if (seriesConfig?.some((series) => series.data)) {
     seriesData = seriesConfig.map((series) => series.data ?? []);
+  } else if (isNestedSeriesData(data, seriesConfig)) {
+    seriesData = data;
   } else {
     seriesData = [data];
   }
