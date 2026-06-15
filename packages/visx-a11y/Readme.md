@@ -255,23 +255,6 @@ point and no more than `pointDescriptionThreshold` points.
 | `Escape`           | Exits data mode and returns focus to the chart root.                                         |
 | `?` or `F1`        | Announces the configured keyboard help text through `Announcer`.                             |
 
-## Assistive technology validation
-
-Automated tests cover the keyboard state machine, roving-focus DOM props, generated labels, and the
-`onPointFocus` bridge across line, bar, pie, and multi-series charts. Before release, validate the
-same flows manually with representative assistive technology:
-
-- NVDA with Chrome
-- JAWS with Chrome
-- VoiceOver with Safari on macOS
-- VoiceOver with Safari on iOS
-- TalkBack with Chrome on Android
-- Narrator with Edge
-
-The manual pass should verify tabbing to the chart, entering and exiting data mode, arrow navigation
-through points, up/down navigation across multi-series charts, tooltip announcements triggered from
-`onPointFocus`, and fallback table navigation.
-
 ### Decorative chart chrome
 
 `@visx/a11y` annotates the chart elements it receives through the hook. Consumers are responsible
