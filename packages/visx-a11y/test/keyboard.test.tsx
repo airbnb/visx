@@ -15,30 +15,46 @@ const monthlyData: Datum[] = [
   { category: 'Mar', value: 18 },
 ];
 
-function ChartHarness({ config }: { config: ChartA11yConfig<Datum> }) {
+function ChartHarness({
+  config,
+  includeAnnouncer = false,
+  includeDataTable = false,
+}: {
+  config: ChartA11yConfig<Datum>;
+  includeAnnouncer?: boolean;
+  includeDataTable?: boolean;
+}) {
   const a11y = useChartA11y(config);
   const normalized = normalizeChartA11yData(config);
+  const { Announcer, DataTable } = a11y;
 
   return (
-    <svg data-testid="chart" {...a11y.svgProps}>
-      <desc id={a11y.descriptionId}>{a11y.description}</desc>
-      {normalized.series.map((series, seriesIndex) => (
-        <g key={series.label} {...a11y.getSeriesProps(seriesIndex)}>
-          {series.data.map((datum, index) => (
-            <circle
-              key={`${series.label}-${datum.category}`}
-              data-testid={`point-${seriesIndex}-${index}`}
-              {...a11y.getPointProps(seriesIndex, index)}
-            />
-          ))}
-        </g>
-      ))}
-    </svg>
+    <>
+      <svg data-testid="chart" {...a11y.svgProps}>
+        <desc id={a11y.descriptionId}>{a11y.description}</desc>
+        {normalized.series.map((series, seriesIndex) => (
+          <g key={series.label} {...a11y.getSeriesProps(seriesIndex)}>
+            {series.data.map((datum, index) => (
+              <circle
+                key={`${series.label}-${datum.category}`}
+                data-testid={`point-${seriesIndex}-${index}`}
+                {...a11y.getPointProps(seriesIndex, index)}
+              />
+            ))}
+          </g>
+        ))}
+      </svg>
+      {includeDataTable ? <DataTable visible /> : null}
+      {includeAnnouncer ? <Announcer /> : null}
+    </>
   );
 }
 
-function renderKeyboardChart(config: ChartA11yConfig<Datum>) {
-  const view = render(<ChartHarness config={config} />);
+function renderKeyboardChart(
+  config: ChartA11yConfig<Datum>,
+  options: Pick<Parameters<typeof ChartHarness>[0], 'includeAnnouncer' | 'includeDataTable'> = {},
+) {
+  const view = render(<ChartHarness config={config} {...options} />);
   const chart = screen.getByTestId('chart');
 
   chart.focus();
@@ -67,6 +83,33 @@ const lineConfig: ChartA11yConfig<Datum> = {
 };
 
 describe('chart keyboard navigation', () => {
+  it('exposes a tabbable chart root and keyboard help announcement', () => {
+    expect.hasAssertions();
+
+    const { chart } = renderKeyboardChart(
+      {
+        ...lineConfig,
+        locale: {
+          keyboardHelp: 'Use arrow keys to inspect revenue points.',
+        },
+      },
+      { includeAnnouncer: true },
+    );
+
+    expect(chart.getAttribute('tabindex')).toBe('0');
+    expect(document.activeElement).toBe(chart);
+
+    fireEvent.keyDown(chart, { key: '?' });
+    expect(screen.getByRole('status').textContent).toBe(
+      'Use arrow keys to inspect revenue points.',
+    );
+
+    fireEvent.keyDown(chart, { key: 'F1' });
+    expect(screen.getByRole('status').textContent).toBe(
+      'Use arrow keys to inspect revenue points.',
+    );
+  });
+
   it('supports line chart point traversal and exiting data mode', () => {
     expect.hasAssertions();
 
@@ -188,5 +231,25 @@ describe('chart keyboard navigation', () => {
 
     fireEvent.keyDown(chart, { key: 'Home', ctrlKey: true });
     expectFocusedPoint(0, 0);
+  });
+
+  it('keeps the fallback table available alongside keyboard exploration', () => {
+    expect.hasAssertions();
+
+    const { chart, container } = renderKeyboardChart(lineConfig, { includeDataTable: true });
+    const table = container.querySelector('table');
+
+    expect(table?.id).toBe('line-chart-table');
+    expect(table?.querySelector('caption')?.textContent).toBe('Revenue');
+    expect(
+      Array.from(table?.querySelectorAll('thead th') ?? []).map((cell) => cell.textContent),
+    ).toEqual(['Category', 'Revenue']);
+    expect(
+      Array.from(table?.querySelectorAll('tbody tr') ?? []).map((row) => row.textContent),
+    ).toEqual(['Jan$10', 'Feb$25', 'Mar$18']);
+
+    fireEvent.keyDown(chart, { key: 'Enter' });
+    expectFocusedPoint(0, 0);
+    expect(table?.querySelectorAll('tbody tr')).toHaveLength(3);
   });
 });
