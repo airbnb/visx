@@ -1,4 +1,5 @@
 // @visx/visx
+import * as A11y from '@visx/a11y';
 import * as Annotation from '@visx/annotation';
 import * as Axis from '@visx/axis';
 import * as Bounds from '@visx/bounds';
@@ -35,6 +36,7 @@ import * as XYChart from '@visx/xychart';
 import * as Zoom from '@visx/zoom';
 
 export {
+  A11y,
   Annotation,
   Axis,
   Bounds,

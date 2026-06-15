@@ -36,6 +36,7 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "dependencies": {
+    "@visx/a11y": "workspace:*",
     "@visx/annotation": "workspace:*",
     "@visx/axis": "workspace:*",
     "@visx/bounds": "workspace:*",

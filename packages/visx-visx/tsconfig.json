@@ -16,6 +16,9 @@
   ],
   "references": [
     {
+      "path": "../visx-a11y"
+    },
+    {
       "path": "../visx-annotation"
     },
     {

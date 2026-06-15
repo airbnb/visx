@@ -4250,6 +4250,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@visx/a11y@workspace:*, @visx/a11y@workspace:packages/visx-a11y":
+  version: 0.0.0-use.local
+  resolution: "@visx/a11y@workspace:packages/visx-a11y"
+  dependencies:
+    "@types/react": "npm:^19.0.0"
+  peerDependencies:
+    "@types/react": ^18.0.0 || ^19.0.0
+    react: ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  languageName: unknown
+  linkType: soft
+
 "@visx/annotation@workspace:*, @visx/annotation@workspace:packages/visx-annotation":
   version: 0.0.0-use.local
   resolution: "@visx/annotation@workspace:packages/visx-annotation"
@@ -4969,6 +4983,7 @@ __metadata:
   dependencies:
     "@types/react": "npm:^19.0.0"
     "@types/react-dom": "npm:^19.0.0"
+    "@visx/a11y": "workspace:*"
     "@visx/annotation": "workspace:*"
     "@visx/axis": "workspace:*"
     "@visx/bounds": "workspace:*"
