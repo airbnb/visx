@@ -152,6 +152,20 @@ const path = toPath2D(d);
 `toPath2D(d)` returns a real `Path2D` in browsers. On the server, it returns a minimal object that
 stores the path string for cache identity and string inspection; it is not a drawing polyfill.
 
+### Format numbers consistently
+
+Use `formatNumber` when a hook needs a small default formatter without adding a d3-format
+dependency.
+
+```ts
+import { formatNumber } from '@visx/kernel';
+
+const label = formatNumber(1234.56, {
+  maximumFractionDigits: 1,
+  minimumFractionDigits: 1,
+});
+```
+
 ### Capture warning details
 
 Use `setWarnHandler` in tests, docs, or integrations that need structured warning payloads.
