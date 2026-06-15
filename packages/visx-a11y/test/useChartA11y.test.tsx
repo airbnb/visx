@@ -49,12 +49,14 @@ describe('useChartA11y', () => {
       'aria-roledescription': 'series',
       'aria-label': 'Revenue',
     });
-    expect(result.current.getPointProps(0, 1)).toEqual({
-      role: 'graphics-symbol',
-      'aria-roledescription': 'data point',
-      'aria-label': 'Revenue, Feb, $25',
-      tabIndex: -1,
-    });
+    expect(result.current.getPointProps(0, 1)).toEqual(
+      expect.objectContaining({
+        role: 'graphics-symbol',
+        'aria-roledescription': 'data point',
+        'aria-label': 'Revenue, Feb, $25',
+        tabIndex: -1,
+      }),
+    );
     expect(result.current.mode).toBe('chart');
     expect(result.current.focusedPoint).toBeNull();
   });

@@ -1,5 +1,5 @@
-import type { ComponentType, KeyboardEvent, RefCallback } from 'react';
-import { useCallback, useId, useMemo, useRef, useState } from 'react';
+import type { ComponentType } from 'react';
+import { useCallback, useId, useMemo, useState } from 'react';
 
 import { ChartA11yAnnouncer } from './components/ChartA11yAnnouncer';
 import type { ChartA11yAnnouncerProps } from './components/ChartA11yAnnouncer';
@@ -7,26 +7,25 @@ import { ChartA11yDataTable } from './components/ChartA11yDataTable';
 import type { ChartA11yDataTableProps } from './components/ChartA11yDataTable';
 import { getChartAriaProps } from './generators/ariaProps';
 import { generateChartDescription } from './generators/description';
+import type { ChartA11yMode, ChartA11yPointFocus } from './keyboard/stateMachine';
 import type {
   ChartA11yConfig,
   ChartA11yPointProps,
   ChartA11ySeriesProps,
   ChartA11ySvgProps,
 } from './types';
+import { useChartKeyboardNav } from './useChartKeyboardNav';
+import type {
+  UseChartKeyboardNavPointProps,
+  UseChartKeyboardNavSvgProps,
+} from './useChartKeyboardNav';
 import { DEFAULT_CHART_A11Y_ID_PREFIX } from './utils/data';
 
-export type ChartA11yMode = 'chart' | 'data';
+export type { ChartA11yMode } from './keyboard/stateMachine';
 
-export type UseChartA11ySvgProps = ChartA11ySvgProps & {
-  tabIndex?: 0;
-  onKeyDown?: (event: KeyboardEvent<SVGSVGElement>) => void;
-  ref: RefCallback<SVGSVGElement>;
-};
+export type UseChartA11ySvgProps = ChartA11ySvgProps & UseChartKeyboardNavSvgProps;
 
-export type UseChartA11yPointProps = ChartA11yPointProps & {
-  tabIndex: -1;
-  'data-a11y-focused'?: boolean;
-};
+export type UseChartA11yPointProps = ChartA11yPointProps & UseChartKeyboardNavPointProps;
 
 export type UseChartA11yDataTableProps<Datum> = Pick<
   ChartA11yDataTableProps<Datum>,
@@ -45,7 +44,7 @@ export type UseChartA11yResult<Datum> = {
   Announcer: ComponentType<UseChartA11yAnnouncerProps>;
   announce: (message: string) => void;
   mode: ChartA11yMode;
-  focusedPoint: { seriesIndex: number; index: number } | null;
+  focusedPoint: ChartA11yPointFocus | null;
 };
 
 function formatReactId(id: string) {
@@ -54,45 +53,35 @@ function formatReactId(id: string) {
 
 export function useChartA11y<Datum>(config: ChartA11yConfig<Datum>): UseChartA11yResult<Datum> {
   const reactId = useId();
-  const svgRef = useRef<SVGSVGElement | null>(null);
   const [announcement, setAnnouncement] = useState('');
-  const keyboardNavEnabled = config.keyboardNavEnabled ?? true;
   const id =
     config.id ?? `${config.idPrefix ?? DEFAULT_CHART_A11Y_ID_PREFIX}-${formatReactId(reactId)}`;
   const hookConfig = useMemo(() => ({ ...config, id }), [config, id]);
   const ariaProps = useMemo(() => getChartAriaProps(hookConfig), [hookConfig]);
   const description = useMemo(() => generateChartDescription(hookConfig), [hookConfig]);
-  const focusedPoint = null;
+  const keyboard = useChartKeyboardNav({
+    data: hookConfig.data,
+    keyboardNavEnabled: hookConfig.keyboardNavEnabled,
+    locale: hookConfig.locale,
+    onKeyboardHelp: setAnnouncement,
+    onPointFocus: hookConfig.onPointFocus,
+    pointDescriptionThreshold: hookConfig.pointDescriptionThreshold,
+    series: hookConfig.series,
+  });
+  const {
+    focusedPoint,
+    getPointProps: getKeyboardPointProps,
+    mode,
+    svgProps: keyboardSvgProps,
+  } = keyboard;
 
-  const setSvgRef = useCallback<RefCallback<SVGSVGElement>>((node) => {
-    svgRef.current = node;
-  }, []);
-
-  const handleKeyDown = useCallback(
-    (event: KeyboardEvent<SVGSVGElement>) => {
-      if (event.key === '?' || event.key === 'F1') {
-        setAnnouncement(
-          hookConfig.locale?.keyboardHelp ?? 'Keyboard navigation is not yet available.',
-        );
-      }
-    },
-    [hookConfig.locale],
-  );
-
-  const svgProps = useMemo<UseChartA11ySvgProps>(() => {
-    const interactionProps = keyboardNavEnabled
-      ? {
-          onKeyDown: handleKeyDown,
-          tabIndex: 0 as const,
-        }
-      : {};
-
-    return {
+  const svgProps = useMemo<UseChartA11ySvgProps>(
+    () => ({
       ...ariaProps.svg,
-      ...interactionProps,
-      ref: setSvgRef,
-    };
-  }, [ariaProps.svg, handleKeyDown, keyboardNavEnabled, setSvgRef]);
+      ...keyboardSvgProps,
+    }),
+    [ariaProps.svg, keyboardSvgProps],
+  );
 
   const getSeriesProps = useCallback(
     (seriesIndex: number) =>
@@ -114,10 +103,10 @@ export function useChartA11y<Datum>(config: ChartA11yConfig<Datum>): UseChartA11
           'aria-roledescription': hookConfig.locale?.pointRoleDescription ?? 'data point',
           'aria-label': '',
         }),
-        tabIndex: -1,
+        ...getKeyboardPointProps(seriesIndex, index),
       };
     },
-    [ariaProps.points, hookConfig.locale],
+    [ariaProps.points, getKeyboardPointProps, hookConfig.locale],
   );
 
   const DataTable = useCallback(
@@ -150,7 +139,7 @@ export function useChartA11y<Datum>(config: ChartA11yConfig<Datum>): UseChartA11
     DataTable,
     Announcer,
     announce,
-    mode: 'chart',
+    mode,
     focusedPoint,
   };
 }
