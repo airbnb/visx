@@ -27,7 +27,7 @@ function warnEmptyData(totalValues: number) {
 }
 
 function warnNaNInData(invalidValues: number, totalValues: number) {
-  devWarn('NAN_IN_DATA', 'Encountered NaN while computing a domain.', SOURCE, {
+  devWarn('NAN_IN_DATA', 'Encountered invalid values while computing a domain.', SOURCE, {
     invalidValues,
     totalValues,
   });

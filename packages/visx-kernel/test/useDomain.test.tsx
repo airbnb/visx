@@ -93,14 +93,14 @@ describe('useDomain', () => {
   });
 
   it('emits NAN_IN_DATA and EMPTY_DATA warnings for invalid numeric domains', () => {
-    const warnings: Array<{ code: string; details: unknown; source: string }> = [];
-    setWarnHandler(({ code, details, source }) => {
-      warnings.push({ code, details, source });
+    const warnings: Array<{ code: string; details: unknown; message: string; source: string }> = [];
+    setWarnHandler(({ code, details, message, source }) => {
+      warnings.push({ code, details, message, source });
     });
 
     renderHook(() =>
       useDomain({
-        data: [{ value: Number.NaN }],
+        data: [{ value: Number.POSITIVE_INFINITY }],
         accessor: 'value',
         type: 'linear',
       }),
@@ -110,11 +110,13 @@ describe('useDomain', () => {
       {
         code: 'NAN_IN_DATA',
         details: { invalidValues: 1, totalValues: 1 },
+        message: 'Encountered invalid values while computing a domain.',
         source: '[@visx/kernel/useDomain]',
       },
       {
         code: 'EMPTY_DATA',
         details: { totalValues: 1 },
+        message: 'No valid values available to form a domain.',
         source: '[@visx/kernel/useDomain]',
       },
     ]);

@@ -33,4 +33,12 @@ describe('normalizeAccessor', () => {
       '@visx/kernel: symbol accessors are not supported in v1.',
     );
   });
+
+  it('rejects invalid JavaScript accessor inputs', () => {
+    const normalizeUnknownAccessor = normalizeAccessor as (accessor: unknown) => unknown;
+
+    expect(() => normalizeUnknownAccessor(42)).toThrow(
+      '@visx/kernel: accessors must be a string key or function.',
+    );
+  });
 });

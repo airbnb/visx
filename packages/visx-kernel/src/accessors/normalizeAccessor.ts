@@ -37,15 +37,23 @@ function inferSimplePropertyKey(accessor: Accessor<unknown, unknown>) {
 }
 
 export default function normalizeAccessor<D, V>(accessor: AccessorInput<D, V>): Accessor<D, V> {
-  if (typeof accessor === 'string') {
-    return getStringAccessor(accessor) as Accessor<D, V>;
+  const input = accessor as unknown;
+
+  if (typeof input === 'string') {
+    return getStringAccessor(input) as Accessor<D, V>;
   }
 
-  if (typeof accessor === 'symbol') {
+  if (typeof input === 'symbol') {
     throw new TypeError('@visx/kernel: symbol accessors are not supported in v1.');
   }
 
-  const inferredKey = inferSimplePropertyKey(accessor as Accessor<unknown, unknown>);
+  if (typeof input !== 'function') {
+    throw new TypeError('@visx/kernel: accessors must be a string key or function.');
+  }
 
-  return inferredKey ? (getStringAccessor(inferredKey) as Accessor<D, V>) : accessor;
+  const inferredKey = inferSimplePropertyKey(input as Accessor<unknown, unknown>);
+
+  return inferredKey
+    ? (getStringAccessor(inferredKey) as Accessor<D, V>)
+    : (input as Accessor<D, V>);
 }
