@@ -11,6 +11,11 @@
       "types": "./lib/index.d.ts",
       "import": "./esm/index.js",
       "require": "./lib/index.js"
+    },
+    "./react": {
+      "types": "./lib/react/index.d.ts",
+      "import": "./esm/react/index.js",
+      "require": "./lib/react/index.js"
     }
   },
   "files": [
@@ -50,5 +55,8 @@
     "@types/react": {
       "optional": true
     }
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0"
   }
 }

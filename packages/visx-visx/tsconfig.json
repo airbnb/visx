@@ -28,6 +28,9 @@
       "path": "../visx-brush"
     },
     {
+      "path": "../visx-chart"
+    },
+    {
       "path": "../visx-clip-path"
     },
     {

@@ -24,6 +24,7 @@ export default defineConfig({
       'packages/visx-glyph/vitest.config.ts',
       'packages/visx-tooltip/vitest.config.ts',
       'packages/visx-chord/vitest.config.ts',
+      'packages/visx-chart/vitest.config.ts',
       'packages/visx-responsive/vitest.config.ts',
       'packages/visx-annotation/vitest.config.ts',
       'packages/visx-axis/vitest.config.ts',

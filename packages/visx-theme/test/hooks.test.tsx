@@ -5,6 +5,7 @@ import {
   useAxisStyle,
   useCategoricalScale,
   useColor,
+  useColorScale,
   useGridStyle,
 } from '../src/react';
 
@@ -56,6 +57,24 @@ function CategoricalScaleProbe({ onColors }: { onColors: (colors: string[]) => v
 
 function UnknownCategoricalProbe({ onColor }: { onColor: (color: string) => void }) {
   const colorFor = useCategoricalScale(['alpha'] as const);
+
+  onColor(colorFor('missing' as never));
+
+  return null;
+}
+
+function ColorScaleProbe({ onColors }: { onColors: (colors: string[]) => void }) {
+  const colorFor = useColorScale(['alpha', 'beta', 'gamma'] as const, {
+    range: ['red', 'green'],
+  });
+
+  onColors([colorFor('alpha'), colorFor('beta'), colorFor('gamma')]);
+
+  return null;
+}
+
+function UnknownColorScaleProbe({ onColor }: { onColor: (color: string) => void }) {
+  const colorFor = useColorScale(['alpha'] as const);
 
   onColor(colorFor('missing' as never));
 
@@ -153,6 +172,28 @@ describe('@visx/theme/react hooks', () => {
     expect(onColor).toHaveBeenCalledWith('var(--chart-1, #3b82f6)');
     expect(warn).toHaveBeenCalledWith(
       '[@visx/theme] useCategoricalScale received "missing" outside its domain; using index 0.',
+    );
+
+    warn.mockRestore();
+  });
+
+  it('creates a deterministic color accessor from an explicit range', () => {
+    const onColors = vi.fn();
+
+    render(<ColorScaleProbe onColors={onColors} />);
+
+    expect(onColors).toHaveBeenCalledWith(['red', 'green', 'red']);
+  });
+
+  it('warns and falls back for color scale keys outside the domain', () => {
+    const onColor = vi.fn();
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    render(<UnknownColorScaleProbe onColor={onColor} />);
+
+    expect(onColor).toHaveBeenCalledWith('var(--chart-1, #3b82f6)');
+    expect(warn).toHaveBeenCalledWith(
+      '[@visx/theme] useColorScale received "missing" outside its domain; using index 0.',
     );
 
     warn.mockRestore();

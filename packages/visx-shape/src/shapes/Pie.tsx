@@ -1,23 +1,15 @@
 import type { ReactNode } from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
-import type {
-  Arc as ArcType,
-  PieArcDatum as PieArcDatumType,
-  Pie as PieType,
-} from '@visx/vendor/d3-shape';
-import type { $TSFIXME, AddSVGProps, ArcPathConfig, PiePathConfig } from '../types';
-import { arc as arcPath, pie as piePath } from '../util/D3ShapeFactories';
+import type { AddSVGProps, ArcPathConfig, PiePathConfig } from '../types';
+import usePie from '../react/usePie';
+import type { PieArcDatum, UsePieResult } from '../react/usePie';
 
-export type PieArcDatum<Datum> = PieArcDatumType<Datum>;
+export type { PieArcDatum };
 
 type StringAccessor<Datum> = (pieArcDatum: PieArcDatum<Datum>) => string;
 
-export type ProvidedProps<Datum> = {
-  path: ArcType<$TSFIXME, PieArcDatum<Datum>>;
-  arcs: PieArcDatum<Datum>[];
-  pie: PieType<$TSFIXME, Datum>;
-};
+export type ProvidedProps<Datum> = UsePieResult<Datum>;
 
 export type PieProps<Datum> = {
   /** className applied to path element. */
@@ -67,23 +59,20 @@ export default function Pie<Datum>({
   fill = '',
   ...restProps
 }: AddSVGProps<PieProps<Datum>, SVGPathElement>) {
-  const path = arcPath<PieArcDatum<Datum>>({
+  const { arcs, path, pie } = usePie({
+    data,
     innerRadius,
     outerRadius,
     cornerRadius,
-    padRadius,
-  });
-
-  const pie = piePath<Datum>({
     startAngle,
     endAngle,
     padAngle,
-    value: pieValue,
-    sort: pieSort,
-    sortValues: pieSortValues,
+    padRadius,
+    pieSort,
+    pieSortValues,
+    pieValue,
   });
 
-  const arcs = pie(data);
   if (children) return <>{children({ arcs, path, pie })}</>;
 
   return (

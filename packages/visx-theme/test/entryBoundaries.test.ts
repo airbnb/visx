@@ -15,6 +15,7 @@ describe('entry boundaries', () => {
     expect(rootEntry).not.toContain('useCategoricalScale');
     expect(rootEntry).not.toContain('useChartConfig');
     expect(rootEntry).not.toContain('useColor');
+    expect(rootEntry).not.toContain('useColorScale');
     expect(rootEntry).not.toContain('useGridStyle');
     expect(rootEntry).not.toContain('useTheme');
   });
@@ -34,6 +35,7 @@ describe('entry boundaries', () => {
       'packages/visx-theme/src/react/useCategoricalScale.ts',
       'packages/visx-theme/src/react/useChartConfig.ts',
       'packages/visx-theme/src/react/useColor.ts',
+      'packages/visx-theme/src/react/useColorScale.ts',
       'packages/visx-theme/src/react/useGridStyle.ts',
       'packages/visx-theme/src/react/useTheme.ts',
       'packages/visx-theme/src/react/warn.ts',

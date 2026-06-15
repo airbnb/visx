@@ -18,6 +18,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@visx/voronoi': path.resolve(__dirname, './src'),
+      '@visx/voronoi/react': path.resolve(__dirname, './src/react'),
     },
   },
 });

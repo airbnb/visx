@@ -4326,6 +4326,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@visx/chart@workspace:*, @visx/chart@workspace:packages/visx-chart":
+  version: 0.0.0-use.local
+  resolution: "@visx/chart@workspace:packages/visx-chart"
+  dependencies:
+    "@types/react": "npm:^19.0.0"
+    "@visx/kernel": "workspace:*"
+  peerDependencies:
+    "@types/react": ^18.0.0 || ^19.0.0
+    react: ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  languageName: unknown
+  linkType: soft
+
 "@visx/chord@workspace:*, @visx/chord@workspace:packages/visx-chord":
   version: 0.0.0-use.local
   resolution: "@visx/chord@workspace:packages/visx-chord"
@@ -4789,7 +4804,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/scale@workspace:packages/visx-scale"
   dependencies:
+    "@types/react": "npm:^19.0.0"
     "@visx/vendor": "workspace:*"
+  peerDependencies:
+    "@types/react": ^18.0.0 || ^19.0.0
+    react: ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    react:
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4948,6 +4972,7 @@ __metadata:
     "@visx/axis": "workspace:*"
     "@visx/bounds": "workspace:*"
     "@visx/brush": "workspace:*"
+    "@visx/chart": "workspace:*"
     "@visx/clip-path": "workspace:*"
     "@visx/curve": "workspace:*"
     "@visx/delaunay": "workspace:*"
@@ -4997,6 +5022,7 @@ __metadata:
   resolution: "@visx/voronoi@workspace:packages/visx-voronoi"
   dependencies:
     "@types/d3-voronoi": "npm:^1.1.9"
+    "@types/react": "npm:^19.0.0"
     classnames: "npm:^2.3.1"
     d3-voronoi: "npm:^1.1.2"
   peerDependencies:

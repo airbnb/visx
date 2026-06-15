@@ -52,6 +52,7 @@ export { default as SplitLinePath } from './shapes/SplitLinePath';
 
 // Export factory functions
 export * from './util/D3ShapeFactories';
+export { arc as arcPath, area as areaPath, line as linePath } from './util/D3ShapeFactories';
 
 export type * from './types';
 export type { StackOffset } from './util/stackOffset';

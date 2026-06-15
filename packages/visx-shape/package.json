@@ -11,6 +11,11 @@
       "types": "./lib/index.d.ts",
       "import": "./esm/index.js",
       "require": "./lib/index.js"
+    },
+    "./react": {
+      "types": "./lib/react/index.d.ts",
+      "import": "./esm/react/index.js",
+      "require": "./lib/react/index.js"
     }
   },
   "repository": "https://github.com/airbnb/visx",
