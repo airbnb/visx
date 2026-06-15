@@ -163,5 +163,9 @@ const restore = setWarnHandler(({ code, details, source }) => {
   console.info(source, code, details);
 });
 
-restore();
+try {
+  renderChartWithDirtyData();
+} finally {
+  restore();
+}
 ```
