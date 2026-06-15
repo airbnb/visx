@@ -15,6 +15,7 @@ that registry items can compose without adopting a new chart component.
 
 ```tsx
 import type { ChartA11yConfig } from '@visx/a11y';
+import { ChartA11yDataTable } from '@visx/a11y';
 import { generateChartDescription, getChartAriaProps } from '@visx/a11y/server';
 ```
 

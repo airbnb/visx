@@ -10,6 +10,8 @@ export {
 export { getChartAriaProps } from './generators/ariaProps';
 export { generateDataTableHTML } from './generators/dataTableHTML';
 export { generateChartDescription } from './generators/description';
+export { ChartA11yDataTable } from './components/ChartA11yDataTable';
+export type { ChartA11yDataTableProps } from './components/ChartA11yDataTable';
 
 export type {
   A11yLocale,
