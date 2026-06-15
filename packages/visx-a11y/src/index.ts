@@ -7,6 +7,9 @@ export {
   DEFAULT_SINGLE_SERIES_LABEL,
   normalizeChartA11yData,
 } from './utils/data';
+export { getChartAriaProps } from './generators/ariaProps';
+export { generateDataTableHTML } from './generators/dataTableHTML';
+export { generateChartDescription } from './generators/description';
 
 export type {
   A11yLocale,
@@ -14,7 +17,12 @@ export type {
   ChartA11yConfig,
   ChartA11yFocusedPoint,
   ChartA11yFormatter,
+  ChartA11yIds,
+  ChartA11yPointProps,
+  ChartA11yProps,
+  ChartA11ySeriesProps,
   ChartA11ySeriesConfig,
+  ChartA11ySvgProps,
   ChartA11yValue,
   ChartType,
 } from './types';

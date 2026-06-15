@@ -29,6 +29,38 @@ export type ChartA11yFocusedPoint<Datum> = {
   datum: Datum;
 };
 
+export type ChartA11yIds = {
+  rootId: string;
+  descriptionId: string;
+  tableId: string;
+};
+
+export type ChartA11ySvgProps = {
+  role: 'graphics-document';
+  'aria-roledescription': string;
+  'aria-label': string;
+  'aria-describedby': string;
+};
+
+export type ChartA11ySeriesProps = {
+  role: 'graphics-object';
+  'aria-roledescription': string;
+  'aria-label': string;
+};
+
+export type ChartA11yPointProps = {
+  role: 'graphics-symbol';
+  'aria-roledescription': string;
+  'aria-label': string;
+};
+
+export type ChartA11yProps = {
+  ids: ChartA11yIds;
+  svg: ChartA11ySvgProps;
+  series: ChartA11ySeriesProps[];
+  points: ChartA11yPointProps[][];
+};
+
 export type A11yLocale = {
   chartRoleDescription: string;
   seriesRoleDescription: string;

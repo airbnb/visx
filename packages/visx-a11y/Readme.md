@@ -15,7 +15,7 @@ that registry items can compose without adopting a new chart component.
 
 ```tsx
 import type { ChartA11yConfig } from '@visx/a11y';
-import { normalizeChartA11yData } from '@visx/a11y/server';
+import { generateChartDescription, getChartAriaProps } from '@visx/a11y/server';
 ```
 
 The root entry is reserved for React hooks and components. The `server` entry is reserved for pure
