@@ -85,7 +85,7 @@ export type ChartA11yConfig<Datum> = {
   description?: string;
   chartType?: ChartType;
   formatX?: ChartA11yFormatter;
-  formatY?: ChartA11yFormatter;
+  formatY?: ChartA11yFormatter<number>;
   pointDescriptionThreshold?: number;
   dataTableEnabled?: boolean;
   keyboardNavEnabled?: boolean;
