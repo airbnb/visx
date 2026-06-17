@@ -23,7 +23,7 @@ export type HeatmapCellDatum = {
 
 type HeatmapColumnDatum = {
   x: string;
-  bins: { y: string; value: number }[];
+  bins: { pointIndex?: number; y: string; value: number }[];
 };
 
 export type HeatmapChartMargin = MarginShape;
@@ -87,13 +87,30 @@ function getOrderedValues(values: readonly string[]) {
 function getColumns(data: readonly HeatmapCellDatum[]) {
   const xValues = getOrderedValues(data.map((datum) => datum.x));
   const yValues = getOrderedValues(data.map((datum) => datum.y));
+  const cellsByX = new Map<string, Map<string, { pointIndex: number; value: number }>>();
+
+  data.forEach((datum, pointIndex) => {
+    const cellsByY =
+      cellsByX.get(datum.x) ?? new Map<string, { pointIndex: number; value: number }>();
+
+    cellsByY.set(datum.y, {
+      pointIndex,
+      value: Number.isFinite(datum.value) ? datum.value : 0,
+    });
+    cellsByX.set(datum.x, cellsByY);
+  });
 
   return xValues.map<HeatmapColumnDatum>((x) => ({
     x,
-    bins: yValues.map((y) => ({
-      y,
-      value: data.find((datum) => datum.x === x && datum.y === y)?.value ?? 0,
-    })),
+    bins: yValues.map((y) => {
+      const cell = cellsByX.get(x)?.get(y);
+
+      return {
+        pointIndex: cell?.pointIndex,
+        y,
+        value: cell?.value ?? 0,
+      };
+    }),
   }));
 }
 
@@ -182,13 +199,12 @@ function HeatmapChartSvg({
             {(heatmap) =>
               heatmap.flatMap((column) =>
                 column.map((cell) => {
-                  const pointIndex = data.findIndex(
-                    (datum) => datum.x === cell.datum.x && datum.y === cell.bin.y,
-                  );
+                  const pointProps =
+                    cell.bin.pointIndex == null ? {} : a11y.getPointProps(0, cell.bin.pointIndex);
 
                   return (
                     <rect
-                      key={`${cell.datum.x}-${cell.bin.y}`}
+                      key={JSON.stringify([cell.datum.x, cell.bin.y])}
                       x={cell.x}
                       y={cell.y}
                       width={Math.max(0, cell.width)}
@@ -197,7 +213,7 @@ function HeatmapChartSvg({
                       fill={cell.color}
                       fillOpacity={cell.opacity}
                       data-heatmap-chart-cell=""
-                      {...a11y.getPointProps(0, pointIndex)}
+                      {...pointProps}
                     />
                   );
                 }),

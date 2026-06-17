@@ -22,7 +22,9 @@ export type TreemapDatum = {
 };
 
 type TreemapNode = {
+  group?: string;
   name: string;
+  pointIndex?: number;
   value?: number;
   children?: TreemapNode[];
 };
@@ -68,13 +70,13 @@ const defaultMargin = {
 };
 
 function getHierarchyData(data: readonly TreemapDatum[]): TreemapNode {
-  const groups = new Map<string, TreemapDatum[]>();
+  const groups = new Map<string, { datum: TreemapDatum; pointIndex: number }[]>();
 
-  data.forEach((datum) => {
+  data.forEach((datum, pointIndex) => {
     const group = datum.group ?? 'Data';
     const current = groups.get(group) ?? [];
 
-    current.push(datum);
+    current.push({ datum, pointIndex });
     groups.set(group, current);
   });
 
@@ -82,8 +84,10 @@ function getHierarchyData(data: readonly TreemapDatum[]): TreemapNode {
     name: 'root',
     children: Array.from(groups.entries()).map(([name, children]) => ({
       name,
-      children: children.map((datum) => ({
+      children: children.map(({ datum, pointIndex }) => ({
+        group: name,
         name: datum.x,
+        pointIndex,
         value: Number.isFinite(datum.y) ? Math.max(0, datum.y) : 0,
       })),
     })),
@@ -132,7 +136,6 @@ function TreemapChartSvg({
   const a11y = useChartA11y<TreemapDatum>({
     id,
     title,
-    chartType: 'heatmap',
     data,
     x: (datum) => datum.x,
     y: (datum) => datum.y,
@@ -140,6 +143,9 @@ function TreemapChartSvg({
     yLabel,
     formatY,
     keyboardNavEnabled: data.length > 0,
+    locale: {
+      chartRoleDescription: 'treemap chart',
+    },
     series: [{ label: title }],
   });
 
@@ -177,12 +183,16 @@ function TreemapChartSvg({
             >
               {(treemap) =>
                 treemap.leaves().map((node) => {
-                  const datumIndex = data.findIndex((datum) => datum.x === node.data.name);
+                  const datumIndex = node.data.pointIndex;
+                  const pointProps = datumIndex == null ? {} : a11y.getPointProps(0, datumIndex);
                   const nodeWidth = Math.max(0, node.x1 - node.x0);
                   const nodeHeight = Math.max(0, node.y1 - node.y0);
 
                   return (
-                    <g key={node.data.name} transform={`translate(${node.x0} ${node.y0})`}>
+                    <g
+                      key={`${node.data.group ?? 'Data'}-${node.data.name}-${datumIndex ?? 0}`}
+                      transform={`translate(${node.x0} ${node.y0})`}
+                    >
                       <rect
                         width={nodeWidth}
                         height={nodeHeight}
@@ -192,7 +202,7 @@ function TreemapChartSvg({
                         stroke={borderColor}
                         strokeWidth={2}
                         data-treemap-chart-cell=""
-                        {...a11y.getPointProps(0, datumIndex)}
+                        {...pointProps}
                       />
                       {nodeWidth > 72 && nodeHeight > 30 && (
                         <text

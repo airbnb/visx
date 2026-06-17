@@ -563,6 +563,48 @@ describe('@visx/registry scaffold', () => {
     expect(single.container.innerHTML).not.toContain('Infinity');
   });
 
+  it('renders heatmap gaps without assigning synthetic cells point semantics', () => {
+    const { container } = render(
+      <HeatmapChart
+        id="heatmap-gaps"
+        title="Heatmap gaps"
+        data={[
+          { x: 'Mon', y: 'Search', value: 22 },
+          { x: 'Tue', y: 'Search', value: 28 },
+          { x: 'Mon', y: 'Invite', value: 18 },
+        ]}
+      />,
+    );
+
+    expect(container.querySelectorAll('[data-heatmap-chart-cell]')).toHaveLength(4);
+    expect(
+      container.querySelectorAll('[data-heatmap-chart-cell][role="graphics-symbol"]'),
+    ).toHaveLength(3);
+    expect(container.querySelectorAll('[data-heatmap-chart-cell][aria-label=""]')).toHaveLength(0);
+  });
+
+  it('uses treemap semantics and stable point props for duplicate leaf names', () => {
+    const { container } = render(
+      <TreemapChart
+        id="treemap-duplicates"
+        title="Treemap duplicates"
+        data={[
+          { x: 'Revenue', y: 42, group: 'Accounts' },
+          { x: 'Revenue', y: 24, group: 'Pipeline' },
+        ]}
+      />,
+    );
+    const svg = container.querySelector('svg');
+    const cells = Array.from(container.querySelectorAll('[data-treemap-chart-cell]'));
+    const labels = cells.map((cell) => cell.getAttribute('aria-label'));
+
+    expect(svg?.getAttribute('aria-roledescription')).toBe('treemap chart');
+    expect(container.querySelector('desc')?.textContent).toContain('treemap chart');
+    expect(cells).toHaveLength(2);
+    expect(labels).toContain('Treemap duplicates, Revenue, 42');
+    expect(labels).toContain('Treemap duplicates, Revenue, 24');
+  });
+
   it.each(emptyStateChartComponents)(
     'renders an empty $name without invalid SVG output',
     ({ Component, markerSelector, name, props }) => {

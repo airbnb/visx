@@ -15,7 +15,7 @@ export type AxisTextStyleProps = {
 };
 
 export type AxisStyleProps = {
-  labelOffset: number;
+  labelOffset?: number;
   stroke: string;
   strokeWidth: number;
   tickLength: number;
