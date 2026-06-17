@@ -6,6 +6,7 @@
     "packages/*/test/**/*",
     "packages/*/types/**/*",
     "packages/*/scripts/**/*",
+    "packages/*/registry/**/*",
     "vitest.workspace.ts",
     "packages/*/vitest.config.ts"
   ]

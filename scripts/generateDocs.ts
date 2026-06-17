@@ -656,6 +656,7 @@ function generateDocsForPackages(): PackageDocs {
     ignore: [
       '**/node_modules/**',
       'packages/visx-demo/**',
+      'packages/visx-registry/**',
       'packages/visx-vendor/**',
       'packages/visx-visx/**',
     ],

@@ -1,0 +1,511 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "visx",
+  "homepage": "https://github.com/airbnb/visx",
+  "items": [
+    {
+      "name": "line-chart",
+      "type": "registry:block",
+      "title": "Line Chart",
+      "description": "Themed, responsive, accessible line chart built from visx primitives.",
+      "dependencies": [
+        "@visx/a11y",
+        "@visx/axis",
+        "@visx/chart",
+        "@visx/grid",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "@visx/theme"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/charts/line-chart/line-chart.tsx",
+          "type": "registry:component",
+          "target": "components/charts/line-chart.tsx"
+        }
+      ],
+      "meta": {
+        "a11y": true,
+        "client": true,
+        "ssr": true,
+        "tier": "core"
+      }
+    },
+    {
+      "name": "bar-chart",
+      "type": "registry:block",
+      "title": "Bar Chart",
+      "description": "Themed, responsive, accessible bar chart built from visx primitives.",
+      "dependencies": [
+        "@visx/a11y",
+        "@visx/axis",
+        "@visx/chart",
+        "@visx/grid",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "@visx/theme"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/charts/bar-chart/bar-chart.tsx",
+          "type": "registry:component",
+          "target": "components/charts/bar-chart.tsx"
+        },
+        {
+          "path": "registry/charts/bar-chart/chart-ui.tsx",
+          "type": "registry:component",
+          "target": "components/charts/chart-ui.tsx"
+        }
+      ],
+      "meta": {
+        "a11y": true,
+        "client": true,
+        "ssr": true,
+        "tier": "core"
+      }
+    },
+    {
+      "name": "area-chart",
+      "type": "registry:block",
+      "title": "Area Chart",
+      "description": "Themed, responsive, accessible area chart built from visx primitives.",
+      "dependencies": [
+        "@visx/a11y",
+        "@visx/axis",
+        "@visx/chart",
+        "@visx/grid",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "@visx/theme"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/charts/area-chart/area-chart.tsx",
+          "type": "registry:component",
+          "target": "components/charts/area-chart.tsx"
+        }
+      ],
+      "meta": {
+        "a11y": true,
+        "client": true,
+        "ssr": true,
+        "tier": "core"
+      }
+    },
+    {
+      "name": "scatter-chart",
+      "type": "registry:block",
+      "title": "Scatter Chart",
+      "description": "Themed, responsive, accessible scatter chart built from visx primitives.",
+      "dependencies": [
+        "@visx/a11y",
+        "@visx/axis",
+        "@visx/chart",
+        "@visx/grid",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "@visx/theme"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/charts/scatter-chart/scatter-chart.tsx",
+          "type": "registry:component",
+          "target": "components/charts/scatter-chart.tsx"
+        }
+      ],
+      "meta": {
+        "a11y": true,
+        "client": true,
+        "ssr": true,
+        "tier": "core"
+      }
+    },
+    {
+      "name": "stacked-bar-chart",
+      "type": "registry:block",
+      "title": "Stacked Bar Chart",
+      "description": "Themed, responsive, accessible stacked bar chart built from visx primitives.",
+      "dependencies": [
+        "@visx/a11y",
+        "@visx/axis",
+        "@visx/chart",
+        "@visx/grid",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "@visx/theme"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/charts/stacked-bar-chart/stacked-bar-chart.tsx",
+          "type": "registry:component",
+          "target": "components/charts/stacked-bar-chart.tsx"
+        },
+        {
+          "path": "registry/charts/bar-chart/chart-ui.tsx",
+          "type": "registry:component",
+          "target": "components/charts/chart-ui.tsx"
+        }
+      ],
+      "meta": {
+        "a11y": true,
+        "client": true,
+        "ssr": true,
+        "tier": "core"
+      }
+    },
+    {
+      "name": "multi-series-line-chart",
+      "type": "registry:block",
+      "title": "Multi-series Line Chart",
+      "description": "Themed, responsive, accessible multi-series line chart built from visx primitives.",
+      "dependencies": [
+        "@visx/a11y",
+        "@visx/axis",
+        "@visx/chart",
+        "@visx/grid",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "@visx/theme"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/charts/multi-series-line-chart/multi-series-line-chart.tsx",
+          "type": "registry:component",
+          "target": "components/charts/multi-series-line-chart.tsx"
+        },
+        {
+          "path": "registry/charts/bar-chart/chart-ui.tsx",
+          "type": "registry:component",
+          "target": "components/charts/chart-ui.tsx"
+        }
+      ],
+      "meta": {
+        "a11y": true,
+        "client": true,
+        "ssr": true,
+        "tier": "core"
+      }
+    },
+    {
+      "name": "pie-chart",
+      "type": "registry:block",
+      "title": "Pie Chart",
+      "description": "Themed, responsive, accessible pie chart built from visx primitives.",
+      "dependencies": [
+        "@visx/a11y",
+        "@visx/chart",
+        "@visx/responsive",
+        "@visx/shape",
+        "@visx/theme"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/charts/pie-chart/pie-chart.tsx",
+          "type": "registry:component",
+          "target": "components/charts/pie-chart.tsx"
+        }
+      ],
+      "meta": {
+        "a11y": true,
+        "client": true,
+        "ssr": true,
+        "tier": "core"
+      }
+    },
+    {
+      "name": "histogram-chart",
+      "type": "registry:block",
+      "title": "Histogram Chart",
+      "description": "Themed, responsive, accessible histogram chart built from visx primitives.",
+      "dependencies": [
+        "@visx/a11y",
+        "@visx/axis",
+        "@visx/chart",
+        "@visx/grid",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "@visx/theme"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/charts/histogram-chart/histogram-chart.tsx",
+          "type": "registry:component",
+          "target": "components/charts/histogram-chart.tsx"
+        }
+      ],
+      "meta": {
+        "a11y": true,
+        "client": true,
+        "ssr": true,
+        "tier": "core"
+      }
+    },
+    {
+      "name": "grouped-bar-chart",
+      "type": "registry:block",
+      "title": "Grouped Bar Chart",
+      "description": "Themed, responsive, accessible grouped bar chart built from visx primitives.",
+      "dependencies": [
+        "@visx/a11y",
+        "@visx/axis",
+        "@visx/chart",
+        "@visx/grid",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "@visx/theme"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/charts/grouped-bar-chart/grouped-bar-chart.tsx",
+          "type": "registry:component",
+          "target": "components/charts/grouped-bar-chart.tsx"
+        },
+        {
+          "path": "registry/charts/bar-chart/chart-ui.tsx",
+          "type": "registry:component",
+          "target": "components/charts/chart-ui.tsx"
+        }
+      ],
+      "meta": {
+        "a11y": true,
+        "client": true,
+        "ssr": true,
+        "tier": "extended"
+      }
+    },
+    {
+      "name": "horizontal-stacked-bar-chart",
+      "type": "registry:block",
+      "title": "Horizontal Stacked Bar Chart",
+      "description": "Themed, responsive, accessible horizontal stacked bar chart built from visx primitives.",
+      "dependencies": [
+        "@visx/a11y",
+        "@visx/axis",
+        "@visx/chart",
+        "@visx/grid",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "@visx/theme"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/charts/horizontal-stacked-bar-chart/horizontal-stacked-bar-chart.tsx",
+          "type": "registry:component",
+          "target": "components/charts/horizontal-stacked-bar-chart.tsx"
+        },
+        {
+          "path": "registry/charts/bar-chart/chart-ui.tsx",
+          "type": "registry:component",
+          "target": "components/charts/chart-ui.tsx"
+        }
+      ],
+      "meta": {
+        "a11y": true,
+        "client": true,
+        "ssr": true,
+        "tier": "extended"
+      }
+    },
+    {
+      "name": "stacked-area-chart",
+      "type": "registry:block",
+      "title": "Stacked Area Chart",
+      "description": "Themed, responsive, accessible stacked area chart built from visx primitives.",
+      "dependencies": [
+        "@visx/a11y",
+        "@visx/axis",
+        "@visx/chart",
+        "@visx/grid",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "@visx/theme"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/charts/stacked-area-chart/stacked-area-chart.tsx",
+          "type": "registry:component",
+          "target": "components/charts/stacked-area-chart.tsx"
+        },
+        {
+          "path": "registry/charts/bar-chart/chart-ui.tsx",
+          "type": "registry:component",
+          "target": "components/charts/chart-ui.tsx"
+        }
+      ],
+      "meta": {
+        "a11y": true,
+        "client": true,
+        "ssr": true,
+        "tier": "extended"
+      }
+    },
+    {
+      "name": "threshold-chart",
+      "type": "registry:block",
+      "title": "Threshold Chart",
+      "description": "Themed, responsive, accessible threshold chart built from visx primitives.",
+      "dependencies": [
+        "@visx/a11y",
+        "@visx/axis",
+        "@visx/chart",
+        "@visx/grid",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "@visx/threshold",
+        "@visx/theme"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/charts/threshold-chart/threshold-chart.tsx",
+          "type": "registry:component",
+          "target": "components/charts/threshold-chart.tsx"
+        },
+        {
+          "path": "registry/charts/bar-chart/chart-ui.tsx",
+          "type": "registry:component",
+          "target": "components/charts/chart-ui.tsx"
+        }
+      ],
+      "meta": {
+        "a11y": true,
+        "client": true,
+        "ssr": true,
+        "tier": "extended"
+      }
+    },
+    {
+      "name": "heatmap-chart",
+      "type": "registry:block",
+      "title": "Heatmap Chart",
+      "description": "Themed, responsive, accessible heatmap chart built from visx primitives.",
+      "dependencies": [
+        "@visx/a11y",
+        "@visx/chart",
+        "@visx/heatmap",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/theme"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/charts/heatmap-chart/heatmap-chart.tsx",
+          "type": "registry:component",
+          "target": "components/charts/heatmap-chart.tsx"
+        }
+      ],
+      "meta": {
+        "a11y": true,
+        "client": true,
+        "ssr": true,
+        "tier": "extended"
+      }
+    },
+    {
+      "name": "radar-chart",
+      "type": "registry:block",
+      "title": "Radar Chart",
+      "description": "Themed, responsive, accessible radar chart built from visx primitives.",
+      "dependencies": [
+        "@visx/a11y",
+        "@visx/chart",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/theme"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/charts/radar-chart/radar-chart.tsx",
+          "type": "registry:component",
+          "target": "components/charts/radar-chart.tsx"
+        }
+      ],
+      "meta": {
+        "a11y": true,
+        "client": true,
+        "ssr": true,
+        "tier": "extended"
+      }
+    },
+    {
+      "name": "radial-bar-chart",
+      "type": "registry:block",
+      "title": "Radial Bar Chart",
+      "description": "Themed, responsive, accessible radial bar chart built from visx primitives.",
+      "dependencies": [
+        "@visx/a11y",
+        "@visx/chart",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "@visx/theme"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/charts/radial-bar-chart/radial-bar-chart.tsx",
+          "type": "registry:component",
+          "target": "components/charts/radial-bar-chart.tsx"
+        }
+      ],
+      "meta": {
+        "a11y": true,
+        "client": true,
+        "ssr": true,
+        "tier": "extended"
+      }
+    },
+    {
+      "name": "treemap-chart",
+      "type": "registry:block",
+      "title": "Treemap Chart",
+      "description": "Themed, responsive, accessible treemap chart built from visx primitives.",
+      "dependencies": [
+        "@visx/a11y",
+        "@visx/chart",
+        "@visx/hierarchy",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/theme"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/charts/treemap-chart/treemap-chart.tsx",
+          "type": "registry:component",
+          "target": "components/charts/treemap-chart.tsx"
+        }
+      ],
+      "meta": {
+        "a11y": true,
+        "client": true,
+        "ssr": true,
+        "tier": "extended"
+      }
+    }
+  ]
+}

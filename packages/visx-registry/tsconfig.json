@@ -1,0 +1,55 @@
+{
+  "compilerOptions": {
+    "declarationDir": "lib",
+    "outDir": "lib",
+    "rootDir": "src"
+  },
+  "exclude": [
+    "lib",
+    "public",
+    "registry",
+    "scripts",
+    "test"
+  ],
+  "extends": "../../tsconfig.options.json",
+  "include": [
+    "src/**/*",
+    "types/**/*",
+    "../../types/**/*"
+  ],
+  "references": [
+    {
+      "path": "../visx-a11y"
+    },
+    {
+      "path": "../visx-axis"
+    },
+    {
+      "path": "../visx-chart"
+    },
+    {
+      "path": "../visx-grid"
+    },
+    {
+      "path": "../visx-heatmap"
+    },
+    {
+      "path": "../visx-hierarchy"
+    },
+    {
+      "path": "../visx-responsive"
+    },
+    {
+      "path": "../visx-scale"
+    },
+    {
+      "path": "../visx-shape"
+    },
+    {
+      "path": "../visx-theme"
+    },
+    {
+      "path": "../visx-threshold"
+    }
+  ]
+}

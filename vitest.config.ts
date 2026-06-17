@@ -36,6 +36,7 @@ export default defineConfig({
       'packages/visx-heatmap/vitest.config.ts',
       'packages/visx-hierarchy/vitest.config.ts',
       'packages/visx-kernel/vitest.config.ts',
+      'packages/visx-registry/vitest.config.ts',
       'packages/visx-react-spring/vitest.config.ts',
       'packages/visx-sankey/vitest.config.ts',
       'packages/visx-shape/vitest.config.ts',

@@ -10,6 +10,7 @@ import { generateChartDescription } from './generators/description';
 import type { ChartA11yMode, ChartA11yPointFocus } from './keyboard/stateMachine';
 import type {
   ChartA11yConfig,
+  ChartA11yIds,
   ChartA11yPointProps,
   ChartA11ySeriesProps,
   ChartA11ySvgProps,
@@ -35,6 +36,8 @@ export type UseChartA11yDataTableProps<Datum> = Pick<
 export type UseChartA11yAnnouncerProps = Omit<ChartA11yAnnouncerProps, 'message'>;
 
 export type UseChartA11yResult<Datum> = {
+  id: string;
+  ids: ChartA11yIds;
   svgProps: UseChartA11ySvgProps;
   getSeriesProps: (seriesIndex: number) => ChartA11ySeriesProps;
   getPointProps: (seriesIndex: number, index: number) => UseChartA11yPointProps;
@@ -127,6 +130,8 @@ export function useChartA11y<Datum>(config: ChartA11yConfig<Datum>): UseChartA11
   const announce = useCallback((message: string) => setAnnouncement(message), []);
 
   return {
+    id: ariaProps.ids.rootId,
+    ids: ariaProps.ids,
     svgProps,
     getSeriesProps,
     getPointProps,

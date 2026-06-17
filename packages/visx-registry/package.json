@@ -1,0 +1,54 @@
+{
+  "name": "@visx/registry",
+  "version": "4.0.0",
+  "private": true,
+  "description": "visx chart registry source files",
+  "sideEffects": false,
+  "scripts": {
+    "build": "yarn run validate",
+    "smoke:install": "tsx scripts/smokeInstallRegistryItem.ts",
+    "test": "vitest run",
+    "validate": "yarn run validate:root && yarn run validate:source",
+    "validate:root": "shadcn registry validate registry.json --cwd ../..",
+    "validate:source": "shadcn registry validate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airbnb/visx.git"
+  },
+  "keywords": [
+    "visx",
+    "react",
+    "visualizations",
+    "charts",
+    "registry"
+  ],
+  "author": "@hshoff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airbnb/visx/issues"
+  },
+  "homepage": "https://github.com/airbnb/visx#readme",
+  "dependencies": {
+    "@visx/a11y": "workspace:*",
+    "@visx/axis": "workspace:*",
+    "@visx/chart": "workspace:*",
+    "@visx/grid": "workspace:*",
+    "@visx/heatmap": "workspace:*",
+    "@visx/hierarchy": "workspace:*",
+    "@visx/responsive": "workspace:*",
+    "@visx/scale": "workspace:*",
+    "@visx/shape": "workspace:*",
+    "@visx/theme": "workspace:*",
+    "@visx/threshold": "workspace:*",
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.0",
+    "shadcn": "4.11.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "vitest": "4.1.8"
+  }
+}

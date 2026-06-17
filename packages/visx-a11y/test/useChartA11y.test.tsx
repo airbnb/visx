@@ -29,6 +29,12 @@ describe('useChartA11y', () => {
   it('returns chart semantics and generated description metadata', () => {
     const { result } = renderHook(() => useChartA11y(lineConfig));
 
+    expect(result.current.id).toBe('revenue-chart');
+    expect(result.current.ids).toEqual({
+      rootId: 'revenue-chart',
+      descriptionId: 'revenue-chart-description',
+      tableId: 'revenue-chart-table',
+    });
     expect(result.current.descriptionId).toBe('revenue-chart-description');
     expect(result.current.description).toBe(
       'line chart of Revenue over 2 data points. Values start at $10 for Jan, end at $25 for Feb, range from $10 at Jan to $25 at Feb.',
@@ -66,6 +72,8 @@ describe('useChartA11y', () => {
       useChartA11y({ ...lineConfig, id: undefined, idPrefix: 'chart' }),
     );
 
+    expect(result.current.id).toMatch(/^chart-[\w-]+$/);
+    expect(result.current.ids.rootId).toBe(result.current.id);
     expect(result.current.descriptionId).toMatch(/^chart-[\w-]+-description$/);
     expect(result.current.descriptionId).not.toBe('chart-revenue-description');
   });

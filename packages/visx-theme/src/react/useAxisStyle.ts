@@ -15,6 +15,7 @@ export type AxisTextStyleProps = {
 };
 
 export type AxisStyleProps = {
+  labelOffset: number;
   stroke: string;
   strokeWidth: number;
   tickLength: number;
@@ -69,10 +70,18 @@ const labelPositionByOrientation: Record<
   },
 };
 
+const labelOffsetByOrientation: Record<AxisOrientation, number> = {
+  bottom: 22,
+  top: 22,
+  left: 20,
+  right: 20,
+};
+
 export default function useAxisStyle(orientation: AxisOrientation): AxisStyleProps {
   const theme = useTheme();
 
   return {
+    labelOffset: labelOffsetByOrientation[orientation],
     stroke: theme.colors.axisStroke,
     strokeWidth: theme.axis.strokeWidth,
     tickLength: theme.axis.tickLength,
