@@ -86,7 +86,12 @@ visx 4.1 adds the first hook and helper APIs used to build primitive charts for 
 registry. These APIs are additive and live in package roots or explicit React subpaths:
 
 ```tsx
-import { useChartDimensions } from '@visx/chart';
+import {
+  getPositiveDomain,
+  getResponsiveWidth,
+  getZeroBaselineDomain,
+  useChartDimensions,
+} from '@visx/chart';
 import { useAxis } from '@visx/axis/react';
 import { useScale } from '@visx/scale/react';
 import { arcPath, areaPath, linePath } from '@visx/shape';
@@ -102,6 +107,23 @@ non-React code.
 
 **What you need to do:** nothing unless you want to author hook-based primitive charts. Continue
 using existing components as before, or opt into the new hooks from the import paths above.
+
+### The visx chart registry adds shadcn-compatible chart starters
+
+visx 4.1 introduces a source-first chart registry for installing themed, responsive, accessible
+primitive chart components into application code with the shadcn CLI.
+
+```sh
+npx shadcn@latest add airbnb/visx/line-chart
+```
+
+Registry items are copied into your app as editable source files and depend on public visx packages
+such as `@visx/a11y`, `@visx/chart`, `@visx/responsive`, and `@visx/theme`. The registry itself is
+distribution infrastructure and is not a runtime package your app imports.
+
+**What you need to do:** nothing unless you want drop-in primitive chart starters. Existing visx
+charts continue to work. Use registry installs only after the referenced 4.1 visx packages are
+published.
 
 ## From visx 3.x
 

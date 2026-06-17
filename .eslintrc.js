@@ -84,5 +84,16 @@ module.exports = {
         'react/state-in-constructor': 'off',
       },
     },
+    {
+      files: './packages/visx-registry/registry/**',
+      rules: {
+        'import/no-unresolved': [
+          'error',
+          {
+            ignore: ['^@visx/(a11y|scale|theme)/react$'],
+          },
+        ],
+      },
+    },
   ],
 };

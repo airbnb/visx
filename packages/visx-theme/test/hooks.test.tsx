@@ -242,6 +242,7 @@ describe('@visx/theme/react hooks', () => {
     render(<AxisStyleProbe orientation="left" onStyle={onStyle} />);
 
     expect(onStyle).toHaveBeenCalledWith({
+      labelOffset: 20,
       stroke: theme.colors.axisStroke,
       strokeWidth: lightTheme.axis.strokeWidth,
       tickLength: lightTheme.axis.tickLength,

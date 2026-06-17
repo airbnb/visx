@@ -53,6 +53,8 @@
     "test:watch": "yarn run vitest watch",
     "vitest": "vitest",
     "vitest:ui": "vitest --ui",
+    "registry:smoke": "yarn workspace @visx/registry smoke:install",
+    "registry:validate": "yarn workspace @visx/registry validate",
     "ts": "tsx --tsconfig ./tsconfig.node.json",
     "type": "yarn type:clean && yarn type:build",
     "type:build": "lerna exec -- 'tsc --build'",

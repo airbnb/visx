@@ -1,0 +1,6 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "visx",
+  "homepage": "https://github.com/airbnb/visx",
+  "include": ["packages/visx-registry/registry.json"]
+}

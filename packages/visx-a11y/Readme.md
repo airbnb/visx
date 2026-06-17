@@ -106,7 +106,7 @@ export function RevenueChart({ data }) {
 
   return (
     <>
-      <svg {...a11y.svgProps}>
+      <svg {...a11y.svgProps} id={a11y.id}>
         <desc id={a11y.descriptionId}>{a11y.description}</desc>
         {/* chart marks */}
       </svg>
@@ -139,7 +139,7 @@ const a11y = useChartA11y({
 
 return (
   <>
-    <svg {...a11y.svgProps}>
+    <svg {...a11y.svgProps} id={a11y.id}>
       <desc id={a11y.descriptionId}>{a11y.description}</desc>
       <g>
         {data.map((datum) => (
@@ -174,7 +174,7 @@ const a11y = useChartA11y({
 
 return (
   <>
-    <svg {...a11y.svgProps}>
+    <svg {...a11y.svgProps} id={a11y.id}>
       <desc id={a11y.descriptionId}>{a11y.description}</desc>
       <g {...a11y.getSeriesProps(0)}>
         {data.map((datum, index) => (
@@ -216,7 +216,7 @@ const a11y = useChartA11y({
 });
 
 return (
-  <svg {...a11y.svgProps}>
+  <svg {...a11y.svgProps} id={a11y.id}>
     <desc id={a11y.descriptionId}>{a11y.description}</desc>
     <g {...a11y.getSeriesProps(0)}>
       {data.map((datum, index) => (
@@ -236,9 +236,10 @@ still wants the same roving-focus behavior, point focus state, and `onPointFocus
 
 ## Keyboard interaction model
 
-`useChartA11y` starts in chart mode. The chart root is tabbable, and data marks become tabbable only
-while keyboard exploration is active. Navigation is enabled by default for charts with at least one
-point and no more than `pointDescriptionThreshold` points.
+When keyboard navigation is enabled, `useChartA11y` starts in chart mode. The chart root is
+tabbable, and data marks become tabbable only while keyboard exploration is active. Navigation is
+enabled by default for charts with at least one point and no more than `pointDescriptionThreshold`
+points.
 
 | Key                | Result                                                                                       |
 | ------------------ | -------------------------------------------------------------------------------------------- |
@@ -264,7 +265,7 @@ rects, clipping helpers, and other non-data elements should usually be rendered 
 table.
 
 ```tsx
-<svg {...a11y.svgProps}>
+<svg {...a11y.svgProps} id={a11y.id}>
   <rect aria-hidden="true" width={width} height={height} />
   <GridRows aria-hidden="true" scale={yScale} width={innerWidth} />
   <AxisBottom aria-hidden="true" scale={xScale} />

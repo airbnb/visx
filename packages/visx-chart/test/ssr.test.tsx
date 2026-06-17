@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { useChartDimensions } from '../src';
+import { getPositiveDomain, getResponsiveWidth, useChartDimensions } from '../src';
 
 function ChartProbe() {
   const { innerWidth, innerHeight } = useChartDimensions({
@@ -17,5 +17,7 @@ function ChartProbe() {
 describe('@visx/chart SSR', () => {
   it('renders without touching browser globals', () => {
     expect(renderToString(<ChartProbe />)).toContain('80x50');
+    expect(getPositiveDomain([1, 2])).toEqual([0, 2]);
+    expect(getResponsiveWidth(0, 100)).toBe(100);
   });
 });
