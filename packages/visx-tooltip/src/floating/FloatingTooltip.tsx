@@ -1,5 +1,6 @@
 import {
   FloatingArrow,
+  FloatingDelayGroup,
   FloatingPortal,
   type FloatingPortalProps as FloatingUiPortalProps,
 } from '@floating-ui/react';
@@ -77,8 +78,22 @@ function getPortalRoot(container: FloatingTooltipPortalProps['container']) {
   return container;
 }
 
-function Provider({ children }: FloatingTooltipProviderProps) {
-  return <>{children}</>;
+function Provider({
+  children,
+  closeDelay = 0,
+  delay = 600,
+  skipDelay = 400,
+}: FloatingTooltipProviderProps) {
+  const floatingDelay =
+    typeof delay === 'number'
+      ? { open: delay, close: closeDelay }
+      : { open: delay.open ?? 600, close: delay.close ?? closeDelay };
+
+  return (
+    <FloatingDelayGroup delay={floatingDelay} timeoutMs={skipDelay}>
+      {children}
+    </FloatingDelayGroup>
+  );
 }
 
 function Root<TData = unknown>({
@@ -99,8 +114,23 @@ function Root<TData = unknown>({
   );
 }
 
-function Trigger(_props: FloatingTooltipTriggerProps) {
-  return null;
+function Trigger({ disabled = false, render }: FloatingTooltipTriggerProps) {
+  const state = useFloatingTooltipContext('FloatingTooltip.Trigger');
+  const triggerState = {
+    open: state.open,
+    side: state.side,
+    align: state.align,
+  };
+  const triggerProps = state.getReferenceProps({
+    'aria-disabled': disabled || undefined,
+    'data-state': state.open ? 'open' : 'closed',
+    'data-visx-tooltip-trigger': '',
+    ref: state.refs.setReference,
+  } as React.HTMLProps<Element>);
+
+  if (typeof render === 'function') return render(triggerProps, triggerState);
+
+  return React.cloneElement(render, triggerProps as Partial<unknown> & React.Attributes);
 }
 
 function Portal({ children, container, disabled = false }: FloatingTooltipPortalProps) {

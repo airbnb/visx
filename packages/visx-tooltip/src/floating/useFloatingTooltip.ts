@@ -1,6 +1,16 @@
-import { autoUpdate, useFloating } from '@floating-ui/react';
+import {
+  autoUpdate,
+  useDelayGroup,
+  useDismiss,
+  useFloating,
+  useFocus,
+  useHover,
+  useInteractions,
+  useRole,
+} from '@floating-ui/react';
 import type { OpenChangeReason, ReferenceElement } from '@floating-ui/react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import type React from 'react';
 import { getTooltipAnchorReference } from './anchors';
 import { buildFloatingTooltipMiddleware } from './middleware';
 import type {
@@ -33,12 +43,14 @@ export default function useFloatingTooltip<TData = unknown>({
   disabled = false,
   flip = true,
   hideWhenDetached = false,
+  interactions = true,
   middleware,
   middlewareMode = 'append',
   offset = 0,
   onOpenChange,
   open: openProp,
   placement = 'top',
+  role = 'tooltip',
   shift = true,
   size = false,
   strategy = 'absolute',
@@ -117,6 +129,44 @@ export default function useFloatingTooltip<TData = unknown>({
     whileElementsMounted,
   });
 
+  const interactionOptions = typeof interactions === 'object' ? interactions : {};
+  const interactionsEnabled = interactions !== false && !disabled;
+  const hoverOptions = interactionOptions.hover;
+  const focusOptions = interactionOptions.focus;
+  const dismissOptions = interactionOptions.dismiss;
+  const roleOptions = interactionOptions.role;
+
+  const hoverEnabled = interactionsEnabled && hoverOptions !== false;
+  const focusEnabled = interactionsEnabled && focusOptions !== false;
+  const dismissEnabled = interactionsEnabled && dismissOptions !== false;
+  const roleEnabled = interactionsEnabled && roleOptions !== false && role === 'tooltip';
+  const delayGroup = useDelayGroup(floating.context, { enabled: hoverEnabled });
+
+  const hoverProps = useHover(floating.context, {
+    delay: delayGroup.delay,
+    enabled: hoverEnabled,
+    ...(typeof hoverOptions === 'object' ? hoverOptions : null),
+  });
+  const focusProps = useFocus(floating.context, {
+    enabled: focusEnabled,
+    ...(typeof focusOptions === 'object' ? focusOptions : null),
+  });
+  const dismissProps = useDismiss(floating.context, {
+    enabled: dismissEnabled,
+    ...(typeof dismissOptions === 'object' ? dismissOptions : null),
+  });
+  const roleProps = useRole(floating.context, {
+    enabled: roleEnabled,
+    role: 'tooltip',
+    ...(typeof roleOptions === 'object' ? roleOptions : null),
+  });
+  const { getFloatingProps, getReferenceProps } = useInteractions([
+    hoverProps,
+    focusProps,
+    dismissProps,
+    roleProps,
+  ]);
+
   const positionReference = useMemo(() => getTooltipAnchorReference(anchor), [anchor]);
 
   useEffect(() => {
@@ -180,8 +230,11 @@ export default function useFloatingTooltip<TData = unknown>({
     update: floating.update,
     openTooltip,
     closeTooltip,
-    getReferenceProps: (props) => props ?? ({} as never),
-    getFloatingProps: (props) => props ?? ({} as never),
-    getArrowProps: (props) => props ?? ({} as never),
+    getReferenceProps: <TProps extends React.HTMLProps<Element>>(props?: TProps) =>
+      getReferenceProps(props) as TProps,
+    getFloatingProps: <TProps extends React.HTMLProps<HTMLElement>>(props?: TProps) =>
+      getFloatingProps(props) as TProps,
+    getArrowProps: <TProps extends React.SVGProps<SVGSVGElement>>(props?: TProps) =>
+      props ?? ({} as TProps),
   };
 }
