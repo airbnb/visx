@@ -23,11 +23,27 @@ function getErrorMessage(error: unknown) {
   }
 }
 
-function isRateLimitError(error: unknown) {
+function getErrorStatus(error: unknown) {
   const status =
     typeof error === 'object' && error !== null && 'status' in error ? error.status : null;
 
-  return status === 429 || /rate limit|secondary limit/i.test(getErrorMessage(error));
+  return typeof status === 'number' ? status : null;
+}
+
+function isRetryableGitHubRequestError(error: unknown) {
+  const status = getErrorStatus(error);
+  const message = getErrorMessage(error);
+
+  return (
+    status === 429 ||
+    status === 500 ||
+    status === 502 ||
+    status === 503 ||
+    status === 504 ||
+    /rate limit|secondary limit|premature close|socket hang up|econnreset|etimedout|eai_again|fetch failed/i.test(
+      message,
+    )
+  );
 }
 
 export async function pauseBetweenGitHubRequests() {
@@ -44,12 +60,14 @@ export default async function runGithubRequestWithRetries<T>(
   } catch (error) {
     const delayMs = RETRY_DELAYS_MS[attempt];
 
-    if (!isRateLimitError(error) || delayMs === undefined) {
+    if (!isRetryableGitHubRequestError(error) || delayMs === undefined) {
       throw error;
     }
 
     console.warn(
-      `${label} hit a GitHub rate limit. Retrying in ${delayMs / 1000}s: ${getErrorMessage(error)}`,
+      `${label} hit a retryable GitHub request error. Retrying in ${
+        delayMs / 1000
+      }s: ${getErrorMessage(error)}`,
     );
     await wait(delayMs);
     return runGithubRequestWithRetries(label, request, attempt + 1);
