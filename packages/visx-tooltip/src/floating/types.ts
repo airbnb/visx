@@ -15,6 +15,7 @@ import type {
   SizeOptions,
   Strategy,
   UseDismissProps,
+  FloatingArrowProps as FloatingUiArrowProps,
   UseFloatingOptions,
   UseFloatingReturn,
   UseFocusProps,
@@ -183,10 +184,11 @@ export type FloatingTooltipContentProps = React.HTMLAttributes<HTMLDivElement> &
 
 export type FloatingTooltipArrowState = FloatingTooltipRootState;
 
-export type FloatingTooltipArrowProps = Omit<React.SVGProps<SVGSVGElement>, 'ref'> & {
-  width?: number;
-  height?: number;
-  padding?: number;
+export type FloatingTooltipArrowProps = Omit<
+  FloatingUiArrowProps,
+  'context' | 'padding' | 'ref'
+> & {
+  padding?: never;
   render?:
     | React.ReactElement
     | ((

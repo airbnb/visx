@@ -399,6 +399,22 @@ describe('<FloatingTooltip /> manual primitives', () => {
     expect(arrow).toHaveAttribute('viewBox', '0 0 14 20');
   });
 
+  it('forwards Floating UI arrow stroke props', () => {
+    render(
+      <FloatingTooltip.Root open anchor={{ type: 'point', x: 0, y: 0 }} arrow>
+        <FloatingTooltip.Positioner>
+          <FloatingTooltip.Content>
+            Tooltip
+            <FloatingTooltip.Arrow data-testid="arrow" width={14} height={20} strokeWidth={2} />
+          </FloatingTooltip.Content>
+        </FloatingTooltip.Positioner>
+      </FloatingTooltip.Root>,
+    );
+
+    expect(screen.getByTestId('arrow')).toHaveAttribute('width', '18');
+    expect(screen.getByTestId('arrow').querySelector('path')).toHaveAttribute('stroke-width', '5');
+  });
+
   it('marks the anchor as hidden when Floating UI hide middleware reports it', async () => {
     const getRect = () => rect(0, 0);
 

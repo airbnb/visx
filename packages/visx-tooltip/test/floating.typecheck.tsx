@@ -1,5 +1,6 @@
 import {
   ChartTooltip,
+  FloatingTooltip,
   useChartTooltip,
   type ChartTooltipConfig,
   type ChartTooltipItem,
@@ -63,4 +64,31 @@ const floatingOptionsCannotUseDescriptionRole = (
   />
 );
 
-export { HookUsage, floatingOptionsCannotControlState, floatingOptionsCannotUseDescriptionRole };
+const arrowStrokeWidthUsesFloatingUiProps = (
+  <FloatingTooltip.Root open anchor={null} arrow>
+    <FloatingTooltip.Positioner>
+      <FloatingTooltip.Content>
+        <FloatingTooltip.Arrow strokeWidth={2} />
+      </FloatingTooltip.Content>
+    </FloatingTooltip.Positioner>
+  </FloatingTooltip.Root>
+);
+
+const arrowPaddingIsMiddlewareOnly = (
+  <FloatingTooltip.Root open anchor={null} arrow={{ padding: 4 }}>
+    <FloatingTooltip.Positioner>
+      <FloatingTooltip.Content>
+        {/* @ts-expect-error Arrow does not alias padding to strokeWidth */}
+        <FloatingTooltip.Arrow padding={2} />
+      </FloatingTooltip.Content>
+    </FloatingTooltip.Positioner>
+  </FloatingTooltip.Root>
+);
+
+export {
+  HookUsage,
+  arrowPaddingIsMiddlewareOnly,
+  arrowStrokeWidthUsesFloatingUiProps,
+  floatingOptionsCannotControlState,
+  floatingOptionsCannotUseDescriptionRole,
+};

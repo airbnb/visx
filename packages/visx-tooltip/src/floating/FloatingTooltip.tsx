@@ -228,8 +228,9 @@ function Content({ children, render, ...restProps }: FloatingTooltipContentProps
 
 function Arrow({
   height = 7,
-  padding,
+  padding: _padding,
   render,
+  tipRadius = 0,
   width = 14,
   ...restProps
 }: FloatingTooltipArrowProps) {
@@ -240,8 +241,10 @@ function Arrow({
   if (render) {
     const baseArrowProps: FloatingSvgProps = {
       ...restProps,
+      height,
       'data-visx-tooltip-arrow': '',
       ref: state.arrowRef,
+      width,
     };
     const arrowProps = state.getArrowProps(baseArrowProps);
 
@@ -261,8 +264,7 @@ function Arrow({
       context={state.context}
       width={width}
       height={height}
-      tipRadius={0}
-      strokeWidth={padding}
+      tipRadius={tipRadius}
     />
   );
 }

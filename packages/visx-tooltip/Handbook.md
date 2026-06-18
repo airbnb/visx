@@ -605,7 +605,9 @@ Use `Root arrow` to include arrow middleware, and render `FloatingTooltip.Arrow`
 </FloatingTooltip.Root>
 ```
 
-When no custom `render` prop is supplied, `Arrow` uses Floating UI's `FloatingArrow`.
+When no custom `render` prop is supplied, `Arrow` uses Floating UI's `FloatingArrow` and forwards
+its SVG props such as `stroke` and `strokeWidth`. Use `Root arrow={{ padding }}` for Floating UI
+arrow middleware padding near the floating element edges.
 
 ## `useFloatingTooltip`
 
