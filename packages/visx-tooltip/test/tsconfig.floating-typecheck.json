@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "composite": false,
+    "emitDeclarationOnly": false,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": []
+  },
+  "extends": "../../../tsconfig.options.json",
+  "files": ["floating.typecheck.tsx"],
+  "references": [
+    {
+      "path": ".."
+    }
+  ]
+}
