@@ -13,6 +13,140 @@ visualization and includes hooks, higher-order component (HOC) enhancers, and To
 npm install --save @visx/tooltip
 ```
 
+### Modern Floating UI tooltips
+
+`@visx/tooltip` also includes an additive Floating UI-backed surface for modern tooltip positioning.
+Import it from the explicit React subpath:
+
+```tsx
+import {
+  ChartTooltip,
+  ChartTooltipContent,
+  FloatingTooltip,
+  useChartTooltip,
+  useFloatingTooltip,
+} from '@visx/tooltip/floating';
+```
+
+Existing `@visx/tooltip` exports are unchanged. Use the modern subpath when a chart needs
+collision-aware placement, virtual anchors, SVG or cursor anchoring, arrows, controlled state, or
+config-driven chart tooltip content.
+
+#### Manual chart tooltip
+
+`useChartTooltip()` owns tooltip open state, anchor state, and rendered items. Your chart still owns
+nearest-datum lookup and event handling.
+
+```tsx
+import { localPoint } from '@visx/event';
+import { ChartTooltip, type ChartTooltipConfig, useChartTooltip } from '@visx/tooltip/floating';
+
+type Datum = { month: string; revenue: number };
+
+const tooltipConfig = {
+  revenue: {
+    label: 'Revenue',
+    color: '#3b82f6',
+    formatValue: (value) => `$${Number(value).toLocaleString()}`,
+  },
+} satisfies ChartTooltipConfig<Datum>;
+
+function RevenueChart({ data, width, height }: { data: Datum[]; width: number; height: number }) {
+  const tooltip = useChartTooltip<Datum>({ placement: 'top', offset: 10 });
+
+  return (
+    <>
+      <svg
+        ref={tooltip.containerRef}
+        width={width}
+        height={height}
+        onPointerMove={(event) => {
+          const point = localPoint(event.currentTarget, event);
+          if (!point) return;
+
+          const datum = findNearestDatum(point, data);
+
+          tooltip.show({
+            anchor: point,
+            items: [
+              {
+                key: 'revenue',
+                datum,
+                label: datum.month,
+                rawValue: datum.revenue,
+              },
+            ],
+          });
+        }}
+        onPointerLeave={tooltip.hide}
+      >
+        {data.map((datum) => (
+          <circle key={datum.month} cx={xScale(datum.month)} cy={yScale(datum.revenue)} r={4} />
+        ))}
+      </svg>
+
+      <ChartTooltip {...tooltip.tooltipProps} config={tooltipConfig} />
+    </>
+  );
+}
+```
+
+When `tooltip.show()` receives `{ x, y }`, the coordinates are treated as CSS pixels local to the
+element registered with `containerRef`. If you have SVG user-space coordinates from scales or glyph
+positions, pass a shorthand SVG point instead:
+
+```tsx
+tooltip.show({
+  anchor: { type: 'svg-local-point', x: xScale(datum.month), y: yScale(datum.revenue) },
+  items: [{ key: 'revenue', datum, rawValue: datum.revenue }],
+});
+```
+
+#### Low-level primitives
+
+Use `FloatingTooltip` directly when you want complete control over positioning and content.
+
+```tsx
+<FloatingTooltip.Root
+  open={open}
+  anchor={{ type: 'point', x: event.clientX, y: event.clientY }}
+  placement="right"
+  offset={12}
+  arrow
+>
+  <FloatingTooltip.Portal>
+    <FloatingTooltip.Positioner className="Tooltip">
+      <FloatingTooltip.Content>
+        <FloatingTooltip.Arrow />
+        {children}
+      </FloatingTooltip.Content>
+    </FloatingTooltip.Positioner>
+  </FloatingTooltip.Portal>
+</FloatingTooltip.Root>
+```
+
+#### DOM trigger tooltip
+
+`FloatingTooltip.Trigger` is optional. When rendered, it wires hover, focus, dismiss, and tooltip
+ARIA props through Floating UI. If `Root` also receives an explicit `anchor`, the trigger owns DOM
+interactions while the anchor owns positioning.
+
+```tsx
+<FloatingTooltip.Provider delay={700} skipDelay={300}>
+  <FloatingTooltip.Root>
+    <FloatingTooltip.Trigger render={<button type="button">Export</button>} />
+    <FloatingTooltip.Portal>
+      <FloatingTooltip.Positioner>
+        <FloatingTooltip.Content>Download chart data</FloatingTooltip.Content>
+      </FloatingTooltip.Positioner>
+    </FloatingTooltip.Portal>
+  </FloatingTooltip.Root>
+</FloatingTooltip.Provider>
+```
+
+Tooltip content should be brief and non-interactive. If content includes links, buttons, form
+controls, or rich navigation, use a popover-style primitive instead of tooltip behavior.
+
 ### Hooks and Enhancers
 
 This package provides two ways to add tooltip **state** logic to your chart components:
@@ -172,8 +306,8 @@ To use a `Portal`, simply pass your `Tooltip` as a child: `<Portal><Tooltip {...
 will also need to correct the `left` and `top` positions to be in _page coordinates_, not the
 coordinates of your container which you would use when _not_ using a `Portal`. If reacting to a
 mouse event, you can use `event.pageX/Y`. Alternatively, if you have container coordinates, you can
-convert them to page coordinates using the following (note: `useTooltipInPortal` handles this
-for you):
+convert them to page coordinates using the following (note: `useTooltipInPortal` handles this for
+you):
 
 ```js
 const pageX = containerX + containerBoundingBox.left + window.scrollLeft;

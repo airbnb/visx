@@ -11,6 +11,11 @@
       "types": "./lib/index.d.ts",
       "import": "./esm/index.js",
       "require": "./lib/index.js"
+    },
+    "./floating": {
+      "types": "./lib/floating/index.d.ts",
+      "import": "./esm/floating/index.js",
+      "require": "./lib/floating/index.js"
     }
   },
   "files": [
@@ -35,6 +40,7 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
+    "@floating-ui/react": "^0.27.19",
     "@visx/bounds": "workspace:*",
     "classnames": "^2.3.1",
     "react-use-measure": "^2.0.4"

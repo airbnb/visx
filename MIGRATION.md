@@ -108,6 +108,29 @@ non-React code.
 **What you need to do:** nothing unless you want to author hook-based primitive charts. Continue
 using existing components as before, or opt into the new hooks from the import paths above.
 
+### `@visx/tooltip/floating` adds modern tooltip primitives
+
+visx 4.1 adds an optional Floating UI-backed tooltip surface under the `@visx/tooltip/floating`
+subpath. It includes low-level `FloatingTooltip` primitives, `useFloatingTooltip`, config-driven
+chart tooltip content, and the `useChartTooltip` plus `ChartTooltip` convenience layer for
+data-driven chart tooltips.
+
+```tsx
+import {
+  ChartTooltip,
+  FloatingTooltip,
+  useChartTooltip,
+  useFloatingTooltip,
+} from '@visx/tooltip/floating';
+```
+
+The new APIs are additive. Existing `@visx/tooltip` root exports, `useTooltip`,
+`useTooltipInPortal`, `Tooltip`, `TooltipWithBounds`, and `withTooltip` remain unchanged.
+
+**What you need to do:** nothing unless you want Floating UI positioning, virtual anchors,
+trigger-based interactions, or config-driven chart tooltip content. Continue using the existing
+tooltip APIs as before, or opt into the new `@visx/tooltip/floating` subpath for new tooltip work.
+
 ### The visx chart registry adds shadcn-compatible chart starters
 
 visx 4.1 introduces a source-first chart registry for installing themed, responsive, accessible
