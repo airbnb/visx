@@ -1,6 +1,9 @@
 'use client';
 
 export { getTooltipAnchorReference } from './anchors';
+export { default as FloatingTooltip } from './FloatingTooltip';
+export { default as useFloatingTooltip } from './useFloatingTooltip';
+export { buildFloatingTooltipMiddleware } from './middleware';
 
 export type {
   FloatingTooltipArrowOptions,
