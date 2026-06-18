@@ -167,6 +167,7 @@ export type FloatingTooltipPortalProps = {
 export type FloatingTooltipPositionerState = FloatingTooltipRootState;
 
 export type FloatingTooltipPositionerProps = React.HTMLAttributes<HTMLDivElement> & {
+  'data-testid'?: string;
   render?:
     | React.ReactElement
     | ((
