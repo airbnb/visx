@@ -18,7 +18,7 @@ export type ChartTooltipLocalPoint = {
 };
 
 export type ChartTooltipSvgPoint = {
-  type: 'svg-point';
+  type: 'svg-local-point';
   x: number;
   y: number;
 };
@@ -52,8 +52,10 @@ export type UseChartTooltipReturn<Datum = unknown> = {
     Pick<ChartTooltipProps<Datum>, 'floatingOptions' | 'offset' | 'placement'>;
 };
 
-function isTooltipAnchor(anchor: TooltipAnchor | ChartTooltipLocalPoint | ChartTooltipSvgPoint) {
-  return 'type' in anchor && (anchor.type !== 'svg-point' || 'svg' in anchor);
+function isTooltipAnchor(
+  anchor: TooltipAnchor | ChartTooltipLocalPoint | ChartTooltipSvgPoint,
+): anchor is TooltipAnchor {
+  return 'type' in anchor && anchor.type !== 'svg-local-point';
 }
 
 function isSvgElement(element: Element | null): element is SVGSVGElement | SVGGraphicsElement {
@@ -93,9 +95,9 @@ export default function useChartTooltip<Datum = unknown>({
 
   const resolveAnchor = useCallback(
     (nextAnchor: TooltipAnchor | ChartTooltipLocalPoint | ChartTooltipSvgPoint): TooltipAnchor => {
-      if (isTooltipAnchor(nextAnchor)) return nextAnchor as TooltipAnchor;
+      if (isTooltipAnchor(nextAnchor)) return nextAnchor;
 
-      if ('type' in nextAnchor && nextAnchor.type === 'svg-point') {
+      if ('type' in nextAnchor && nextAnchor.type === 'svg-local-point') {
         return {
           type: 'svg-point',
           x: nextAnchor.x,

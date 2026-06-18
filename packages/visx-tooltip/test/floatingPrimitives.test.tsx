@@ -107,6 +107,66 @@ describe('useFloatingTooltip()', () => {
     expect(result?.context).toBeDefined();
     expect(() => act(() => result?.update())).not.toThrow();
   });
+
+  it('uses id as the default floating element id', () => {
+    function Probe() {
+      const tooltip = useFloatingTooltip({ defaultOpen: true, id: 'tooltip-root-id' });
+
+      return (
+        <div
+          {...tooltip.getFloatingProps({
+            'data-testid': 'floating',
+            ref: tooltip.refs.setFloating,
+          })}
+        />
+      );
+    }
+
+    render(<Probe />);
+
+    expect(screen.getByTestId('floating')).toHaveAttribute('id', 'tooltip-root-id');
+  });
+
+  it('lets explicit floating props override the default id', () => {
+    function Probe() {
+      const tooltip = useFloatingTooltip({ defaultOpen: true, id: 'tooltip-root-id' });
+
+      return (
+        <div
+          {...tooltip.getFloatingProps({
+            'data-testid': 'floating',
+            id: 'positioner-id',
+            ref: tooltip.refs.setFloating,
+          })}
+        />
+      );
+    }
+
+    render(<Probe />);
+
+    expect(screen.getByTestId('floating')).toHaveAttribute('id', 'positioner-id');
+  });
+
+  it('clears explicit position references when anchor becomes null', async () => {
+    let result: ReturnType<typeof useFloatingTooltip> | null = null;
+
+    function Probe({ anchor }: { anchor: TooltipAnchor | null }) {
+      result = useFloatingTooltip({ anchor, open: true });
+      return null;
+    }
+
+    const { rerender } = render(<Probe anchor={{ type: 'point', x: 10, y: 20 }} />);
+
+    await waitFor(() => {
+      expect(result?.refs.reference.current).toBeTruthy();
+    });
+
+    rerender(<Probe anchor={null} />);
+
+    await waitFor(() => {
+      expect(result?.refs.reference.current).toBeNull();
+    });
+  });
 });
 
 describe('buildFloatingTooltipMiddleware()', () => {
@@ -195,7 +255,54 @@ describe('<FloatingTooltip /> manual primitives', () => {
     expect(positioner).toHaveAttribute('data-side', 'bottom');
     expect(positioner).toHaveAttribute('data-align', 'start');
     expect(positioner.style.getPropertyValue('--visx-tooltip-transform-origin')).toBeTruthy();
-    expect(screen.getByTestId('content')).toHaveAttribute('role', 'tooltip');
+    expect(positioner).toHaveAttribute('role', 'tooltip');
+    expect(screen.getByTestId('content')).not.toHaveAttribute('role');
+  });
+
+  it('forwards explicit content roles without assigning a default role', () => {
+    const { rerender } = render(
+      <FloatingTooltip.Root open anchor={{ type: 'point', x: 0, y: 0 }}>
+        <FloatingTooltip.Positioner>
+          <FloatingTooltip.Content data-testid="content">Tooltip</FloatingTooltip.Content>
+        </FloatingTooltip.Positioner>
+      </FloatingTooltip.Root>,
+    );
+
+    expect(screen.getByTestId('content')).not.toHaveAttribute('role');
+
+    rerender(
+      <FloatingTooltip.Root open anchor={{ type: 'point', x: 0, y: 0 }}>
+        <FloatingTooltip.Positioner>
+          <FloatingTooltip.Content data-testid="content" role="note">
+            Tooltip
+          </FloatingTooltip.Content>
+        </FloatingTooltip.Positioner>
+      </FloatingTooltip.Root>,
+    );
+
+    expect(screen.getByTestId('content')).toHaveAttribute('role', 'note');
+  });
+
+  it('uses the root id for the positioner and lets positioner props override it', () => {
+    const { rerender } = render(
+      <FloatingTooltip.Root open id="tooltip-root-id" anchor={{ type: 'point', x: 0, y: 0 }}>
+        <FloatingTooltip.Positioner data-testid="positioner">
+          <FloatingTooltip.Content>Tooltip</FloatingTooltip.Content>
+        </FloatingTooltip.Positioner>
+      </FloatingTooltip.Root>,
+    );
+
+    expect(screen.getByTestId('positioner')).toHaveAttribute('id', 'tooltip-root-id');
+
+    rerender(
+      <FloatingTooltip.Root open id="tooltip-root-id" anchor={{ type: 'point', x: 0, y: 0 }}>
+        <FloatingTooltip.Positioner data-testid="positioner" id="positioner-id">
+          <FloatingTooltip.Content>Tooltip</FloatingTooltip.Content>
+        </FloatingTooltip.Positioner>
+      </FloatingTooltip.Root>,
+    );
+
+    expect(screen.getByTestId('positioner')).toHaveAttribute('id', 'positioner-id');
   });
 
   it('supports render replacement for the positioner and content', () => {

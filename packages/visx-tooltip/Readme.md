@@ -102,7 +102,7 @@ positions, pass a shorthand SVG point instead:
 
 ```tsx
 tooltip.show({
-  anchor: { type: 'svg-point', x: xScale(datum.month), y: yScale(datum.revenue) },
+  anchor: { type: 'svg-local-point', x: xScale(datum.month), y: yScale(datum.revenue) },
   items: [{ key: 'revenue', datum, rawValue: datum.revenue }],
 });
 ```

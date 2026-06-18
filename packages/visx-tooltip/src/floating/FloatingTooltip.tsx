@@ -116,17 +116,31 @@ function Root<TData = unknown>({
 
 function Trigger({ disabled = false, render }: FloatingTooltipTriggerProps) {
   const state = useFloatingTooltipContext('FloatingTooltip.Trigger');
+  const setTriggerReference = React.useCallback(
+    (node: Element | null) => {
+      if (disabled) {
+        state.refs.setPositionReference(node);
+        state.refs.setReference(null);
+        return;
+      }
+
+      state.refs.setReference(node);
+    },
+    [disabled, state.refs],
+  );
   const triggerState = {
     open: state.open,
     side: state.side,
     align: state.align,
   };
-  const triggerProps = state.getReferenceProps({
+  const referenceProps = {
     'aria-disabled': disabled || undefined,
+    'data-disabled': disabled ? '' : undefined,
     'data-state': state.open ? 'open' : 'closed',
     'data-visx-tooltip-trigger': '',
-    ref: state.refs.setReference,
-  } as React.HTMLProps<Element>);
+    ref: setTriggerReference,
+  } as React.HTMLProps<Element>;
+  const triggerProps = disabled ? referenceProps : state.getReferenceProps(referenceProps);
 
   if (typeof render === 'function') return render(triggerProps, triggerState);
 
@@ -148,6 +162,7 @@ function Portal({ children, container, disabled = false }: FloatingTooltipPortal
 
 function Positioner({
   children,
+  id,
   render,
   style,
   ...restProps
@@ -165,6 +180,7 @@ function Positioner({
     'data-side': state.side,
     'data-state': state.open ? 'open' : 'closed',
     'data-visx-tooltip': '',
+    ...(id === undefined ? null : { id }),
     ref: state.refs.setFloating,
     style: {
       ...state.floatingStyles,
@@ -181,7 +197,7 @@ function Positioner({
   });
 }
 
-function Content({ children, render, role = 'tooltip', ...restProps }: FloatingTooltipContentProps) {
+function Content({ children, render, ...restProps }: FloatingTooltipContentProps) {
   const state = useFloatingTooltipContext('FloatingTooltip.Content');
 
   if (!state.mounted) return null;
@@ -191,7 +207,6 @@ function Content({ children, render, role = 'tooltip', ...restProps }: FloatingT
     children,
     'data-state': state.open ? 'open' : 'closed',
     'data-visx-tooltip-content': '',
-    role,
   } as React.HTMLProps<HTMLDivElement>;
 
   return renderElement<React.HTMLProps<HTMLDivElement>, FloatingTooltipContentState>({

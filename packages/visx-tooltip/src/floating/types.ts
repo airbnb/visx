@@ -88,7 +88,6 @@ export type UseFloatingTooltipOptions<TData = unknown> = {
   size?: boolean | FloatingTooltipSizeOptions;
   hideWhenDetached?: boolean | FloatingTooltipHideOptions;
   arrow?: boolean | FloatingTooltipArrowOptions;
-  trackCursorAxis?: 'none' | 'x' | 'y' | 'both';
 
   interactions?: FloatingTooltipInteractions;
   middleware?: Middleware[];
@@ -96,7 +95,7 @@ export type UseFloatingTooltipOptions<TData = unknown> = {
   whileElementsMounted?: UseFloatingOptions['whileElementsMounted'];
 
   id?: string;
-  role?: 'tooltip' | 'label' | 'description';
+  role?: 'tooltip' | 'label';
   disabled?: boolean;
 };
 

@@ -32,7 +32,7 @@ function HookUsage() {
   });
 
   tooltip.show({
-    anchor: { type: 'svg-point', x: 0, y: 0 },
+    anchor: { type: 'svg-local-point', x: 0, y: 0 },
     items: [item],
   });
 
@@ -51,4 +51,16 @@ const floatingOptionsCannotControlState = (
   />
 );
 
-export { HookUsage, floatingOptionsCannotControlState };
+const floatingOptionsCannotUseDescriptionRole = (
+  <ChartTooltip
+    open
+    anchor={null}
+    items={[item]}
+    floatingOptions={{
+      // @ts-expect-error description is not a supported Floating UI role value for this API
+      role: 'description',
+    }}
+  />
+);
+
+export { HookUsage, floatingOptionsCannotControlState, floatingOptionsCannotUseDescriptionRole };

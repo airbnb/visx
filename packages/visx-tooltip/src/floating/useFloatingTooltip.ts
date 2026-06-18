@@ -9,7 +9,7 @@ import {
   useRole,
 } from '@floating-ui/react';
 import type { OpenChangeReason, ReferenceElement } from '@floating-ui/react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type React from 'react';
 import { getTooltipAnchorReference } from './anchors';
 import { buildFloatingTooltipMiddleware } from './middleware';
@@ -31,6 +31,28 @@ function getSideAndAlign(placement: string): { side: TooltipSide; align: Tooltip
   };
 }
 
+function getFloatingPropsWithDefaultId<TProps extends React.HTMLProps<HTMLElement>>(
+  props: TProps | undefined,
+  id: string | undefined,
+) {
+  let nextProps = props;
+
+  if (
+    nextProps &&
+    nextProps.id === undefined &&
+    Object.prototype.hasOwnProperty.call(nextProps, 'id')
+  ) {
+    const { id: _id, ...restProps } = nextProps;
+    nextProps = restProps as TProps;
+  }
+
+  if (id != null && nextProps?.id == null) {
+    return { ...nextProps, id } as TProps;
+  }
+
+  return nextProps;
+}
+
 export default function useFloatingTooltip<TData = unknown>({
   anchor: anchorProp,
   arrow = false,
@@ -43,6 +65,7 @@ export default function useFloatingTooltip<TData = unknown>({
   disabled = false,
   flip = true,
   hideWhenDetached = false,
+  id,
   interactions = true,
   middleware,
   middlewareMode = 'append',
@@ -60,6 +83,10 @@ export default function useFloatingTooltip<TData = unknown>({
   const [uncontrolledAnchor, setUncontrolledAnchor] = useState<TooltipAnchor | null>(defaultAnchor);
   const [uncontrolledData, setUncontrolledData] = useState<TData | undefined>(defaultData);
   const [arrowElement, setArrowElement] = useState<SVGSVGElement | null>(null);
+  const [domReference, setDomReference] = useState<ReferenceElement | null>(null);
+  const [fallbackPositionReference, setFallbackPositionReference] =
+    useState<ReferenceElement | null>(null);
+  const hasManagedPositionReferenceRef = useRef(false);
 
   const isOpenControlled = openProp != null;
   const isAnchorControlled = anchorProp !== undefined;
@@ -139,7 +166,7 @@ export default function useFloatingTooltip<TData = unknown>({
   const hoverEnabled = interactionsEnabled && hoverOptions !== false;
   const focusEnabled = interactionsEnabled && focusOptions !== false;
   const dismissEnabled = interactionsEnabled && dismissOptions !== false;
-  const roleEnabled = interactionsEnabled && roleOptions !== false && role === 'tooltip';
+  const roleEnabled = interactionsEnabled && roleOptions !== false;
   const delayGroup = useDelayGroup(floating.context, { enabled: hoverEnabled });
 
   const hoverProps = useHover(floating.context, {
@@ -157,7 +184,7 @@ export default function useFloatingTooltip<TData = unknown>({
   });
   const roleProps = useRole(floating.context, {
     enabled: roleEnabled,
-    role: 'tooltip',
+    role,
     ...(typeof roleOptions === 'object' ? roleOptions : null),
   });
   const { getFloatingProps, getReferenceProps } = useInteractions([
@@ -167,11 +194,42 @@ export default function useFloatingTooltip<TData = unknown>({
     roleProps,
   ]);
 
-  const positionReference = useMemo(() => getTooltipAnchorReference(anchor), [anchor]);
+  const explicitPositionReference = useMemo(() => getTooltipAnchorReference(anchor), [anchor]);
+  const fallbackReference = fallbackPositionReference ?? domReference;
+  const positionReference = anchor != null ? explicitPositionReference : fallbackReference;
+  const hasManagedPositionReference = anchor != null || fallbackReference != null;
 
   useEffect(() => {
-    floating.refs.setPositionReference(positionReference);
-  }, [floating.refs, positionReference]);
+    if (hasManagedPositionReference || hasManagedPositionReferenceRef.current) {
+      floating.refs.setPositionReference(positionReference);
+      hasManagedPositionReferenceRef.current = hasManagedPositionReference;
+    }
+  }, [floating.refs, hasManagedPositionReference, positionReference]);
+
+  const setReference = useCallback(
+    (nextReference: ReferenceElement | null) => {
+      setDomReference(nextReference);
+      floating.refs.setReference(nextReference);
+    },
+    [floating.refs],
+  );
+
+  const setPositionReference = useCallback(
+    (nextReference: ReferenceElement | null) => {
+      setFallbackPositionReference(nextReference);
+      floating.refs.setPositionReference(nextReference);
+    },
+    [floating.refs],
+  );
+
+  const refs = useMemo(
+    () => ({
+      ...floating.refs,
+      setReference,
+      setPositionReference,
+    }),
+    [floating.refs, setPositionReference, setReference],
+  );
 
   const setAnchor = useCallback(
     (nextAnchor: TooltipAnchor | null) => {
@@ -208,6 +266,11 @@ export default function useFloatingTooltip<TData = unknown>({
   }, [handleOpenChange]);
 
   const { align, side } = getSideAndAlign(floating.placement);
+  const getFloatingPropsWithId = useCallback(
+    <TProps extends React.HTMLProps<HTMLElement>>(props?: TProps) =>
+      getFloatingProps(getFloatingPropsWithDefaultId(props, id)) as TProps,
+    [getFloatingProps, id],
+  );
 
   return {
     open,
@@ -222,7 +285,7 @@ export default function useFloatingTooltip<TData = unknown>({
     y: floating.y,
     floatingStyles: floating.floatingStyles,
     middlewareData: floating.middlewareData,
-    refs: floating.refs,
+    refs,
     context: floating.context,
     arrowRef: setArrowElement,
     setAnchor,
@@ -232,8 +295,7 @@ export default function useFloatingTooltip<TData = unknown>({
     closeTooltip,
     getReferenceProps: <TProps extends React.HTMLProps<Element>>(props?: TProps) =>
       getReferenceProps(props) as TProps,
-    getFloatingProps: <TProps extends React.HTMLProps<HTMLElement>>(props?: TProps) =>
-      getFloatingProps(props) as TProps,
+    getFloatingProps: getFloatingPropsWithId,
     getArrowProps: <TProps extends React.SVGProps<SVGSVGElement>>(props?: TProps) =>
       props ?? ({} as TProps),
   };

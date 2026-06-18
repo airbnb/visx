@@ -35,7 +35,7 @@ function HookProbe({ hideDelay }: { hideDelay?: number }) {
       <button
         type="button"
         onClick={() =>
-          tooltip.show({ anchor: { type: 'svg-point', x: 10, y: 20 }, items: [item] })
+          tooltip.show({ anchor: { type: 'svg-local-point', x: 10, y: 20 }, items: [item] })
         }
       >
         show svg
@@ -138,6 +138,10 @@ describe('<ChartTooltip />', () => {
 
     expect(screen.getByTestId('positioner')).toHaveClass('custom-positioner');
     expect(screen.getByTestId('positioner')).toHaveAttribute('data-side', 'right');
+    expect(screen.getByTestId('positioner')).toHaveAttribute('role', 'tooltip');
+    expect(screen.getByText('custom 1').closest('[data-visx-tooltip-content]')).not.toHaveAttribute(
+      'role',
+    );
     expect(screen.getByText('custom 1')).toBeInTheDocument();
   });
 
@@ -155,5 +159,34 @@ describe('<ChartTooltip />', () => {
     );
 
     expect(screen.getByTestId('positioner')).toHaveAttribute('data-side', 'left');
+  });
+
+  it('forwards floatingOptions id and lets positionerProps id win', () => {
+    const anchor = { type: 'point', x: 0, y: 0 } as const;
+    const { rerender } = render(
+      <ChartTooltip
+        open
+        anchor={anchor}
+        items={[item]}
+        floatingOptions={{ id: 'chart-tooltip-id' }}
+        positionerProps={{ 'data-testid': 'positioner' }}
+        portal={false}
+      />,
+    );
+
+    expect(screen.getByTestId('positioner')).toHaveAttribute('id', 'chart-tooltip-id');
+
+    rerender(
+      <ChartTooltip
+        open
+        anchor={anchor}
+        items={[item]}
+        floatingOptions={{ id: 'chart-tooltip-id' }}
+        positionerProps={{ 'data-testid': 'positioner', id: 'positioner-id' }}
+        portal={false}
+      />,
+    );
+
+    expect(screen.getByTestId('positioner')).toHaveAttribute('id', 'positioner-id');
   });
 });
