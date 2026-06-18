@@ -81,14 +81,13 @@ async function performRelease() {
   console.log('Most recent non-alpha tag found is', mostRecentNonAlphaTag.name);
 
   // get commits since most recent alpha / non-alpha tag
-  const commitsSinceLastTagRequest = await fetchCommitsSinceTag(client, mostRecentTag.commit.sha);
-  const commitsSinceNonAlphaTagRequest = await fetchCommitsSinceTag(
-    client,
+  const commitsSinceLastTagResponse = await fetchCommitsSinceTag(mostRecentTag.commit.sha);
+  const commitsSinceNonAlphaTagResponse = await fetchCommitsSinceTag(
     mostRecentNonAlphaTag.commit.sha,
   );
 
-  const commitsSinceNonAlphaTag = commitsSinceNonAlphaTagRequest.data.commits;
-  const commitsSinceLastTag = commitsSinceLastTagRequest.data.commits;
+  const commitsSinceNonAlphaTag = commitsSinceNonAlphaTagResponse.data.commits;
+  const commitsSinceLastTag = commitsSinceLastTagResponse.data.commits;
 
   if (commitsSinceLastTag.length === 0) {
     console.log(`No commits found since last release tag. Exiting.`);
