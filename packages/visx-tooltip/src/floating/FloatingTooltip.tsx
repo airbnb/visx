@@ -28,6 +28,20 @@ type RenderElementProps<ElementProps, State> = {
   state: State;
 };
 
+type FloatingCssVariables = React.CSSProperties & {
+  '--visx-tooltip-transform-origin'?: string;
+  '--visx-tooltip-arrow-x'?: string;
+  '--visx-tooltip-arrow-y'?: string;
+};
+
+type FloatingDataAttributes = {
+  [key: `data-${string}`]: string | undefined;
+};
+
+type FloatingReferenceProps = React.HTMLProps<Element> & FloatingDataAttributes;
+type FloatingDivProps = React.HTMLProps<HTMLDivElement> & FloatingDataAttributes;
+type FloatingSvgProps = React.SVGProps<SVGSVGElement> & FloatingDataAttributes;
+
 function renderElement<ElementProps, State>({
   defaultElement,
   props,
@@ -61,7 +75,7 @@ function getTransformOrigin(state: FloatingTooltipRootState) {
   }
 }
 
-function getFloatingCssVariables(state: FloatingTooltipRootState) {
+function getFloatingCssVariables(state: FloatingTooltipRootState): FloatingCssVariables {
   const arrowX = state.middlewareData.arrow?.x;
   const arrowY = state.middlewareData.arrow?.y;
 
@@ -69,7 +83,7 @@ function getFloatingCssVariables(state: FloatingTooltipRootState) {
     '--visx-tooltip-transform-origin': getTransformOrigin(state),
     '--visx-tooltip-arrow-x': arrowX == null ? undefined : `${arrowX}px`,
     '--visx-tooltip-arrow-y': arrowY == null ? undefined : `${arrowY}px`,
-  } as React.CSSProperties;
+  };
 }
 
 function getPortalRoot(container: FloatingTooltipPortalProps['container']) {
@@ -133,13 +147,13 @@ function Trigger({ disabled = false, render }: FloatingTooltipTriggerProps) {
     side: state.side,
     align: state.align,
   };
-  const referenceProps = {
+  const referenceProps: FloatingReferenceProps = {
     'aria-disabled': disabled || undefined,
     'data-disabled': disabled ? '' : undefined,
     'data-state': state.open ? 'open' : 'closed',
     'data-visx-tooltip-trigger': '',
     ref: setTriggerReference,
-  } as React.HTMLProps<Element>;
+  };
   const triggerProps = disabled ? referenceProps : state.getReferenceProps(referenceProps);
 
   if (typeof render === 'function') return render(triggerProps, triggerState);
@@ -151,7 +165,7 @@ function Portal({ children, container, disabled = false }: FloatingTooltipPortal
   const state = useFloatingTooltipContext('FloatingTooltip.Portal');
 
   if (!state.mounted) return null;
-  if (disabled) return <>{children}</>;
+  if (disabled) return children;
 
   return (
     <FloatingPortal root={getPortalRoot(container) as FloatingUiPortalProps['root']}>
@@ -160,19 +174,13 @@ function Portal({ children, container, disabled = false }: FloatingTooltipPortal
   );
 }
 
-function Positioner({
-  children,
-  id,
-  render,
-  style,
-  ...restProps
-}: FloatingTooltipPositionerProps) {
+function Positioner({ children, id, render, style, ...restProps }: FloatingTooltipPositionerProps) {
   const state = useFloatingTooltipContext('FloatingTooltip.Positioner');
 
   if (!state.mounted) return null;
 
   const anchorHidden = Boolean(state.middlewareData.hide?.referenceHidden);
-  const positionerProps = state.getFloatingProps({
+  const basePositionerProps: FloatingDivProps = {
     ...restProps,
     children,
     'data-anchor-hidden': anchorHidden ? '' : undefined,
@@ -187,7 +195,8 @@ function Positioner({
       ...getFloatingCssVariables(state),
       ...style,
     },
-  } as React.HTMLProps<HTMLDivElement>);
+  };
+  const positionerProps = state.getFloatingProps(basePositionerProps);
 
   return renderElement<React.HTMLProps<HTMLDivElement>, FloatingTooltipPositionerState>({
     defaultElement: <div />,
@@ -202,12 +211,12 @@ function Content({ children, render, ...restProps }: FloatingTooltipContentProps
 
   if (!state.mounted) return null;
 
-  const contentProps = {
+  const contentProps: FloatingDivProps = {
     ...restProps,
     children,
     'data-state': state.open ? 'open' : 'closed',
     'data-visx-tooltip-content': '',
-  } as React.HTMLProps<HTMLDivElement>;
+  };
 
   return renderElement<React.HTMLProps<HTMLDivElement>, FloatingTooltipContentState>({
     defaultElement: <div />,
@@ -229,11 +238,12 @@ function Arrow({
   if (!state.mounted) return null;
 
   if (render) {
-    const arrowProps = state.getArrowProps({
+    const baseArrowProps: FloatingSvgProps = {
       ...restProps,
       'data-visx-tooltip-arrow': '',
       ref: state.arrowRef,
-    } as React.SVGProps<SVGSVGElement>);
+    };
+    const arrowProps = state.getArrowProps(baseArrowProps);
 
     return renderElement<React.SVGProps<SVGSVGElement>, FloatingTooltipArrowState>({
       defaultElement: <svg />,

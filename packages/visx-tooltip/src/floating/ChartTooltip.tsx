@@ -78,15 +78,9 @@ export default function ChartTooltip<Datum = unknown>({
       collisionPadding={collisionPadding}
     >
       {(state) => {
-        const content =
-          renderContent?.({ items, config, state }) ?? (
-            <ChartTooltipContent
-              label={label}
-              items={items}
-              config={config}
-              {...contentProps}
-            />
-          );
+        const content = renderContent?.({ items, config, state }) ?? (
+          <ChartTooltipContent label={label} items={items} config={config} {...contentProps} />
+        );
 
         if (!content) return null;
 
@@ -96,7 +90,11 @@ export default function ChartTooltip<Datum = unknown>({
           </FloatingTooltip.Positioner>
         );
 
-        return portal ? <FloatingTooltip.Portal {...portalProps}>{body}</FloatingTooltip.Portal> : body;
+        return portal ? (
+          <FloatingTooltip.Portal {...portalProps}>{body}</FloatingTooltip.Portal>
+        ) : (
+          body
+        );
       }}
     </FloatingTooltip.Root>
   );

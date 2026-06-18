@@ -45,24 +45,22 @@ export type ChartTooltipItemRenderParams<Datum = unknown> = {
   indicator: ChartTooltipIndicator;
 };
 
-export type ChartTooltipValueRenderParams<Datum = unknown> =
-  ChartTooltipItemRenderParams<Datum>;
+export type ChartTooltipValueRenderParams<Datum = unknown> = ChartTooltipItemRenderParams<Datum>;
 
-export type ChartTooltipContentProps<Datum = unknown> =
-  React.HTMLAttributes<HTMLDivElement> & {
-    label?: React.ReactNode;
-    items: ChartTooltipItem<Datum>[];
-    config?: ChartTooltipConfig<Datum>;
-    indicator?: ChartTooltipIndicator;
-    hideLabel?: boolean;
-    hideIndicator?: boolean;
-    sortItems?: (a: ChartTooltipItem<Datum>, b: ChartTooltipItem<Datum>) => number;
-    renderLabel?: (params: ChartTooltipLabelRenderParams<Datum>) => React.ReactNode;
-    renderItem?: (params: ChartTooltipItemRenderParams<Datum>) => React.ReactNode;
-    renderValue?: (params: ChartTooltipValueRenderParams<Datum>) => React.ReactNode;
-    getItemKey?: (item: ChartTooltipItem<Datum>, index: number) => React.Key;
-    'data-testid'?: string;
-  };
+export type ChartTooltipContentProps<Datum = unknown> = React.HTMLAttributes<HTMLDivElement> & {
+  label?: React.ReactNode;
+  items: ChartTooltipItem<Datum>[];
+  config?: ChartTooltipConfig<Datum>;
+  indicator?: ChartTooltipIndicator;
+  hideLabel?: boolean;
+  hideIndicator?: boolean;
+  sortItems?: (a: ChartTooltipItem<Datum>, b: ChartTooltipItem<Datum>) => number;
+  renderLabel?: (params: ChartTooltipLabelRenderParams<Datum>) => React.ReactNode;
+  renderItem?: (params: ChartTooltipItemRenderParams<Datum>) => React.ReactNode;
+  renderValue?: (params: ChartTooltipValueRenderParams<Datum>) => React.ReactNode;
+  getItemKey?: (item: ChartTooltipItem<Datum>, index: number) => React.Key;
+  'data-testid'?: string;
+};
 
 type VisibleItem<Datum> = {
   configEntry?: ChartTooltipConfig<Datum>[string];
@@ -70,10 +68,11 @@ type VisibleItem<Datum> = {
   item: ChartTooltipItem<Datum>;
 };
 
-function getConfigEntry<Datum>(
-  item: ChartTooltipItem<Datum>,
-  config?: ChartTooltipConfig<Datum>,
-) {
+type ChartTooltipItemStyle = React.CSSProperties & {
+  '--visx-tooltip-item-color'?: string;
+};
+
+function getConfigEntry<Datum>(item: ChartTooltipItem<Datum>, config?: ChartTooltipConfig<Datum>) {
   return config?.[item.key];
 }
 
@@ -94,7 +93,7 @@ function getItemValue<Datum>(
   item: ChartTooltipItem<Datum>,
   configEntry?: ChartTooltipConfig<Datum>[string],
 ) {
-  const formatterValue = item.rawValue !== undefined ? item.rawValue : item.value;
+  const formatterValue = item.rawValue === undefined ? item.value : item.rawValue;
 
   if (configEntry?.formatValue) return configEntry.formatValue(formatterValue, item);
   if (item.value != null) return item.value;
@@ -140,6 +139,12 @@ function getVisibleItems<Datum>({
     });
 }
 
+function getItemColorStyle(itemColor?: string): ChartTooltipItemStyle | undefined {
+  if (!itemColor) return undefined;
+
+  return { '--visx-tooltip-item-color': itemColor };
+}
+
 export default function ChartTooltipContent<Datum = unknown>({
   className,
   config,
@@ -166,15 +171,8 @@ export default function ChartTooltipContent<Datum = unknown>({
       : null;
 
   return (
-    <div
-      {...restProps}
-      className={className}
-      data-visx-chart-tooltip=""
-      data-testid={dataTestId}
-    >
-      {renderedLabel != null && (
-        <div data-visx-chart-tooltip-label="">{renderedLabel}</div>
-      )}
+    <div {...restProps} className={className} data-visx-chart-tooltip="" data-testid={dataTestId}>
+      {renderedLabel != null && <div data-visx-chart-tooltip-label="">{renderedLabel}</div>}
       <div data-visx-chart-tooltip-items="">
         {visibleItems.map(({ configEntry, index, item }) => {
           const itemLabel = getItemLabel(item, configEntry);
@@ -201,11 +199,7 @@ export default function ChartTooltipContent<Datum = unknown>({
               data-item-key={item.key}
               data-testid={`item-${item.key}`}
               data-visx-chart-tooltip-item=""
-              style={
-                itemColor
-                  ? ({ '--visx-tooltip-item-color': itemColor } as React.CSSProperties)
-                  : undefined
-              }
+              style={getItemColorStyle(itemColor)}
             >
               {renderItem ? (
                 renderItem(itemParams)

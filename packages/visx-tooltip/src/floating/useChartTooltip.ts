@@ -59,7 +59,7 @@ function isTooltipAnchor(
 }
 
 function isSvgElement(element: Element | null): element is SVGSVGElement | SVGGraphicsElement {
-  return Boolean(element && element.namespaceURI === 'http://www.w3.org/2000/svg');
+  return element?.namespaceURI === 'http://www.w3.org/2000/svg';
 }
 
 export default function useChartTooltip<Datum = unknown>({

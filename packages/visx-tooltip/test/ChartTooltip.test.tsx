@@ -17,6 +17,7 @@ const item: ChartTooltipItem<Datum> = {
 
 function HookProbe({ hideDelay }: { hideDelay?: number }) {
   const tooltip = useChartTooltip<Datum>({ hideDelay, placement: 'right', offset: 12 });
+  const handleHide = tooltip.hide;
 
   return (
     <div>
@@ -26,10 +27,7 @@ function HookProbe({ hideDelay }: { hideDelay?: number }) {
       <output data-testid="state">
         {String(tooltip.open)}|{tooltip.anchor?.type}|{tooltip.items.length}
       </output>
-      <button
-        type="button"
-        onClick={() => tooltip.show({ anchor: { x: 4, y: 8 }, items: [item] })}
-      >
+      <button type="button" onClick={() => tooltip.show({ anchor: { x: 4, y: 8 }, items: [item] })}>
         show local
       </button>
       <button
@@ -40,13 +38,10 @@ function HookProbe({ hideDelay }: { hideDelay?: number }) {
       >
         show svg
       </button>
-      <button
-        type="button"
-        onClick={() => tooltip.update({ items: [{ ...item, rawValue: 20 }] })}
-      >
+      <button type="button" onClick={() => tooltip.update({ items: [{ ...item, rawValue: 20 }] })}>
         update
       </button>
-      <button type="button" onClick={tooltip.hide}>
+      <button type="button" onClick={handleHide}>
         hide
       </button>
       <ChartTooltip {...tooltip.tooltipProps} label="Value" />

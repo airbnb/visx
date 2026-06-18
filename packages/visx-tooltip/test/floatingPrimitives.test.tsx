@@ -6,8 +6,12 @@ import { buildFloatingTooltipMiddleware } from '../src/floating/middleware';
 import { FloatingTooltip, useFloatingTooltip } from '../src/floating';
 import type { TooltipAnchor } from '../src/floating';
 
-function rect(left: number, top: number, width = 0, height = 0) {
-  return {
+function rect(left: number, top: number, width = 0, height = 0): DOMRect | ClientRect {
+  if (typeof DOMRect === 'function') {
+    return new DOMRect(left, top, width, height);
+  }
+
+  const clientRect: DOMRect = {
     x: left,
     y: top,
     left,
@@ -16,7 +20,19 @@ function rect(left: number, top: number, width = 0, height = 0) {
     height,
     right: left + width,
     bottom: top + height,
-  } as DOMRect;
+    toJSON: () => ({
+      x: left,
+      y: top,
+      left,
+      top,
+      width,
+      height,
+      right: left + width,
+      bottom: top + height,
+    }),
+  };
+
+  return clientRect;
 }
 
 function HookProbe({
@@ -39,16 +55,20 @@ function HookProbe({
     onOpenChange,
     open,
   });
+  const handleClose = tooltip.closeTooltip;
 
   return (
     <div>
       <output data-testid="state">
         {String(tooltip.open)}|{tooltip.data}|{tooltip.anchor?.type}|{tooltip.side}|{tooltip.align}
       </output>
-      <button type="button" onClick={() => tooltip.openTooltip('next', { type: 'point', x: 3, y: 4 })}>
+      <button
+        type="button"
+        onClick={() => tooltip.openTooltip('next', { type: 'point', x: 3, y: 4 })}
+      >
         open
       </button>
-      <button type="button" onClick={tooltip.closeTooltip}>
+      <button type="button" onClick={handleClose}>
         close
       </button>
     </div>
@@ -273,14 +293,14 @@ describe('<FloatingTooltip /> manual primitives', () => {
     rerender(
       <FloatingTooltip.Root open anchor={{ type: 'point', x: 0, y: 0 }}>
         <FloatingTooltip.Positioner>
-          <FloatingTooltip.Content data-testid="content" role="note">
+          <FloatingTooltip.Content data-testid="content" role="status">
             Tooltip
           </FloatingTooltip.Content>
         </FloatingTooltip.Positioner>
       </FloatingTooltip.Root>,
     );
 
-    expect(screen.getByTestId('content')).toHaveAttribute('role', 'note');
+    expect(screen.getByTestId('content')).toHaveAttribute('role', 'status');
   });
 
   it('uses the root id for the positioner and lets positioner props override it', () => {

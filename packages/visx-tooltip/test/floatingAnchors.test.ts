@@ -1,8 +1,12 @@
 import { getTooltipAnchorReference } from '../src/floating/anchors';
 import type { TooltipAnchor, TooltipVirtualElement } from '../src/floating';
 
-function rect(left: number, top: number, width = 0, height = 0) {
-  return {
+function rect(left: number, top: number, width = 0, height = 0): DOMRect | ClientRect {
+  if (typeof DOMRect === 'function') {
+    return new DOMRect(left, top, width, height);
+  }
+
+  const clientRect: DOMRect = {
     x: left,
     y: top,
     left,
@@ -11,7 +15,19 @@ function rect(left: number, top: number, width = 0, height = 0) {
     height,
     right: left + width,
     bottom: top + height,
-  } as DOMRect;
+    toJSON: () => ({
+      x: left,
+      y: top,
+      left,
+      top,
+      width,
+      height,
+      right: left + width,
+      bottom: top + height,
+    }),
+  };
+
+  return clientRect;
 }
 
 describe('floating tooltip anchors', () => {
@@ -176,7 +192,12 @@ describe('floating tooltip anchors', () => {
     const anchors = [
       { type: 'point', x: 0, y: 0 },
       { type: 'container-point', x: 0, y: 0, container: document.body },
-      { type: 'svg-point', x: 0, y: 0, svg: document.createElementNS('http://www.w3.org/2000/svg', 'svg') },
+      {
+        type: 'svg-point',
+        x: 0,
+        y: 0,
+        svg: document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+      },
       { type: 'rect', getRect: () => rect(0, 0) },
     ] satisfies TooltipAnchor[];
 

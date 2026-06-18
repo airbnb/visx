@@ -15,8 +15,8 @@ npm install --save @visx/tooltip
 
 ### Modern Floating UI tooltips
 
-`@visx/tooltip` also includes an additive Floating UI-backed surface for modern tooltip
-positioning. Import it from the explicit React subpath:
+`@visx/tooltip` also includes an additive Floating UI-backed surface for modern tooltip positioning.
+Import it from the explicit React subpath:
 
 ```tsx
 import {
@@ -81,12 +81,7 @@ function RevenueChart({ data, width, height }: { data: Datum[]; width: number; h
         onPointerLeave={tooltip.hide}
       >
         {data.map((datum) => (
-          <circle
-            key={datum.month}
-            cx={xScale(datum.month)}
-            cy={yScale(datum.revenue)}
-            r={4}
-          />
+          <circle key={datum.month} cx={xScale(datum.month)} cy={yScale(datum.revenue)} r={4} />
         ))}
       </svg>
 
@@ -311,8 +306,8 @@ To use a `Portal`, simply pass your `Tooltip` as a child: `<Portal><Tooltip {...
 will also need to correct the `left` and `top` positions to be in _page coordinates_, not the
 coordinates of your container which you would use when _not_ using a `Portal`. If reacting to a
 mouse event, you can use `event.pageX/Y`. Alternatively, if you have container coordinates, you can
-convert them to page coordinates using the following (note: `useTooltipInPortal` handles this
-for you):
+convert them to page coordinates using the following (note: `useTooltipInPortal` handles this for
+you):
 
 ```js
 const pageX = containerX + containerBoundingBox.left + window.scrollLeft;

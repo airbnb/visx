@@ -14,23 +14,31 @@ import {
 } from '@visx/tooltip/floating';
 ```
 
-The package exports `./floating` in `packages/visx-tooltip/package.json`. The floating entrypoint starts with `'use client'`, so these APIs are React client APIs.
+The package exports `./floating` in `packages/visx-tooltip/package.json`. The floating entrypoint
+starts with `'use client'`, so these APIs are React client APIs.
 
-The existing root `@visx/tooltip` API is separate. Do not import these new floating APIs from the root package unless a future change explicitly exports them there.
+The existing root `@visx/tooltip` API is separate. Do not import these new floating APIs from the
+root package unless a future change explicitly exports them there.
 
 ## Which Layer To Use
 
-Use `useChartTooltip` plus `ChartTooltip` for most chart tooltips. This is the most convenient layer: the hook owns open state, current anchor, current items, hide delay, and the props needed by `ChartTooltip`.
+Use `useChartTooltip` plus `ChartTooltip` for most chart tooltips. This is the most convenient
+layer: the hook owns open state, current anchor, current items, hide delay, and the props needed by
+`ChartTooltip`.
 
-Use `ChartTooltipContent` when you only want the config-driven content renderer and you already have positioning handled elsewhere.
+Use `ChartTooltipContent` when you only want the config-driven content renderer and you already have
+positioning handled elsewhere.
 
-Use `FloatingTooltip` primitives when you want full positioning composition: root, trigger, portal, positioner, content, and arrow.
+Use `FloatingTooltip` primitives when you want full positioning composition: root, trigger, portal,
+positioner, content, and arrow.
 
-Use `useFloatingTooltip` directly when you want the low-level hook state, Floating UI refs, `getReferenceProps`, and `getFloatingProps`.
+Use `useFloatingTooltip` directly when you want the low-level hook state, Floating UI refs,
+`getReferenceProps`, and `getFloatingProps`.
 
 ## Simplest Discrete Datum Pattern
 
-For bars, points, glyphs, or any mark with a DOM/SVG element, anchor to the element. This avoids coordinate math.
+For bars, points, glyphs, or any mark with a DOM/SVG element, anchor to the element. This avoids
+coordinate math.
 
 ```tsx
 import {
@@ -102,7 +110,8 @@ What is happening:
 
 - `tooltip.show()` opens the tooltip and sets both anchor and items.
 - `anchor: { type: 'element', element }` is a public `TooltipAnchor`.
-- `tooltip.tooltipProps` contains the controlled props that `ChartTooltip` needs: `open`, `anchor`, `items`, plus `floatingOptions`, `offset`, and `placement`.
+- `tooltip.tooltipProps` contains the controlled props that `ChartTooltip` needs: `open`, `anchor`,
+  `items`, plus `floatingOptions`, `offset`, and `placement`.
 - `ChartTooltip` renders in a portal by default.
 
 ## `useChartTooltip`
@@ -154,8 +163,10 @@ Important behavior:
 - `show()` clears any pending hide delay, resolves the anchor, stores the new items, and opens.
 - `hide()` closes immediately unless `hideDelay` is set.
 - `hideDelay` schedules a delayed close; calling `show()` again cancels that pending close.
-- `update()` can replace `items` and/or a full `TooltipAnchor`; it does not accept the `{ x, y }` or shorthand SVG point forms.
-- `floatingOptions` intentionally cannot control `open`, `data`, or `anchor`; those are owned by the chart convenience hook.
+- `update()` can replace `items` and/or a full `TooltipAnchor`; it does not accept the `{ x, y }` or
+  shorthand SVG point forms.
+- `floatingOptions` intentionally cannot control `open`, `data`, or `anchor`; those are owned by the
+  chart convenience hook.
 
 ## Anchor Patterns
 
@@ -176,7 +187,8 @@ If `element` is `null`, the anchor resolves to `null`.
 
 ### Local Container Point
 
-With `useChartTooltip.show()`, a bare `{ x, y }` is shorthand for a CSS-pixel point local to the latest `containerRef` element, or to the explicit `container` option.
+With `useChartTooltip.show()`, a bare `{ x, y }` is shorthand for a CSS-pixel point local to the
+latest `containerRef` element, or to the explicit `container` option.
 
 ```tsx
 <svg
@@ -219,7 +231,8 @@ tooltip.show({
 });
 ```
 
-The `useChartTooltip` shorthand uses `type: 'svg-local-point'` and fills in the SVG element from `containerRef` when the latest container is an SVG element. The full `TooltipAnchor` form is:
+The `useChartTooltip` shorthand uses `type: 'svg-local-point'` and fills in the SVG element from
+`containerRef` when the latest container is an SVG element. The full `TooltipAnchor` form is:
 
 ```ts
 {
@@ -232,7 +245,8 @@ The `useChartTooltip` shorthand uses `type: 'svg-local-point'` and fills in the 
 
 Source behavior:
 
-- If `createSVGPoint()` and `getScreenCTM()` are available, the point is transformed through the screen CTM.
+- If `createSVGPoint()` and `getScreenCTM()` are available, the point is transformed through the
+  screen CTM.
 - Otherwise, it falls back to the SVG element bounding rect plus `x` and `y`.
 - If `svg` is `null`, the anchor resolves to `null`.
 
@@ -245,7 +259,8 @@ const clientPoint = { type: 'point', x: event.clientX, y: event.clientY };
 const pagePoint = { type: 'point', x: event.pageX, y: event.pageY, coordinateSpace: 'page' };
 ```
 
-`coordinateSpace` can be `'client'` or `'page'`. Page coordinates are converted to client coordinates by subtracting window scroll.
+`coordinateSpace` can be `'client'` or `'page'`. Page coordinates are converted to client
+coordinates by subtracting window scroll.
 
 ### Rect Anchor
 
@@ -315,16 +330,20 @@ type ChartTooltipConfig<Datum = unknown> = Record<
 
 Content precedence in the current implementation:
 
-- Label: `config[key].formatLabel(item)` first, then `config[key].label`, then `item.label`, then `item.key`.
-- Value: `config[key].formatValue(value, item)` first, then `item.value`, then `String(item.rawValue)`, then `''`.
-- The value passed to `formatValue` is `item.rawValue` when it is not `undefined`; otherwise it is `item.value`.
+- Label: `config[key].formatLabel(item)` first, then `config[key].label`, then `item.label`, then
+  `item.key`.
+- Value: `config[key].formatValue(value, item)` first, then `item.value`, then
+  `String(item.rawValue)`, then `''`.
+- The value passed to `formatValue` is `item.rawValue` when it is not `undefined`; otherwise it is
+  `item.value`.
 - Color: `config[key].color` first, then `item.color`.
 - Visibility: `item.hidden` and `config[key].hide` both remove an item.
 - Order: config `order` first, then `sortItems`, then original input order.
 
 ## `ChartTooltip`
 
-`ChartTooltip` composes `FloatingTooltip.Root`, `FloatingTooltip.Positioner`, `FloatingTooltip.Content`, and `FloatingTooltip.Portal`.
+`ChartTooltip` composes `FloatingTooltip.Root`, `FloatingTooltip.Positioner`,
+`FloatingTooltip.Content`, and `FloatingTooltip.Portal`.
 
 Required controlled props:
 
@@ -351,20 +370,17 @@ Optional props:
 - `floatingOptions`
 - `renderContent`
 
-`floatingOptions` cannot include `open`, `defaultOpen`, `data`, `defaultData`, `anchor`, or `defaultAnchor`. Pass those as explicit `ChartTooltip` props.
+`floatingOptions` cannot include `open`, `defaultOpen`, `data`, `defaultData`, `anchor`, or
+`defaultAnchor`. Pass those as explicit `ChartTooltip` props.
 
-Explicit `ChartTooltip` props win over overlapping fields inside `floatingOptions`. This is implemented by spreading `floatingOptions` first and then passing explicit `open`, `anchor`, `data`, `placement`, `strategy`, `offset`, and `collisionPadding` to `FloatingTooltip.Root`.
+Explicit `ChartTooltip` props win over overlapping fields inside `floatingOptions`. This is
+implemented by spreading `floatingOptions` first and then passing explicit `open`, `anchor`, `data`,
+`placement`, `strategy`, `offset`, and `collisionPadding` to `FloatingTooltip.Root`.
 
 Disable the portal when you need inline rendering:
 
 ```tsx
-<ChartTooltip
-  open={open}
-  anchor={anchor}
-  items={items}
-  config={config}
-  portal={false}
-/>
+<ChartTooltip open={open} anchor={anchor} items={items} config={config} portal={false} />
 ```
 
 Render custom content while keeping `ChartTooltip` positioning:
@@ -374,9 +390,7 @@ Render custom content while keeping `ChartTooltip` positioning:
   open={open}
   anchor={anchor}
   items={items}
-  renderContent={({ items, state }) => (
-    <div data-side={state.side}>Rows: {items.length}</div>
-  )}
+  renderContent={({ items, state }) => <div data-side={state.side}>Rows: {items.length}</div>}
 />
 ```
 
@@ -469,7 +483,8 @@ Props:
 - `skipDelay`; default `400`
 - `children`
 
-When `delay` is a number, it maps to `{ open: delay, close: closeDelay }`. When `delay` is an object, `open` defaults to `600` and `close` defaults to `closeDelay`.
+When `delay` is a number, it maps to `{ open: delay, close: closeDelay }`. When `delay` is an
+object, `open` defaults to `600` and `close` defaults to `closeDelay`.
 
 ### Root
 
@@ -478,11 +493,13 @@ When `delay` is a number, it maps to `{ open: delay, close: closeDelay }`. When 
 - `forceMount?: boolean`
 - `children: React.ReactNode | ((state) => React.ReactNode)`
 
-Closed content is unmounted by default. With `forceMount`, `state.mounted` stays true while `state.open` can still be false.
+Closed content is unmounted by default. With `forceMount`, `state.mounted` stays true while
+`state.open` can still be false.
 
 ### Trigger
 
-`Trigger` is optional. It wires Floating UI reference props for hover, focus, dismiss, and tooltip role behavior when interactions are enabled by `Root`.
+`Trigger` is optional. It wires Floating UI reference props for hover, focus, dismiss, and tooltip
+role behavior when interactions are enabled by `Root`.
 
 ```tsx
 <FloatingTooltip.Provider delay={700} skipDelay={300}>
@@ -511,9 +528,12 @@ Closed content is unmounted by default. With `forceMount`, `state.mounted` stays
 />
 ```
 
-If `Root` has no explicit `anchor`, the trigger becomes the positioning reference. If `Root` has an explicit `anchor`, the trigger still owns interactions while the explicit anchor owns positioning.
+If `Root` has no explicit `anchor`, the trigger becomes the positioning reference. If `Root` has an
+explicit `anchor`, the trigger still owns interactions while the explicit anchor owns positioning.
 
-`Trigger disabled` sets `aria-disabled`, adds `data-disabled`, and does not wire hover or focus interaction handlers for that trigger. To disable the whole tooltip state machine, use `Root disabled`.
+`Trigger disabled` sets `aria-disabled`, adds `data-disabled`, and does not wire hover or focus
+interaction handlers for that trigger. To disable the whole tooltip state machine, use
+`Root disabled`.
 
 ### Portal
 
@@ -565,7 +585,8 @@ It sets:
 - `data-visx-tooltip-content`
 - `data-state`
 
-`Content` does not assign a default `role`. Floating UI role props are applied through `Positioner`. An explicit `Content role` prop is forwarded.
+`Content` does not assign a default `role`. Floating UI role props are applied through `Positioner`.
+An explicit `Content role` prop is forwarded.
 
 `render` can replace the default element.
 
@@ -662,7 +683,8 @@ Controlled/uncontrolled behavior:
 
 - `open`, `anchor`, and `data` each become controlled when their corresponding prop is provided.
 - `defaultOpen`, `defaultAnchor`, and `defaultData` seed uncontrolled state.
-- `openTooltip(nextData, nextAnchor)` updates uncontrolled data and anchor when provided, then opens.
+- `openTooltip(nextData, nextAnchor)` updates uncontrolled data and anchor when provided, then
+  opens.
 - `closeTooltip()` closes.
 - `setAnchor()` and `setData()` only update uncontrolled state.
 - `id` is used as the default floating element id returned by `getFloatingProps()`.
@@ -722,9 +744,7 @@ When enabled, `useFloatingTooltip` wires:
 Disable all interactions:
 
 ```tsx
-<FloatingTooltip.Root interactions={false}>
-  ...
-</FloatingTooltip.Root>
+<FloatingTooltip.Root interactions={false}>...</FloatingTooltip.Root>
 ```
 
 Disable or configure one interaction:
@@ -742,9 +762,13 @@ Disable or configure one interaction:
 </FloatingTooltip.Root>
 ```
 
-`FloatingTooltip.Trigger` is the usual way to consume these interaction props. In tests, trigger hover opens, focus opens, Escape dismisses, default tooltip role wiring adds `aria-describedby`, and `role="label"` adds `aria-labelledby` instead.
+`FloatingTooltip.Trigger` is the usual way to consume these interaction props. In tests, trigger
+hover opens, focus opens, Escape dismisses, default tooltip role wiring adds `aria-describedby`, and
+`role="label"` adds `aria-labelledby` instead.
 
-When `FloatingTooltip.Root` receives an `id`, that id becomes the default `FloatingTooltip.Positioner` id and the trigger's ARIA target. An explicit `FloatingTooltip.Positioner id` wins over the root id.
+When `FloatingTooltip.Root` receives an `id`, that id becomes the default
+`FloatingTooltip.Positioner` id and the trigger's ARIA target. An explicit
+`FloatingTooltip.Positioner id` wins over the root id.
 
 ## Middleware
 
@@ -795,11 +819,13 @@ Replace all built-in middleware:
 </FloatingTooltip.Root>
 ```
 
-`collisionBoundary` and `collisionPadding` are forwarded into `flip`, `shift`, `size`, and `hide` when those middleware are enabled.
+`collisionBoundary` and `collisionPadding` are forwarded into `flip`, `shift`, `size`, and `hide`
+when those middleware are enabled.
 
 ## Styling Contract
 
-The floating APIs are intentionally minimally styled. Consumers should style via normal classes and data attributes.
+The floating APIs are intentionally minimally styled. Consumers should style via normal classes and
+data attributes.
 
 Useful primitive attributes:
 
@@ -827,7 +853,11 @@ Useful chart content attributes:
 
 These are source-validated caveats, not design guidance.
 
-- `FloatingTooltip.Content` does not assign a default role. `Positioner` receives Floating UI role props when role interactions are enabled.
-- `FloatingTooltip.Trigger disabled` is trigger-scoped; use `Root disabled` to disable the whole tooltip state machine.
-- `ChartTooltip` is controlled; it requires `open`, `anchor`, and `items`. `useChartTooltip` is the convenience state owner if you do not want to wire those yourself.
-- `useChartTooltip.update()` accepts a full `TooltipAnchor`, not the local-point or shorthand SVG-point forms accepted by `show()`.
+- `FloatingTooltip.Content` does not assign a default role. `Positioner` receives Floating UI role
+  props when role interactions are enabled.
+- `FloatingTooltip.Trigger disabled` is trigger-scoped; use `Root disabled` to disable the whole
+  tooltip state machine.
+- `ChartTooltip` is controlled; it requires `open`, `anchor`, and `items`. `useChartTooltip` is the
+  convenience state owner if you do not want to wire those yourself.
+- `useChartTooltip.update()` accepts a full `TooltipAnchor`, not the local-point or shorthand
+  SVG-point forms accepted by `show()`.

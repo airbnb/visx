@@ -21,7 +21,7 @@ function createRect(left: number, top: number, width = 0, height = 0): DOMRect |
     return new DOMRect(left, top, width, height);
   }
 
-  return {
+  const rect: DOMRect = {
     x: left,
     y: top,
     left,
@@ -30,7 +30,19 @@ function createRect(left: number, top: number, width = 0, height = 0): DOMRect |
     height,
     right: left + width,
     bottom: top + height,
-  } as DOMRect;
+    toJSON: () => ({
+      x: left,
+      y: top,
+      left,
+      top,
+      width,
+      height,
+      right: left + width,
+      bottom: top + height,
+    }),
+  };
+
+  return rect;
 }
 
 function createPointVirtualElement(
@@ -83,43 +95,50 @@ function getSvgPointReference(
   };
 }
 
-export function getTooltipAnchorReference(anchor: TooltipAnchor | null | undefined) {
+export function getTooltipAnchorReference(
+  anchor: TooltipAnchor | null | undefined,
+): ReferenceElement | null {
   if (!anchor) return null;
 
   switch (anchor.type) {
     case 'element':
-      return anchor.element as ReferenceElement | null;
+      return anchor.element;
 
     case 'point': {
       const x = anchor.coordinateSpace === 'page' ? anchor.x - getScrollX() : anchor.x;
       const y = anchor.coordinateSpace === 'page' ? anchor.y - getScrollY() : anchor.y;
-      return createPointVirtualElement(x, y) as ReferenceElement;
+      return createPointVirtualElement(x, y);
     }
 
     case 'container-point': {
       if (!anchor.container) return null;
 
-      const container = anchor.container;
-      return {
+      const { container } = anchor;
+      const reference: TooltipVirtualElement = {
         getBoundingClientRect: () => {
           const bounds = container.getBoundingClientRect();
           return createRect(bounds.left + anchor.x, bounds.top + anchor.y);
         },
         contextElement: container,
-      } as ReferenceElement;
+      };
+
+      return reference;
     }
 
     case 'svg-point':
-      return anchor.svg ? (getSvgPointReference(anchor.x, anchor.y, anchor.svg) as ReferenceElement) : null;
+      return anchor.svg ? getSvgPointReference(anchor.x, anchor.y, anchor.svg) : null;
 
-    case 'rect':
-      return {
+    case 'rect': {
+      const reference: TooltipVirtualElement = {
         getBoundingClientRect: anchor.getRect,
         contextElement: anchor.contextElement ?? undefined,
-      } as ReferenceElement;
+      };
+
+      return reference;
+    }
 
     case 'virtual':
-      return anchor.element as ReferenceElement;
+      return anchor.element;
 
     default:
       return null;

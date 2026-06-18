@@ -87,10 +87,7 @@ describe('<ChartTooltipContent />', () => {
     ]);
 
     rerender(
-      <ChartTooltipContent
-        items={items}
-        sortItems={(a, b) => b.key.localeCompare(a.key)}
-      />,
+      <ChartTooltipContent items={items} sortItems={(a, b) => b.key.localeCompare(a.key)} />,
     );
 
     expect(screen.getAllByTestId(/^item-/).map((item) => item.dataset.itemKey)).toEqual([

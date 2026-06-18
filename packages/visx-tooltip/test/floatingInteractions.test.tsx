@@ -4,8 +4,12 @@ import '@testing-library/jest-dom';
 import { FloatingTooltip } from '../src/floating';
 import type { TooltipAnchor } from '../src/floating';
 
-function rect(left: number, top: number, width = 0, height = 0) {
-  return {
+function rect(left: number, top: number, width = 0, height = 0): DOMRect | ClientRect {
+  if (typeof DOMRect === 'function') {
+    return new DOMRect(left, top, width, height);
+  }
+
+  const clientRect: DOMRect = {
     x: left,
     y: top,
     left,
@@ -14,24 +18,36 @@ function rect(left: number, top: number, width = 0, height = 0) {
     height,
     right: left + width,
     bottom: top + height,
-  } as DOMRect;
+    toJSON: () => ({
+      x: left,
+      y: top,
+      left,
+      top,
+      width,
+      height,
+      right: left + width,
+      bottom: top + height,
+    }),
+  };
+
+  return clientRect;
 }
 
 function TriggerTooltip({
   anchor,
   defaultOpen = false,
+  floatingRole,
   id,
   onOpenChange,
   positionerId,
-  role,
   triggerDisabled = false,
 }: {
   anchor?: TooltipAnchor;
   defaultOpen?: boolean;
+  floatingRole?: 'tooltip' | 'label';
   id?: string;
   onOpenChange?: ReturnType<typeof vi.fn>;
   positionerId?: string;
-  role?: 'tooltip' | 'label';
   triggerDisabled?: boolean;
 }) {
   return (
@@ -42,7 +58,7 @@ function TriggerTooltip({
         defaultOpen={defaultOpen}
         id={id}
         onOpenChange={onOpenChange}
-        role={role}
+        role={floatingRole}
       >
         <FloatingTooltip.Trigger
           disabled={triggerDisabled}
@@ -173,7 +189,7 @@ describe('<FloatingTooltip.Trigger />', () => {
   });
 
   it('supports label role ARIA wiring', async () => {
-    render(<TriggerTooltip id="export-tooltip" role="label" />);
+    render(<TriggerTooltip id="export-tooltip" floatingRole="label" />);
 
     const trigger = screen.getByRole('button', { name: 'Export' });
     fireEvent.focus(trigger);
@@ -200,9 +216,7 @@ describe('<FloatingTooltip.Trigger />', () => {
   it('uses the trigger as the positioning reference when no explicit anchor exists', async () => {
     const rectSpy = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect');
     rectSpy.mockImplementation(function getRect() {
-      return this.textContent === 'Export'
-        ? rect(120, 160, 40, 20)
-        : rect(0, 0, 80, 30);
+      return this.textContent === 'Export' ? rect(120, 160, 40, 20) : rect(0, 0, 80, 30);
     });
 
     render(<TriggerTooltip />);

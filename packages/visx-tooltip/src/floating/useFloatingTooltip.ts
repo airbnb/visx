@@ -47,7 +47,8 @@ function getFloatingPropsWithDefaultId<TProps extends React.HTMLProps<HTMLElemen
   }
 
   if (id != null && nextProps?.id == null) {
-    return { ...nextProps, id } as TProps;
+    const propsWithId = { ...nextProps, id };
+    return propsWithId as TProps;
   }
 
   return nextProps;
@@ -196,7 +197,7 @@ export default function useFloatingTooltip<TData = unknown>({
 
   const explicitPositionReference = useMemo(() => getTooltipAnchorReference(anchor), [anchor]);
   const fallbackReference = fallbackPositionReference ?? domReference;
-  const positionReference = anchor != null ? explicitPositionReference : fallbackReference;
+  const positionReference = anchor == null ? fallbackReference : explicitPositionReference;
   const hasManagedPositionReference = anchor != null || fallbackReference != null;
 
   useEffect(() => {
@@ -296,7 +297,9 @@ export default function useFloatingTooltip<TData = unknown>({
     getReferenceProps: <TProps extends React.HTMLProps<Element>>(props?: TProps) =>
       getReferenceProps(props) as TProps,
     getFloatingProps: getFloatingPropsWithId,
-    getArrowProps: <TProps extends React.SVGProps<SVGSVGElement>>(props?: TProps) =>
-      props ?? ({} as TProps),
+    getArrowProps: <TProps extends React.SVGProps<SVGSVGElement>>(props?: TProps) => {
+      const emptyProps = {};
+      return props ?? (emptyProps as TProps);
+    },
   };
 }

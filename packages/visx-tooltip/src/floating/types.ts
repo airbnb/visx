@@ -68,10 +68,7 @@ export type FloatingTooltipOpenChangeDetails<TData = unknown> = {
 export type UseFloatingTooltipOptions<TData = unknown> = {
   open?: boolean;
   defaultOpen?: boolean;
-  onOpenChange?: (
-    open: boolean,
-    details: FloatingTooltipOpenChangeDetails<TData>,
-  ) => void;
+  onOpenChange?: (open: boolean, details: FloatingTooltipOpenChangeDetails<TData>) => void;
 
   anchor?: TooltipAnchor | null;
   defaultAnchor?: TooltipAnchor | null;
@@ -139,9 +136,7 @@ export type FloatingTooltipRootState<TData = unknown> = UseFloatingTooltipReturn
 
 export type FloatingTooltipRootProps<TData = unknown> = UseFloatingTooltipOptions<TData> & {
   forceMount?: boolean;
-  children:
-    | React.ReactNode
-    | ((state: FloatingTooltipRootState<TData>) => React.ReactNode);
+  children: React.ReactNode | ((state: FloatingTooltipRootState<TData>) => React.ReactNode);
 };
 
 export type FloatingTooltipTriggerState = {

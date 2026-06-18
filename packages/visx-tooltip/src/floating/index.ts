@@ -8,10 +8,7 @@ export { default as useChartTooltip } from './useChartTooltip';
 export { default as useFloatingTooltip } from './useFloatingTooltip';
 export { buildFloatingTooltipMiddleware } from './middleware';
 
-export type {
-  ChartTooltipControlledProps,
-  ChartTooltipProps,
-} from './ChartTooltip';
+export type { ChartTooltipControlledProps, ChartTooltipProps } from './ChartTooltip';
 
 export type {
   ChartTooltipConfig,
