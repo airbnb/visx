@@ -185,6 +185,17 @@ visualization charts or library without having to learn d3. No more selections o
 
    > Me too.
 
+## Thanks
+
+Thanks to [Happo](https://happo.io) for providing the visual regression testing platform that
+helps us review UI changes and catch unintended visual regressions.
+
+<p>
+  <a href="https://happo.io">
+    <img src="./assets/happo-wordmark.svg" alt="Happo" height="60" />
+  </a>
+</p>
+
 ## Development
 
 Please see [CONTRIBUTING.md](./CONTRIBUTING.md)
