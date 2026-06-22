@@ -34,7 +34,7 @@ function TooltipWithBounds({
 
     if (parentBounds.width) {
       const rightPlacementClippedPx = left + offsetLeft + ownBounds.width - parentBounds.width;
-      const leftPlacementClippedPx = ownBounds.width - left - offsetLeft;
+      const leftPlacementClippedPx = ownBounds.width - left + offsetLeft;
       placeTooltipLeft =
         rightPlacementClippedPx > 0 && rightPlacementClippedPx > leftPlacementClippedPx;
     } else {
@@ -46,7 +46,7 @@ function TooltipWithBounds({
 
     if (parentBounds.height) {
       const bottomPlacementClippedPx = top + offsetTop + ownBounds.height - parentBounds.height;
-      const topPlacementClippedPx = ownBounds.height - top - offsetTop;
+      const topPlacementClippedPx = ownBounds.height - top + offsetTop;
       placeTooltipUp =
         bottomPlacementClippedPx > 0 && bottomPlacementClippedPx > topPlacementClippedPx;
     } else {
