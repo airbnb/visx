@@ -1,3 +1,6 @@
+import childProcess from 'child_process';
+import util from 'util';
+
 import type { GithubClient } from '../utils/getGitHubClient';
 import getRepoContext from '../utils/getRepoContext';
 import runGithubRequestWithRetries, {
@@ -5,42 +8,86 @@ import runGithubRequestWithRetries, {
 } from './runGithubRequestWithRetries';
 import type { PR } from './types';
 
+const execFile = util.promisify(childProcess.execFile);
+// GitHub squash merges append the PR number to the commit subject. Verify the
+// fetched PR's merge commit before using its labels to drive release behavior.
+const PR_NUMBER_MATCHER = /\(#(\d+)\)\s*$/;
+
+async function getCommitSubject(sha: string) {
+  const { stdout } = await execFile('git', ['show', '-s', '--format=%s', sha]);
+
+  return stdout.trim();
+}
+
+function getPullRequestNumberFromSubject(subject: string) {
+  const match = subject.match(PR_NUMBER_MATCHER);
+
+  return match ? Number(match[1]) : null;
+}
+
 export default async function fetchPRsForCommits(
   client: GithubClient,
   shas: string[],
 ): Promise<PR[]> {
   const { owner, repo } = getRepoContext();
   const prs: PR[] = [];
+  const shasByPullRequestNumber = new Map<number, string[]>();
 
-  for (let index = 0; index < shas.length; index += 1) {
-    const sha = shas[index];
+  for (const sha of shas) {
+    // eslint-disable-next-line no-await-in-loop -- Keep local Git lookups serial for stable release logs.
+    const subject = await getCommitSubject(sha);
+    const pullRequestNumber = getPullRequestNumberFromSubject(subject);
 
-    console.log('Fetching PRs associated with commit', sha);
+    if (pullRequestNumber == null) {
+      console.log('Ignoring commit with no PR number in subject', sha);
+    } else {
+      const shasForPullRequest = shasByPullRequestNumber.get(pullRequestNumber);
 
-    const prsForCommit = await runGithubRequestWithRetries(`Fetch PRs for commit ${sha}`, () =>
-      client.request('GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls', {
+      if (shasForPullRequest) {
+        shasForPullRequest.push(sha);
+      } else {
+        shasByPullRequestNumber.set(pullRequestNumber, [sha]);
+      }
+    }
+  }
+
+  const pullRequestsForCommits = Array.from(
+    shasByPullRequestNumber,
+    ([pullRequestNumber, shasForPullRequest]) => ({
+      pullRequestNumber,
+      shas: shasForPullRequest,
+    }),
+  );
+
+  for (const [
+    index,
+    { pullRequestNumber, shas: candidateShas },
+  ] of pullRequestsForCommits.entries()) {
+    console.log('Fetching PR #', pullRequestNumber);
+
+    // eslint-disable-next-line no-await-in-loop -- GitHub requests are intentionally paced.
+    const prForCommit = await runGithubRequestWithRetries(`Fetch PR #${pullRequestNumber}`, () =>
+      client.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
         owner,
         repo,
-        commit_sha: sha,
-        // special header needed https://docs.github.com/en/rest/reference/repos#list-pull-requests-associated-with-a-commit
-        mediaType: {
-          previews: ['groot'],
-        },
+        pull_number: pullRequestNumber,
       }),
     );
 
-    if (prsForCommit.data.length === 0) {
-      console.log('Ignoring commit with no PRs', sha);
-    } else {
-      if (prsForCommit.data.length > 1) {
-        console.warn('Multiple PRs associated with commit, only considering the first', sha);
-      }
+    const pr = prForCommit.data as PR;
 
-      const prForCommit = prsForCommit.data[0] as PR;
-      prs.push(prForCommit);
+    if (pr.merge_commit_sha == null || !candidateShas.includes(pr.merge_commit_sha)) {
+      throw new Error(
+        `PR #${pullRequestNumber} merge commit ${
+          pr.merge_commit_sha ?? 'null'
+        } does not match candidate commits ${candidateShas.join(', ')}.`,
+      );
     }
 
-    if (index < shas.length - 1) {
+    prs.push(pr);
+
+    if (index < pullRequestsForCommits.length - 1) {
+      // eslint-disable-next-line no-await-in-loop -- GitHub requests are intentionally paced.
       await pauseBetweenGitHubRequests();
     }
   }

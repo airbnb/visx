@@ -4,6 +4,10 @@ on:
   push:
     branches: [master]
 
+concurrency:
+  group: push-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -42,24 +46,59 @@ jobs:
       - name: Generate docs
         run: yarn docs:generate
 
-      - name: Commit package sizes
+      - name: Check current HEAD is latest master
+        id: latest-master
         if: github.repository_owner == 'airbnb'
+        run: |
+          latest_sha="$(git ls-remote origin refs/heads/master | awk '{print $1}')"
+          head_sha="$(git rev-parse HEAD)"
+          if [ "$latest_sha" = "$head_sha" ]; then
+            echo "is_latest=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_latest=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping mutable steps because origin/master is at $latest_sha and this run is at $head_sha."
+          fi
+
+      - name: Commit package sizes
+        if: github.repository_owner == 'airbnb' && steps.latest-master.outputs.is_latest == 'true'
         # note: `git diff-index --quiet HEAD`
-        #       has exit code 0 if there are changes vs HEAD, else nothing to commit
+        #       has exit code 0 if there are no changes vs HEAD, else there is something to commit
         run: |
           yarn build:sizes
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
-          git diff-index --quiet HEAD || git commit -m "build(${GITHUB_SHA}): auto-commit package sizes"
-          git push
+          if git diff-index --quiet HEAD; then
+            echo "No package size changes to commit."
+          else
+            git commit -m "build(${GITHUB_SHA}): auto-commit package sizes"
+            latest_sha="$(git ls-remote origin refs/heads/master | awk '{print $1}')"
+            if [ "$latest_sha" != "$GITHUB_SHA" ]; then
+              echo "Skipping package size push because origin/master advanced to $latest_sha."
+              exit 0
+            fi
+            if ! git push; then
+              latest_sha="$(git ls-remote origin refs/heads/master | awk '{print $1}')"
+              if [ "$latest_sha" != "$GITHUB_SHA" ]; then
+                echo "Skipping package size push because origin/master advanced to $latest_sha."
+                exit 0
+              fi
+              exit 1
+            fi
+          fi
 
       - name: Release
-        if: github.repository_owner == 'airbnb'
+        if: github.repository_owner == 'airbnb' && steps.latest-master.outputs.is_latest == 'true'
         # the following configurations are needed for lerna to
         #   - have git credentials for committing tags
         #   - use OIDC trusted publishing for npm (no token required)
         run: |
+          latest_sha="$(git ls-remote origin refs/heads/master | awk '{print $1}')"
+          head_sha="$(git rev-parse HEAD)"
+          if [ "$latest_sha" != "$head_sha" ]; then
+            echo "Skipping release because origin/master is at $latest_sha and this run is at $head_sha."
+            exit 0
+          fi
           git config user.name github-actions
           git config user.email github-actions@github.com
           yarn build:release
@@ -67,6 +106,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and deploy gallery
+        if: github.repository_owner == 'airbnb' && steps.latest-master.outputs.is_latest == 'true'
         # below we
         # - setup git credentials provided via actions/checkout@v6
         # - initialize gh-pages-branch as an orphan branch so we don't build history
@@ -79,6 +119,12 @@ jobs:
         # - commit the demo site within gh-pages-root-dir/ onto the gh-pages-branch
         # - push gh-pages-branch to visx as gh-pages. we overwrite history every time so it must be forced
         run: |
+          latest_sha="$(git ls-remote origin refs/heads/master | awk '{print $1}')"
+          head_sha="$(git rev-parse HEAD)"
+          if [ "$latest_sha" != "$head_sha" ]; then
+            echo "Skipping gallery deploy because origin/master is at $latest_sha and this run is at $head_sha."
+            exit 0
+          fi
           git config user.name github-actions
           git config user.email github-actions@github.com
           git checkout --orphan gh-pages-branch
