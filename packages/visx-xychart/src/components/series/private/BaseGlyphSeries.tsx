@@ -73,6 +73,7 @@ export function BaseGlyphSeries<
           if (!isValidNumber(y)) return null;
           return {
             key: `${i}`,
+            index: i,
             x,
             y,
             color: colorAccessor?.(datum, i) ?? color,
@@ -80,7 +81,7 @@ export function BaseGlyphSeries<
             datum,
           };
         })
-        .filter((point) => point) as GlyphProps<Datum>[],
+        .filter((point) => !!point) satisfies GlyphProps<Datum>[],
     [color, colorAccessor, data, getScaledX, getScaledY, size],
   );
 
