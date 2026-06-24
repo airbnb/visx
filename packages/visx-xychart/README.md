@@ -290,7 +290,7 @@ export default () => (
       <AnnotationCircleSubject />
       {/** Connect label to CircleSubject */}
       <AnnotationConnector />
-    </AnimatedAnnotation>
+    </Annotation>
   </XYChart>
 );
 ```
