@@ -150,6 +150,18 @@ describe('<AreaSeries />', () => {
 
     expect(hideTooltip).toHaveBeenCalledTimes(1);
   });
+
+  it('should use colorAccessor if passed', () => {
+    const { container } = render(
+      <DataContext.Provider value={getDataContext(series)}>
+        <svg>
+          <AreaSeries dataKey={series.key} {...series} colorAccessor={(_) => 'banana'} />
+        </svg>
+      </DataContext.Provider>,
+    );
+    expect(container.querySelector('.visx-area')).toHaveAttribute('fill', 'banana');
+    expect(container.querySelector('.visx-line')).toHaveAttribute('stroke', 'banana');
+  });
 });
 
 describe('<AnimatedAreaSeries />', () => {
