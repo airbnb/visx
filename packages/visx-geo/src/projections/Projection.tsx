@@ -1,7 +1,13 @@
 import type { ReactNode, SVGProps, Ref } from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
-import type { GeoPath, GeoProjection, ExtendedFeature } from '@visx/vendor/d3-geo';
+import type {
+  GeoPath,
+  GeoProjection,
+  ExtendedFeature,
+  ExtendedFeatureCollection,
+  GeoGeometryObjects,
+} from '@visx/vendor/d3-geo';
 import {
   geoOrthographic,
   geoAlbers,
@@ -71,12 +77,12 @@ export type ProjectionProps<Datum extends GeoPermissibleObjects = GeoPermissible
    */
   fitExtent?: [
     [[number, number], [number, number]],
-    ExtendedFeature, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects,
+    ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects,
   ];
   /** Convenience prop for props.fitExtent where the top-left corner of the extent is [0, 0]. */
   fitSize?: [
     [number, number],
-    ExtendedFeature, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects
+    ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects,
   ];
   /** Hook to render anything at the centroid of a feature. */
   centroid?: (centroid: [number, number], feature: ParsedFeature<Datum>) => ReactNode;
