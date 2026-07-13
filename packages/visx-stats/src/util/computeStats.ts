@@ -15,12 +15,13 @@ export default function computeStats(numericalArray: number[]) {
   // calculate median of first half i.e. firstQuartile
   const lowerHalfLength = Math.floor(sampleSize / 2);
   const lowerHalf = points.slice(0, lowerHalfLength);
-  const firstQuartile = calcMedian(lowerHalf);
+  // For n < 2 the half-slices are empty; fall back to the sample median.
+  const firstQuartile = lowerHalf.length ? calcMedian(lowerHalf) : median;
 
-  // calculate median of first half i.e. secondQuartile
+  // calculate median of second half i.e. thirdQuartile
   const upperHalfLength = Math.ceil(sampleSize / 2);
   const upperHalf = points.slice(upperHalfLength);
-  const thirdQuartile = calcMedian(upperHalf);
+  const thirdQuartile = upperHalf.length ? calcMedian(upperHalf) : median;
   const IQR = thirdQuartile - firstQuartile;
 
   let min = firstQuartile - 1.5 * IQR;
@@ -31,29 +32,42 @@ export default function computeStats(numericalArray: number[]) {
     min = Math.min(...points);
     max = Math.max(...points);
   }
-  const binWidth = 2 * IQR * (sampleSize - outliers.length) ** (-1 / 3);
-  const binCount = Math.round((max - min) / binWidth);
-  const actualBinWidth = (max - min) / binCount;
 
-  const bins = new Array(binCount + 2).fill(0);
-  const values = new Array(binCount + 2).fill(min);
+  const inliers = points.filter((p) => p >= min && p <= max);
+  const binWidth = 2 * IQR * inliers.length ** (-1 / 3);
+  const range = max - min;
 
-  for (let i = 1; i <= binCount; i += 1) {
-    values[i] += actualBinWidth * (i - 0.5);
-  }
+  // Freedman–Diaconis yields binWidth 0 (and binCount NaN) when IQR is 0 or the
+  // inlier range collapses. Guard before allocating histogram arrays (#1772).
+  let binData: BinDatum[];
+  if (!Number.isFinite(binWidth) || binWidth <= 0 || !Number.isFinite(range) || range === 0) {
+    binData = [
+      { value: min, count: 0 },
+      { value: min, count: inliers.length },
+      { value: max, count: 0 },
+    ];
+  } else {
+    const binCount = Math.max(1, Math.round(range / binWidth));
+    const actualBinWidth = range / binCount;
 
-  values[values.length - 1] = max;
+    const bins = new Array(binCount + 2).fill(0);
+    const values = new Array(binCount + 2).fill(min);
 
-  points
-    .filter((p) => p >= min && p <= max)
-    .forEach((p) => {
+    for (let i = 1; i <= binCount; i += 1) {
+      values[i] += actualBinWidth * (i - 0.5);
+    }
+
+    values[values.length - 1] = max;
+
+    inliers.forEach((p) => {
       bins[Math.floor((p - min) / actualBinWidth) + 1] += 1;
     });
 
-  const binData: BinDatum[] = values.map((v, i) => ({
-    value: v,
-    count: bins[i],
-  }));
+    binData = values.map((v, i) => ({
+      value: v,
+      count: bins[i],
+    }));
+  }
 
   const boxPlot: BoxPlot = {
     min,
