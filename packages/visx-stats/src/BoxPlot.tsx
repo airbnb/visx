@@ -163,24 +163,6 @@ export default function BoxPlot({
 
   return (
     <Group className={classnames('visx-boxplot', className)}>
-      {outliers.map((d, i) => {
-        const cx = horizontal ? valueScale(d) : center;
-        const cy = horizontal ? center : valueScale(d);
-        return (
-          <circle
-            key={`visx-boxplot-outlier-${i}`}
-            className="visx-boxplot-outlier"
-            cx={cx}
-            cy={cy}
-            r={4}
-            stroke={stroke}
-            strokeWidth={strokeWidth}
-            fill={fill}
-            fillOpacity={fillOpacity}
-            {...outlierProps}
-          />
-        );
-      })}
       <line
         className="visx-boxplot-max"
         x1={boxplot.max.x1}
@@ -253,6 +235,26 @@ export default function BoxPlot({
           {...containerProps}
         />
       )}
+      {/* Render outliers last so they paint on top of the box and whiskers
+          instead of being occluded by them (#1865). */}
+      {outliers.map((d, i) => {
+        const cx = horizontal ? valueScale(d) : center;
+        const cy = horizontal ? center : valueScale(d);
+        return (
+          <circle
+            key={`visx-boxplot-outlier-${i}`}
+            className="visx-boxplot-outlier"
+            cx={cx}
+            cy={cy}
+            r={4}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+            fill={fill}
+            fillOpacity={fillOpacity}
+            {...outlierProps}
+          />
+        );
+      })}
     </Group>
   );
 }
