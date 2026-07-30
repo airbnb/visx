@@ -319,7 +319,7 @@ function TooltipInner<Datum extends object>({
               detectBounds={false}
               style={TOOLTIP_NO_STYLE}
             >
-              <svg overflow="visible">{renderGlyph({ key, x: 0, y: 0, ...props })}</svg>
+              <svg width="0.5rem" height="0.5rem" overflow="visible">{renderGlyph({ key, x: 0, y: 0, ...props })}</svg>
             </TooltipInPortal>
           ))}
           <TooltipInPortal
