@@ -11,6 +11,7 @@ type BrushOverlayProps = {
   onPointerLeave?: (event: PointerEvent<SVGRectElement>) => void;
   onPointerMove?: (event: PointerEvent<SVGRectElement>) => void;
   onPointerUp?: (event: PointerEvent<SVGRectElement>) => void;
+  onPointerCancel?: (event: PointerEvent<SVGRectElement>) => void;
 };
 
 export default function BrushOverlay(props: BrushOverlayProps) {

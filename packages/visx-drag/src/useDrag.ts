@@ -18,6 +18,11 @@ export type UseDragOptions = {
   resetOnStart?: boolean;
   /** Optional callback invoked upon drag end. */
   onDragEnd?: (args: HandlerArgs) => void;
+  /**
+   * Optional callback invoked when a drag is cancelled rather than completed. Falls back to
+   * `onDragEnd` when not provided, so existing consumers still get an end-of-drag signal.
+   */
+  onDragCancel?: (args: HandlerArgs) => void;
   /** Optional callback invoked upon drag movement. */
   onDragMove?: (args: HandlerArgs) => void;
   /** Optional callback invoked upon drag start. */
@@ -61,6 +66,12 @@ export type DragState = {
 export type UseDrag = DragState & {
   /** Callback to be be invoked on drag end. */
   dragEnd: (event: MouseTouchOrPointerEvent) => void;
+  /**
+   * Callback to be be invoked when a drag is cancelled, e.g. on `pointercancel`, which the
+   * browser fires instead of `pointerup` when it takes over an in-progress gesture. Ends the
+   * drag like `dragEnd` so `isDragging` cannot get stuck on.
+   */
+  dragCancel: (event: MouseTouchOrPointerEvent) => void;
   /** Callback to be be invoked on drag move. */
   dragMove: (event: MouseTouchOrPointerEvent) => void;
   /** Callback to be be invoked on drag start. */
@@ -72,6 +83,7 @@ export default function useDrag({
   resetOnStart = false,
   snapToPointer = true,
   onDragEnd,
+  onDragCancel,
   onDragMove,
   onDragStart,
   x,
@@ -218,9 +230,27 @@ export default function useDrag({
     [onDragEnd, setDragStateWithCallback],
   );
 
+  const handleDragCancel = useCallback(
+    (event: MouseTouchOrPointerEvent) => {
+      event.persist();
+
+      const handler = onDragCancel ?? onDragEnd;
+
+      setDragStateWithCallback(
+        (currState) => ({ ...currState, isDragging: false }),
+        handler &&
+          ((currState) => {
+            handler({ ...currState, event });
+          }),
+      );
+    },
+    [onDragCancel, onDragEnd, setDragStateWithCallback],
+  );
+
   return {
     ...dragState,
     dragEnd: handleDragEnd,
+    dragCancel: handleDragCancel,
     dragMove: handleDragMove,
     dragStart: handleDragStart,
   };
