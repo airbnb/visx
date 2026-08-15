@@ -153,7 +153,7 @@ export default class BrushCorner extends Component<BrushCornerProps, BrushCorner
         onDragEnd={this.cornerDragEnd}
         resetOnStart
       >
-        {({ dragMove, dragEnd, dragStart, isDragging }) => (
+        {({ dragMove, dragEnd, dragStart, dragCancel, isDragging }) => (
           <g>
             {isDragging && (
               <rect
@@ -163,6 +163,7 @@ export default class BrushCorner extends Component<BrushCornerProps, BrushCorner
                 style={{ cursor }}
                 onPointerMove={dragMove}
                 onPointerUp={dragEnd}
+                onPointerCancel={dragCancel}
               />
             )}
             <rect
@@ -170,6 +171,7 @@ export default class BrushCorner extends Component<BrushCornerProps, BrushCorner
               onPointerDown={dragStart}
               onPointerMove={dragMove}
               onPointerUp={dragEnd}
+              onPointerCancel={dragCancel}
               className={`visx-brush-corner-${type}`}
               style={{ cursor, pointerEvents, ...styleProp }}
               {...corner}

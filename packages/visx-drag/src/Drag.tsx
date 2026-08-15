@@ -60,6 +60,7 @@ export default function Drag({
           onPointerDown={drag.dragStart}
           onPointerMove={drag.dragMove}
           onPointerUp={drag.dragEnd}
+          onPointerCancel={drag.dragCancel}
           fill="transparent"
         />
       )}

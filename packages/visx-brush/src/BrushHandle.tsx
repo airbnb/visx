@@ -174,7 +174,7 @@ export default class BrushHandle extends Component<BrushHandleProps> {
         resetOnStart
         isDragging={isControlled ? isDragInProgress : undefined}
       >
-        {({ dragStart, dragEnd, dragMove, isDragging }) => (
+        {({ dragStart, dragEnd, dragMove, dragCancel, isDragging }) => (
           <g>
             {/** capture mouse events while dragging */}
             {isDragging && (
@@ -185,6 +185,7 @@ export default class BrushHandle extends Component<BrushHandleProps> {
                 style={{ cursor }}
                 onPointerMove={dragMove}
                 onPointerUp={isControlled ? undefined : dragEnd}
+                onPointerCancel={isControlled ? undefined : dragCancel}
                 onPointerLeave={isControlled ? undefined : dragEnd}
               />
             )}
@@ -199,6 +200,7 @@ export default class BrushHandle extends Component<BrushHandleProps> {
                 onPointerDown={dragStart}
                 onPointerMove={dragMove}
                 onPointerUp={isControlled ? undefined : dragEnd}
+                onPointerCancel={isControlled ? undefined : dragCancel}
                 style={{
                   cursor,
                   pointerEvents: !!brush.activeHandle || !!brush.isBrushing ? 'none' : 'all',
@@ -210,6 +212,7 @@ export default class BrushHandle extends Component<BrushHandleProps> {
                 onPointerDown={dragStart}
                 onPointerMove={dragMove}
                 onPointerUp={isControlled ? undefined : dragEnd}
+                onPointerCancel={isControlled ? undefined : dragCancel}
               >
                 {renderBrushHandle({
                   ...this.props.handle,

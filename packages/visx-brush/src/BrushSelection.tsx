@@ -143,7 +143,7 @@ export default class BrushSelection extends Component<
         onDragEnd={this.selectionDragEnd}
         isDragging={isControlled ? isDragInProgress : undefined}
       >
-        {({ isDragging, dragStart, dragEnd, dragMove }) => (
+        {({ isDragging, dragStart, dragEnd, dragMove, dragCancel }) => (
           <g>
             {isDragging && (
               <rect
@@ -151,6 +151,7 @@ export default class BrushSelection extends Component<
                 height={stageHeight}
                 fill="transparent"
                 onPointerUp={isControlled ? undefined : dragEnd}
+                onPointerCancel={isControlled ? undefined : dragCancel}
                 onPointerMove={dragMove}
                 onPointerLeave={isControlled ? undefined : dragEnd}
                 style={DRAGGING_OVERLAY_STYLES}
@@ -175,6 +176,11 @@ export default class BrushSelection extends Component<
                   dragEnd(event);
                 }
                 if (onMouseUp) onMouseUp(event);
+              }}
+              onPointerCancel={(event) => {
+                if (!isControlled) {
+                  dragCancel(event);
+                }
               }}
               onClick={(event) => {
                 if (onClick) onClick(event as PointerEvent<SVGRectElement>);

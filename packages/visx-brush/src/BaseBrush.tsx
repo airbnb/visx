@@ -619,7 +619,7 @@ export default class BaseBrush extends Component<BaseBrushProps, BaseBrushState>
             onDragEnd={this.handleDragEnd}
             isDragging={useWindowMoveEvents ? brushingType === 'select' : undefined}
           >
-            {({ dragStart, isDragging, dragMove, dragEnd }) => (
+            {({ dragStart, isDragging, dragMove, dragEnd, dragCancel }) => (
               <BrushOverlay
                 width={stageWidth}
                 height={stageHeight}
@@ -643,6 +643,10 @@ export default class BaseBrush extends Component<BaseBrushProps, BaseBrushState>
                   this.mouseUpTime = Date.now();
                   if (onMouseUp) onMouseUp(event);
                   dragEnd(event);
+                }}
+                onPointerCancel={(event: PointerHandlerEvent) => {
+                  this.mouseUpTime = Date.now();
+                  dragCancel(event);
                 }}
                 style={{ cursor: 'crosshair' }}
               />
