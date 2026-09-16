@@ -21,6 +21,6 @@ export default function useSamplesAlongPath(restrictToPath?: SVGGeometryElement 
     // The path can transform without triggering a re-render,
     // so we need to update the samples whenever the length changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [restrictToPath?.getTotalLength()]);
+  }, [restrictToPath, restrictToPath?.getTotalLength()]);
   return samples;
 }
