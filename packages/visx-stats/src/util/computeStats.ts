@@ -44,11 +44,10 @@ export default function computeStats(numericalArray: number[]) {
 
   values[values.length - 1] = max;
 
-  points
-    .filter((p) => p >= min && p <= max)
-    .forEach((p) => {
-      bins[Math.floor((p - min) / actualBinWidth) + 1] += 1;
-    });
+  const nonOutliers = points.filter((p) => p >= min && p <= max);
+  nonOutliers.forEach((p) => {
+    bins[Math.floor((p - min) / actualBinWidth) + 1] += 1;
+  });
 
   const binData: BinDatum[] = values.map((v, i) => ({
     value: v,
@@ -56,11 +55,11 @@ export default function computeStats(numericalArray: number[]) {
   }));
 
   const boxPlot: BoxPlot = {
-    min,
+    min: nonOutliers[0],
     firstQuartile,
     median,
     thirdQuartile,
-    max,
+    max: nonOutliers[nonOutliers.length - 1],
     outliers,
   };
 
