@@ -33,19 +33,26 @@ export default function useText(props: TextProps): {
     ...textProps
   } = props;
 
-  const { x = 0, y = 0 } = textProps;
+  const { x = 0, y = 0, fontSize } = textProps;
   const isXOrYNotValid = !isXOrYInValid(x) || !isXOrYInValid(y);
 
   const { wordsWithWidth, spaceWidth } = useMemo(() => {
+    const effectiveFontSize = style?.fontSize ?? fontSize;
+    const measurementStyle = {
+      ...style,
+      // Inline styles override presentation attributes; clear a previously measured font size.
+      fontSize:
+        typeof effectiveFontSize === 'number' ? `${effectiveFontSize}px` : effectiveFontSize ?? '',
+    };
     const words: string[] = children == null ? [] : children.toString().split(/(?:(?!\u00A0+)\s+)/);
     return {
       wordsWithWidth: words.map((word) => ({
         word,
-        wordWidth: getStringWidth(word, style) || 0,
+        wordWidth: getStringWidth(word, measurementStyle) || 0,
       })),
-      spaceWidth: getStringWidth('\u00A0', style) || 0,
+      spaceWidth: getStringWidth('\u00A0', measurementStyle) || 0,
     };
-  }, [children, style]);
+  }, [children, style, fontSize]);
 
   const wordsByLines = useMemo(() => {
     if (isXOrYNotValid) {
