@@ -111,12 +111,13 @@ export default function GalleryTile<ExampleProps extends WidthAndHeight>({
           margin-bottom: 0;
         }
         .gallery-tile {
+          box-sizing: border-box;
           background-color: white;
           margin: 5px;
           display: flex;
           height: 390px;
           flex: 1;
-          min-width: 300px;
+          min-width: 0;
           flex-direction: column;
           border-radius: 14px;
           cursor: pointer;
@@ -145,16 +146,8 @@ export default function GalleryTile<ExampleProps extends WidthAndHeight>({
           margin: 0;
           background-color: transparent;
           min-width: unset;
-        }
-        @media (max-width: 960px) {
-          .gallery-tile {
-            min-width: 45%;
-          }
-        }
-        @media (max-width: 600px) {
-          .gallery-tile {
-            min-width: 100%;
-          }
+          white-space: pre-wrap;
+          overflow-wrap: anywhere;
         }
       `}</style>
     </>

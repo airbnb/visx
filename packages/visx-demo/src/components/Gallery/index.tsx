@@ -146,8 +146,9 @@ export default function Gallery() {
         }
         .grid {
           width: 100%;
+          min-width: 0;
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
           overflow-x: hidden;
           padding-bottom: 40px;
         }
@@ -200,9 +201,16 @@ export default function Gallery() {
           }
           .filters {
             display: flex;
+            flex-direction: row;
             flex-wrap: wrap;
             width: 100%;
+            margin: 0 0 16px;
+            gap: 8px 12px;
             justify-content: center;
+          }
+          .filter-label {
+            width: 100%;
+            text-align: center;
           }
         }
       `}</style>
