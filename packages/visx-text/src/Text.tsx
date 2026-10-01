@@ -22,11 +22,11 @@ export default function Text(props: TextProps) {
     ...textProps
   } = props;
 
-  const { x = 0, fontSize } = textProps;
+  const { x = 0 } = textProps;
   const { wordsByLines, startDy, transform } = useText(props);
 
   return (
-    <svg ref={innerRef} x={dx} y={dy} fontSize={fontSize} style={SVG_STYLE}>
+    <svg ref={innerRef} x={dx} y={dy} style={SVG_STYLE}>
       {wordsByLines.length > 0 ? (
         <text ref={innerTextRef} transform={transform} {...textProps} textAnchor={textAnchor}>
           {wordsByLines.map((line, index) => (

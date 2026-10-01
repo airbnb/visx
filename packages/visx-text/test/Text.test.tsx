@@ -18,6 +18,13 @@ describe('<Text />', () => {
     expect(Text).toBeDefined();
   });
 
+  it('applies relative fontSize only to the text, without compounding it on the wrapper', () => {
+    const { container } = render(<Text fontSize="2em">Relative size</Text>);
+
+    expect(container.querySelector('text')).toHaveAttribute('font-size', '2em');
+    expect(container.querySelector('svg')).not.toHaveAttribute('font-size');
+  });
+
   it('Does not wrap long text if enough width', () => {
     const {
       result: {
