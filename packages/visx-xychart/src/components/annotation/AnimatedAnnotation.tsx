@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback } from 'react';
 import type { FC } from 'react';
 import { useSpring, animated, to } from '@react-spring/web';
 import {
@@ -32,23 +32,15 @@ function BaseAnimatedAnnotation({
   AnnotationComponent: FC<VisxAnnotationProps> | FC<VisxEditableAnnotationProps>;
 } & VisxAnnotationProps &
   EditableAnnotationProps) {
-  const lastXY = useRef({ x, y });
-
-  // in order to keep x/y/dx/dy accurate in AnnotationComponent, animate the delta
-  // between positions, to an x + y transform of zero from the previous value
-  const animatedXY = useSpring({
-    from: { x: lastXY.current.x - x, y: lastXY.current.y - y },
-    to: { x: 0, y: 0 },
-    reset: true,
-  });
-
-  useEffect(() => {
-    lastXY.current = { x, y };
-  }, [x, y]);
+  const animatedXY = useSpring({ x, y });
 
   return (
     <animated.g // for perf animate a group element not the Annotation itself
-      transform={to([animatedXY.x, animatedXY.y], (xVal, yVal) => `translate(${xVal}, ${yVal})`)}
+      // Keep annotation coordinates current while the spring retains its in-flight position.
+      transform={to(
+        [animatedXY.x, animatedXY.y],
+        (xVal, yVal) => `translate(${xVal - x}, ${yVal - y})`,
+      )}
     >
       <AnnotationComponent x={x} y={y} {...props} />
     </animated.g>
