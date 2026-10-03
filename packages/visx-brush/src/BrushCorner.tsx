@@ -10,7 +10,7 @@ export type BrushCornerProps = {
   stageWidth: number;
   stageHeight: number;
   brush: BrushState;
-  updateBrush: (update: UpdateBrush) => void;
+  updateBrush: (update: UpdateBrush, onBrushEnd?: (brush: BrushState) => void) => void;
   onBrushEnd?: (brush: BrushState) => void;
   type: ResizeTriggerAreas;
   style?: CSSProperties;
@@ -113,11 +113,9 @@ export default class BrushCorner extends Component<BrushCornerProps, BrushCorner
     const { updateBrush, onBrushEnd } = this.props;
 
     updateBrush((prevBrush: Readonly<BrushState>) => {
-      const { start, end, extent } = prevBrush;
-      start.x = Math.min(extent.x0, extent.x1);
-      start.y = Math.min(extent.y0, extent.y0);
-      end.x = Math.max(extent.x0, extent.x1);
-      end.y = Math.max(extent.y0, extent.y1);
+      const { extent } = prevBrush;
+      const start = { x: Math.min(extent.x0, extent.x1), y: Math.min(extent.y0, extent.y1) };
+      const end = { x: Math.max(extent.x0, extent.x1), y: Math.max(extent.y0, extent.y1) };
       const nextBrush = {
         ...prevBrush,
         start,
@@ -130,12 +128,9 @@ export default class BrushCorner extends Component<BrushCornerProps, BrushCorner
           y1: Math.max(start.y, end.y),
         },
       };
-      if (onBrushEnd) {
-        onBrushEnd(nextBrush);
-      }
 
       return nextBrush;
-    });
+    }, onBrushEnd);
   };
 
   render() {
