@@ -18,7 +18,7 @@ export type BrushSelectionProps = {
   stageWidth: number;
   stageHeight: number;
   brush: BrushState;
-  updateBrush: (update: UpdateBrush) => void;
+  updateBrush: (update: UpdateBrush, onBrushEnd?: (brush: BrushState) => void) => void;
   onMoveSelectionChange?: (type?: BrushingType, options?: BrushPageOffset) => void;
   onBrushStart?: (brush: DragArgs) => void;
   onBrushEnd?: (brush: BrushState) => void;
@@ -88,6 +88,10 @@ export default class BrushSelection extends Component<
   selectionDragEnd = () => {
     const { updateBrush, onBrushEnd, onMoveSelectionChange, isControlled } = this.props;
 
+    if (onMoveSelectionChange) {
+      onMoveSelectionChange();
+    }
+
     if (!isControlled) {
       updateBrush((prevBrush: BrushState) => {
         const nextBrush = {
@@ -104,15 +108,8 @@ export default class BrushSelection extends Component<
             y: Math.max(prevBrush.extent.y0, prevBrush.extent.y1),
           },
         };
-        if (onBrushEnd) {
-          onBrushEnd(nextBrush);
-        }
         return nextBrush;
-      });
-    }
-
-    if (onMoveSelectionChange) {
-      onMoveSelectionChange();
+      }, onBrushEnd);
     }
   };
 

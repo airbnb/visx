@@ -196,34 +196,21 @@ export default class BaseBrush extends Component<BaseBrushProps, BaseBrushState>
     const { brushingType } = this.state;
 
     if (useWindowMoveEvents && brushingType) {
-      this.updateBrush((prevBrush: BaseBrushState) => {
-        const { start, end, extent } = prevBrush;
-
-        start.x = Math.min(extent.x0, extent.x1);
-        start.y = Math.min(extent.y0, extent.y0);
-        end.x = Math.max(extent.x0, extent.x1);
-        end.y = Math.max(extent.y0, extent.y1);
-
-        let newState = {
-          ...prevBrush,
-          activeHandle: null,
-          isBrushing: false,
-          brushingType: undefined,
-        };
-
-        if (onBrushEnd) {
-          onBrushEnd(newState);
-        }
-
-        if (resetOnEnd) {
-          newState = {
-            ...newState,
-            ...this.getIdleState(),
+      this.updateBrush(
+        (prevBrush: BaseBrushState) => {
+          const { extent } = prevBrush;
+          return {
+            ...prevBrush,
+            start: { x: Math.min(extent.x0, extent.x1), y: Math.min(extent.y0, extent.y1) },
+            end: { x: Math.max(extent.x0, extent.x1), y: Math.max(extent.y0, extent.y1) },
+            activeHandle: null,
+            isBrushing: false,
+            brushingType: undefined,
           };
-        }
-
-        return newState;
-      });
+        },
+        onBrushEnd,
+        resetOnEnd,
+      );
     }
   };
 
@@ -408,36 +395,27 @@ export default class BaseBrush extends Component<BaseBrushProps, BaseBrushState>
     const { onBrushEnd, resetOnEnd, useWindowMoveEvents } = this.props;
 
     if (!useWindowMoveEvents) {
-      this.updateBrush((prevBrush: BaseBrushState) => {
-        const { extent } = prevBrush;
-        let newState = {
-          ...prevBrush,
-          start: {
-            x: extent.x0,
-            y: extent.y0,
-          },
-          end: {
-            x: extent.x1,
-            y: extent.y1,
-          },
-          isBrushing: false,
-          brushingType: undefined,
-          activeHandle: null,
-        };
-
-        if (onBrushEnd) {
-          onBrushEnd(newState);
-        }
-
-        if (resetOnEnd) {
-          newState = {
-            ...newState,
-            ...this.getIdleState(),
+      this.updateBrush(
+        (prevBrush: BaseBrushState) => {
+          const { extent } = prevBrush;
+          return {
+            ...prevBrush,
+            start: {
+              x: extent.x0,
+              y: extent.y0,
+            },
+            end: {
+              x: extent.x1,
+              y: extent.y1,
+            },
+            isBrushing: false,
+            brushingType: undefined,
+            activeHandle: null,
           };
-        }
-
-        return newState;
-      });
+        },
+        onBrushEnd,
+        resetOnEnd,
+      );
     }
   };
 
@@ -541,11 +519,25 @@ export default class BaseBrush extends Component<BaseBrushProps, BaseBrushState>
     };
   };
 
-  updateBrush = (updater: UpdateBrush) => {
+  updateBrush = (
+    updater: UpdateBrush,
+    onBrushEnd?: BaseBrushProps['onBrushEnd'],
+    resetOnEnd = false,
+  ) => {
     const { onChange } = this.props;
     this.setState(updater, () => {
-      if (onChange) {
-        onChange(this.state);
+      const completedBrush = this.state;
+      const notify = () => {
+        if (onChange) onChange(this.state);
+        if (onBrushEnd) onBrushEnd(completedBrush);
+      };
+
+      if (resetOnEnd) {
+        // Keep the reset notification and completed extent, but make the end
+        // callback the final notification of the interaction.
+        this.setState(this.getIdleState(), notify);
+      } else {
+        notify();
       }
     });
   };

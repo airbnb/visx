@@ -18,7 +18,7 @@ export type BrushHandleProps = {
   stageWidth: number;
   stageHeight: number;
   brush: BrushState;
-  updateBrush: (update: UpdateBrush) => void;
+  updateBrush: (update: UpdateBrush, onBrushEnd?: (brush: BrushState) => void) => void;
   onBrushStart?: (brush: DragArgs) => void;
   onBrushEnd?: (brush: BrushState) => void;
   type: ResizeTriggerAreas;
@@ -118,13 +118,15 @@ export default class BrushHandle extends Component<BrushHandleProps> {
   handleDragEnd = () => {
     const { updateBrush, onBrushEnd, onBrushHandleChange, isControlled } = this.props;
 
+    if (onBrushHandleChange) {
+      onBrushHandleChange();
+    }
+
     if (!isControlled) {
       updateBrush((prevBrush: BrushState) => {
-        const { start, end, extent } = prevBrush;
-        start.x = Math.min(extent.x0, extent.x1);
-        start.y = Math.min(extent.y0, extent.y0);
-        end.x = Math.max(extent.x0, extent.x1);
-        end.y = Math.max(extent.y0, extent.y1);
+        const { extent } = prevBrush;
+        const start = { x: Math.min(extent.x0, extent.x1), y: Math.min(extent.y0, extent.y1) };
+        const end = { x: Math.max(extent.x0, extent.x1), y: Math.max(extent.y0, extent.y1) };
         const nextBrush: BrushState = {
           ...prevBrush,
           start,
@@ -138,16 +140,9 @@ export default class BrushHandle extends Component<BrushHandleProps> {
             y1: Math.max(start.y, end.y),
           },
         };
-        if (onBrushEnd) {
-          onBrushEnd(nextBrush);
-        }
 
         return nextBrush;
-      });
-    }
-
-    if (onBrushHandleChange) {
-      onBrushHandleChange();
+      }, onBrushEnd);
     }
   };
 

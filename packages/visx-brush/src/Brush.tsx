@@ -31,7 +31,10 @@ export type BrushProps = {
   onChange?: (bounds: Bounds | null) => void;
   /** Callback invoked on initialization of a Brush (not Brush move). */
   onBrushStart?: BaseBrushProps['onBrushStart'];
-  /** Callback invoked on mouse up when a Brush size is being updated. */
+  /**
+   * Callback invoked with the completed bounds after the final onChange notification.
+   * Automatic resets are reported to onChange before this callback, which retains the completed bounds.
+   */
   onBrushEnd?: (bounds: Bounds | null) => void;
   /** Callback invoked on mouse move in Brush stage when *not* dragging. */
   onMouseMove?: BaseBrushProps['onMouseMove'];
