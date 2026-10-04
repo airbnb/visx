@@ -4079,12 +4079,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/d3-shape@npm:3.1.7":
-  version: 3.1.7
-  resolution: "@types/d3-shape@npm:3.1.7"
+"@types/d3-shape@npm:3.2.0":
+  version: 3.2.0
+  resolution: "@types/d3-shape@npm:3.2.0"
   dependencies:
     "@types/d3-path": "npm:*"
-  checksum: 10c0/38e59771c1c4c83b67aa1f941ce350410522a149d2175832fdc06396b2bb3b2c1a2dd549e0f8230f9f24296ee5641a515eaf10f55ee1ef6c4f83749e2dd7dcfd
+  checksum: 10c0/bffd3795875532747706ffd9978d7078672ca2cfc30f2fd047c5ecab6dac739656f6ca0e7b934c6229a635dd83e7c564e6b3becd347304e620211acca2c1a5a9
   languageName: node
   linkType: hard
 
@@ -5244,7 +5244,7 @@ __metadata:
     "@types/d3-interpolate": "npm:3.0.1"
     "@types/d3-path": "npm:3.1.1"
     "@types/d3-scale": "npm:4.0.2"
-    "@types/d3-shape": "npm:3.1.7"
+    "@types/d3-shape": "npm:3.2.0"
     "@types/d3-time": "npm:3.0.0"
     "@types/d3-time-format": "npm:2.1.0"
     "@types/rimraf": "npm:^3.0.2"
