@@ -94,6 +94,17 @@ describe('findNearestDatumSingleDimension', () => {
     ).toEqual({ xVal: 8, yVal: '8' });
   });
 
+  it('should return the last datum for scaleLinear when scaledValue is past the last datum', () => {
+    const result = findNearestDatumSingleDimension({
+      scale: params.xScale,
+      accessor: params.xAccessor,
+      data: params.data,
+      scaledValue: 9,
+    });
+    expect(result!.datum).toEqual({ xVal: 8, yVal: '8' });
+    expect(result!.index).toBe(1);
+  });
+
   it('should find the nearest datum for scaleBand', () => {
     expect(
       findNearestDatumSingleDimension({

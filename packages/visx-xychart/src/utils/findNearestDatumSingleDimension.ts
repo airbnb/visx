@@ -33,7 +33,9 @@ export default function findNearestDatumSingleDimension<
     const nearestDatum1 = data[index];
     nearestDatum =
       !nearestDatum0 ||
-      Math.abs(dataValue - accessor(nearestDatum0)) > Math.abs(dataValue - accessor(nearestDatum1))
+      (nearestDatum1 &&
+        Math.abs(dataValue - accessor(nearestDatum0)) >
+          Math.abs(dataValue - accessor(nearestDatum1)))
         ? nearestDatum1
         : nearestDatum0;
     nearestDatumIndex = nearestDatum === nearestDatum0 ? index - 1 : index;
