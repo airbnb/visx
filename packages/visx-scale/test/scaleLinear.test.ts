@@ -98,6 +98,14 @@ describe('scaleLinear()', () => {
       expect(scaleLinear({ domain: [1, -2], zero: true }).domain()).toEqual([1, -2]);
       expect(scaleLinear({ domain: [-2, 3], zero: true }).domain()).toEqual([-2, 3]);
     });
+    it('true with a piecewise domain', () => {
+      expect(scaleLinear({ domain: [1, 5, 10], range: [0, 50, 100], zero: true }).domain()).toEqual(
+        [0, 5, 10],
+      );
+      expect(scaleLinear({ domain: [-10, -5, -1], zero: true }).domain()).toEqual([-10, -5, 0]);
+      expect(scaleLinear({ domain: [10, 5, 1], zero: true }).domain()).toEqual([10, 5, 0]);
+      expect(scaleLinear({ domain: [-5, 0, 5], zero: true }).domain()).toEqual([-5, 0, 5]);
+    });
     it('false', () => {
       expect(scaleLinear({ domain: [1, 2], zero: false }).domain()).toEqual([1, 2]);
       expect(scaleLinear({ domain: [-2, -1], zero: false }).domain()).toEqual([-2, -1]);
