@@ -1,4 +1,4 @@
-import type { PickD3Scale, ScaleInput } from '@visx/scale';
+import type { PickD3Scale } from '@visx/scale';
 import type { LegendProps } from './Legend';
 import Legend from './Legend';
 import type { LabelFormatterFactory } from '../types';
@@ -32,35 +32,29 @@ function defaultTransform<Scale extends AnyThresholdScale>({
   return ({ scale, labelFormat }) => {
     const scaleRange = scale.range();
 
-    type Datum = ScaleInput<Scale>;
-
     return (d, i) => {
       const [d0, d1] =
         scaleRange.length >= i ? scale.invertExtent(scaleRange[i]) : [undefined, undefined];
 
       let delimiter = ` ${labelDelimiter} `;
       let text = '';
-      let value: number | Datum | undefined;
 
       if (d0 == null && typeof d1 === 'number') {
         // lower threshold e.g., [undefined, number]
         delimiter = labelLower || delimiter;
-        value = d1 - Math.abs(2 * d1 - 1); // guarantees a value smaller than the lower threshold
         text = `${delimiter}${formatZero(labelFormat(d1, i))}`;
       } else if (d0 != null && d1 != null) {
         // threshold step
-        value = d;
         text = `${formatZero(labelFormat(d0, i))}${delimiter}${formatZero(labelFormat(d1, i))}`;
       } else if (typeof d0 === 'number' && d1 == null) {
         // upper threshold e.g., [number, undefined]
         delimiter = labelUpper || delimiter;
-        value = d0 + Math.abs(2 * d0 + 1); // // guarantees a value larger than the upper threshold
         text = `${delimiter}${formatZero(labelFormat(d0, i))}`;
       }
 
       return {
         extent: [d0, d1],
-        value: scale(value),
+        value: d0 == null || d1 == null ? scaleRange[i] : scale(d),
         text,
         datum: d,
         index: i,
