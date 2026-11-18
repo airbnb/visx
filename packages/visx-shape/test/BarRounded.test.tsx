@@ -90,6 +90,19 @@ describe('<BarRounded />', () => {
     });
   });
 
+  it.each([
+    { width: 10, height: 0, radius: 2, expectedRadius: 0 },
+    { width: 0.5, height: 20, radius: 2, expectedRadius: 0.25 },
+    { width: 10, height: 20, radius: 0, expectedRadius: 0 },
+  ])(
+    'uses a radius of $expectedRadius for a $width by $height bar with radius $radius',
+    ({ width, height, radius, expectedRadius }) => {
+      const path = useBarRoundedPath({ ...testProps, width, height, radius, all: true });
+      expect(path).toContain(`M${expectedRadius},0 h${width - 2 * expectedRadius} `);
+      expect(path).toContain(`v${height - 2 * expectedRadius} `);
+    },
+  );
+
   it('should clamp radius to the center of the shortest side of the rect', () => {
     const { container } = render(
       <svg>

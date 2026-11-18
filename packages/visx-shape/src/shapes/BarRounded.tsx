@@ -78,7 +78,7 @@ export function useBarRoundedPath({
   topLeft = all || top || left || topLeft;
 
   // clamp radius to center of shortest side of the rect
-  radius = Math.max(1, Math.min(radius, Math.min(width, height) / 2));
+  radius = Math.max(0, Math.min(radius, Math.min(width, height) / 2));
 
   const diameter = 2 * radius;
   const path = `M${x + radius},${y} h${width - diameter}
