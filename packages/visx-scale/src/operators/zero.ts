@@ -11,11 +11,20 @@ export default function applyZero<
   config: ScaleConfigWithoutType<Output, DiscreteInput, ThresholdInput>,
 ) {
   if ('zero' in config && config.zero === true) {
-    const domain = scale.domain() as number[];
-    const [a, b] = domain;
-    const isDescending = b < a;
-    const [min, max] = isDescending ? [b, a] : [a, b];
-    const domainWithZero = [Math.min(0, min), Math.max(0, max)];
-    scale.domain(isDescending ? domainWithZero.reverse() : domainWithZero);
+    const domain = [...(scale.domain() as number[])];
+    if (domain.length >= 2) {
+      // Only extend the ends of the domain, so that the interior values of a
+      // piecewise (polylinear) domain are kept.
+      const last = domain.length - 1;
+      const isDescending = domain[last] < domain[0];
+      if (isDescending) {
+        domain[0] = Math.max(0, domain[0]);
+        domain[last] = Math.min(0, domain[last]);
+      } else {
+        domain[0] = Math.min(0, domain[0]);
+        domain[last] = Math.max(0, domain[last]);
+      }
+      scale.domain(domain);
+    }
   }
 }
