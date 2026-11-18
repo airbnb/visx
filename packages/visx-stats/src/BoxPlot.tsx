@@ -136,7 +136,7 @@ export default function BoxPlot({
     box: {
       x1: offset,
       x2: boxWidth || 0,
-      y1: thirdQuartileValue,
+      y1: Math.min(firstQuartileValue, thirdQuartileValue),
       y2: Math.abs(thirdQuartileValue - firstQuartileValue),
     },
     container: {
@@ -150,7 +150,6 @@ export default function BoxPlot({
   if (horizontal) {
     boxplot.max = verticalToHorizontal(boxplot.max);
     boxplot.maxToThird = verticalToHorizontal(boxplot.maxToThird);
-    boxplot.box.y1 = firstQuartileValue;
     boxplot.box = verticalToHorizontal(boxplot.box);
     boxplot.median = verticalToHorizontal(boxplot.median);
     boxplot.minToFirst = verticalToHorizontal(boxplot.minToFirst);
