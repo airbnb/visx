@@ -13,6 +13,17 @@ describe('<LegendThreshold />', () => {
     expect(LegendThreshold).toBeDefined();
   });
 
+  it('shows the lower range color for a half-unit threshold', () => {
+    const scale = scaleThreshold({ domain: [0.5], range: ['green', 'red'] });
+    const { getAllByTestId } = render(<LegendThreshold scale={scale} data-testid="entry" />);
+
+    const shapes = getAllByTestId('entry').map((entry) =>
+      entry.querySelector('.visx-legend-shape div'),
+    );
+    expect(shapes[0]).toHaveStyle('background: green');
+    expect(shapes[1]).toHaveStyle('background: red');
+  });
+
   it('should render LegendShape with the correct color', () => {
     const domain = [1, 2, 9];
     const range = ['green', 'purple', 'blue', 'pink'];
