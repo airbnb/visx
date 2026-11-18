@@ -32,6 +32,21 @@ describe('<BoxPlot />', () => {
       </svg>,
     );
 
+  it.each([
+    [false, [0, 100]],
+    [true, [100, 0]],
+  ] as const)('keeps the box between quartiles (horizontal=%s)', (horizontal, range) => {
+    const scale = scaleLinear<number>({ domain: [0, 10], range: [...range] });
+    const { container } = render(
+      <svg>
+        <BoxPlot firstQuartile={2} thirdQuartile={8} horizontal={horizontal} valueScale={scale} />
+      </svg>,
+    );
+    const box = container.querySelector('rect');
+    expect(Number(box?.getAttribute(horizontal ? 'x' : 'y'))).toBeCloseTo(20);
+    expect(Number(box?.getAttribute(horizontal ? 'width' : 'height'))).toBeCloseTo(60);
+  });
+
   test('it should be defined', () => {
     expect(BoxPlot).toBeDefined();
   });
