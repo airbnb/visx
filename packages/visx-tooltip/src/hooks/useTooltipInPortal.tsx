@@ -44,7 +44,7 @@ export default function useTooltipInPortal({
   ...useMeasureOptions
 }: UseTooltipPortalOptions | undefined = {}): UseTooltipInPortal {
   const [containerRef, containerBounds, forceRefreshBounds] = useMeasure(useMeasureOptions);
-  const [isSsr, setIsSsr] = useState(false);
+  const [isSsr, setIsSsr] = useState(true);
 
   useEffect(() => {
     setIsSsr(false);
