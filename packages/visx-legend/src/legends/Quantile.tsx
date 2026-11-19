@@ -14,16 +14,18 @@ type FactoryProps = {
 
 export type LegendQuantileProps<Scale extends AnyQuantileScale> = LegendProps<Scale> & FactoryProps;
 
-function labelFormatterFactoryFactory<Scale extends AnyQuantileScale>({
-  labelDelimiter,
-}: FactoryProps): LabelFormatterFactory<Scale> {
+function labelFormatterFactoryFactory<Scale extends AnyQuantileScale>(
+  { labelDelimiter }: FactoryProps,
+  useRangeOrder: boolean,
+): LabelFormatterFactory<Scale> {
   return ({ scale, labelFormat }) =>
     (datum, index) => {
-      const [x0, x1] = scale.invertExtent(scale(datum));
+      const value = useRangeOrder ? scale.range()[index] : scale(datum);
+      const [x0, x1] = scale.invertExtent(value);
       return {
         extent: [x0, x1],
         text: `${labelFormat(x0, index)} ${labelDelimiter} ${labelFormat(x1, index)}`,
-        value: scale(x0),
+        value,
         datum,
         index,
       };
@@ -42,7 +44,7 @@ export default function Quantile<Scale extends AnyQuantileScale>({
   // transform range into input values because it may contain more elements
   const domain = inputDomain || scale.range().map((output) => scale.invertExtent(output)[0]);
   const labelTransform =
-    inputLabelTransform || labelFormatterFactoryFactory<Scale>({ labelDelimiter });
+    inputLabelTransform || labelFormatterFactoryFactory<Scale>({ labelDelimiter }, !inputDomain);
 
   return (
     <Legend<Scale>
