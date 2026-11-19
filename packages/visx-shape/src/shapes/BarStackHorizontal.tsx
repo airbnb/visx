@@ -68,7 +68,7 @@ export default function BarStackHorizontal<
         const barY =
           'bandwidth' in yScale
             ? yScale(y(bar.data))
-            : Math.max((yScale(y(bar.data)) || 0) - barWidth / 2);
+            : Math.max((yScale(y(bar.data)) || 0) - barHeight / 2);
         return {
           bar,
           key,
