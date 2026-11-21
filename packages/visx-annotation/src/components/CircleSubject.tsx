@@ -26,8 +26,8 @@ export default function CircleSubject({
   return (
     <circle
       className={cx('visx-annotation-subject', 'visx-annotation-subject-circle', className)}
-      cx={propsX || annotationContext.x}
-      cy={propsY || annotationContext.y}
+      cx={propsX ?? annotationContext.x}
+      cy={propsY ?? annotationContext.y}
       r={radius}
       fill="transparent"
       pointerEvents="none"
