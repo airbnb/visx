@@ -94,4 +94,37 @@ describe('<Projection />', () => {
     expect(centroid.mock.calls[0]?.[0]).toEqual(expect.any(Array));
     expect(centroid.mock.calls[0]?.[1]).toEqual(expect.any(Object));
   });
+
+  test('zero clipAngle disables the orthographic clipping circle', () => {
+    const point = { type: 'Point', coordinates: [180, 0] } as const;
+    const { container } = renderWithSvg(
+      <Projection projection="orthographic" data={[]} clipAngle={0}>
+        {({ path }) => <path d={path({ ...point, coordinates: [180, 0] }) ?? ''} />}
+      </Projection>,
+    );
+    expect(container.querySelector('path')?.getAttribute('d')).not.toBe('');
+  });
+
+  test('zero scale collapses projected points to the translation', () => {
+    const { container } = renderWithSvg(
+      <Projection data={[]} scale={0} translate={[30, 40]}>
+        {({ projection }) => (
+          <circle cx={projection([45, 30])?.[0]} cy={projection([45, 30])?.[1]} />
+        )}
+      </Projection>,
+    );
+    expect(container.querySelector('circle')).toHaveAttribute('cx', '30');
+    expect(container.querySelector('circle')).toHaveAttribute('cy', '40');
+  });
+
+  test.each([0, 0.5, undefined])('respects the requested resampling precision %s', (precision) => {
+    const { container } = renderWithSvg(
+      <Projection data={[]} precision={precision}>
+        {({ projection }) => <text>{projection.precision()}</text>}
+      </Projection>,
+    );
+    expect(Number(container.querySelector('text')?.textContent)).toBeCloseTo(
+      precision ?? Math.SQRT1_2,
+    );
+  });
 });
