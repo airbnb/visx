@@ -39,10 +39,10 @@ export default function LineSubject({
   return (
     <line
       className={cx('visx-annotation-subject', 'visx-annotation-subject-line', className)}
-      x1={lineIsVertical ? propsX || annotationContext.x : min}
-      x2={lineIsVertical ? propsX || annotationContext.x : max}
-      y1={lineIsVertical ? min : propsY || annotationContext.y}
-      y2={lineIsVertical ? max : propsY || annotationContext.y}
+      x1={lineIsVertical ? propsX ?? annotationContext.x : min}
+      x2={lineIsVertical ? propsX ?? annotationContext.x : max}
+      y1={lineIsVertical ? min : propsY ?? annotationContext.y}
+      y2={lineIsVertical ? max : propsY ?? annotationContext.y}
       fill="transparent"
       pointerEvents="none"
       stroke={stroke}
