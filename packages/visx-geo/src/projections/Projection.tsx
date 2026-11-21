@@ -143,13 +143,13 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
 
   const currProjection = maybeCustomProjection();
 
-  if (clipAngle && currProjection.clipAngle) currProjection.clipAngle(clipAngle);
+  if (clipAngle !== undefined && currProjection.clipAngle) currProjection.clipAngle(clipAngle);
   if (clipExtent && currProjection.clipExtent) currProjection.clipExtent(clipExtent);
-  if (scale && currProjection.scale) currProjection.scale(scale);
+  if (scale !== undefined && currProjection.scale) currProjection.scale(scale);
   if (translate && currProjection.translate) currProjection.translate(translate);
   if (center && currProjection.center) currProjection.center(center);
   if (rotate && currProjection.rotate) currProjection.rotate(rotate);
-  if (precision && currProjection.precision) currProjection.precision(precision);
+  if (precision !== undefined && currProjection.precision) currProjection.precision(precision);
   if (fitExtent && currProjection.fitExtent) currProjection.fitExtent(...fitExtent);
   if (fitSize && currProjection.fitSize) currProjection.fitSize(...fitSize);
 
